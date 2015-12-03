@@ -26,6 +26,8 @@ c) SSN-level ID verification for official public elections
 - [ ] See three use cases w/ icons
 - [ ] Sign up to get email updates
 
+### Dev Chores
+- [ ] Factor out curried React.createElements into h1(), div(), span(), etc.
 
 ## Don't forget
 [Structuring React Projects](https://reactjsnews.com/structuring-react-projects/)
