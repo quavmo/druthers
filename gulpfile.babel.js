@@ -30,7 +30,7 @@ function compile(watch) {
   }
 
 
-  rebundle().pipe($.exit());
+  watch ? rebundle() : rebundle().pipe($.exit());
 }
 
 function watch() {

@@ -1,8 +1,8 @@
 import React from 'react';
 
-export const App = React.createClass({
+export default React.createClass({
 	render: function() {
-		return React.createElement('h1', {}, 'Hello world!');
+		return React.createElement('h1', {}, 'Hello, World!');
 	}
 
 });
