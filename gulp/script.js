@@ -21,15 +21,15 @@ function compile(watch) {
       .pipe(sourcemaps.init({ loadMaps: true }))
       .pipe(sourcemaps.write('./'))
       .pipe(gulp.dest('./build'))
-      .pipe($.notify("Bundled!"));
+      .pipe($.notify("ECMA!"));
   }
 
   watch && bundler.on('update', rebundle);
-  watch ? rebundle() : rebundle().pipe($.exit());
+  return watch ? rebundle() : rebundle().pipe($.exit());
 }
 
-gulp.task('build', function() { return compile(); });
-gulp.task('watch', function() { return compile(true) });
+gulp.task('script', function() { return compile(); });
+gulp.task('watch-script', function() { return compile(true) });
 
 function meticulouslyParseError(error) {
     console.error(error.toString());

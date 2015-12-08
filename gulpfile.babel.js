@@ -3,4 +3,5 @@ import gulp from 'gulp';
 
 requireDir('./gulp', { recurse: true });
 
-gulp.task('default', ['watch', 'serve']);
+gulp.task('default', ['watch-image', 'watch-script', 'serve']);
+gulp.task('build', ['image', 'script']);
