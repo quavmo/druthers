@@ -33,11 +33,10 @@ gulp.task('watch', function() { return compile(true) });
 
 function meticulouslyParseError(error) {
     console.error(error.toString());
-    console.error(error.codeFrame);
-    let file         = path.basename(error.filename);
-    let position     = [error.loc.line, error.loc.column].join(':');
-    let errorParser  =  /(.+?(?=:)):(.+?(?=:)):(.+?(?=\/))/;
-    let type         = error.name;
+    error.codeFrame && console.error(error.codeFrame);
+    let file      = error.filename && path.basename(error.filename);
+    let position  = error.loc && [error.loc.line, error.loc.column].join(':')
+    let type      = error.name;
 
-    return `${type}: ${file} (${position})`;
+    return (file || position) ? `${type}: ${file} (${position})` : error.toString();
 }
