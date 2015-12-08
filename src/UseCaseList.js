@@ -16,13 +16,13 @@ export default React.createClass({
 			body: 'Give the people what they want, or give them their second choice. With ranked-choice ballots, i.e. "instant runoffs", voters can prioritize their dream candidate, while still indicating a more realistic fallback.'
 		}];
 
-		let header = React.createElement('h2', {key: 'header', margin: '70 0'}, 'Get your druthers.');
-		return React.createElement('div', {style:{padding: 20}}, [header, ...cases.map(this.hydrateCase)]);
+		let header = React.createElement('h2', {key: 'header', style: {margin: '50px 0', fontSize: 30}}, 'Get your druthers.');
+		return React.createElement('div', {style: {padding: 20}}, [header, ...cases.map(this.hydrateCase)]);
 	},
 	hydrateCase: function (data) {
-		let image = React.createElement('img', {key: 'image',src: `image/${data.key}.svg`, style: {width: 120}});
-		let title = React.createElement('h1', {key: 'title', style: {color: 'red'}}, data.title);
-		let body 	= React.createElement('p', {key: 'body'}, data.body);
-		return React.createElement('div', data, [image, title, body])
+		let image = React.createElement('img', {key: 'image',src: `image/${data.key}.svg`, style: {height: 120}});
+		let title = React.createElement('h1', {key: 'title', style: {color: 'red', marginTop: 30}}, data.title);
+		let body 	= React.createElement('p', {key: 'body', style: {marginTop: 20}}, data.body);
+		return React.createElement('div', Object.assign(data, {style: {marginTop: 30}}), [image, title, body])
 	}
 });

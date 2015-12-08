@@ -16,7 +16,6 @@ export default React.createClass({
       background: 'url('+bgndUri+')',
       backgroundSize: 'cover',
       color: 'white',
-      fontFamily: 'sans-serif',
       padding: 20,
 			height: 550,
 			overflow: 'hidden'
