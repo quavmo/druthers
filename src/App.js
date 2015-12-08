@@ -8,7 +8,7 @@ export default React.createClass({
 		let hero 				= React.createElement(Hero, {key: 'hero'});
 		let useCaseList = React.createElement(UseCaseList, {key: 'cases'});
 
-		return React.createElement('div', {style: {fontFamily: 'sans-serif'}}, [hero, useCaseList]);
+		return React.DOM.div({style: {fontFamily: 'sans-serif'}}, [hero, useCaseList]);
 		// return [Hero, UseCaseList, SignUp]
 	}
 });
