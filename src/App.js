@@ -12,5 +12,4 @@ export default React.createClass({
 		return React.createElement('div', {}, [hero]);
 		// return [Hero, UseCaseList, SignUp]
 	}
-
 });
