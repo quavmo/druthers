@@ -22,8 +22,8 @@ c) SSN-level ID verification for official public elections
 - [ ] See the closed ballot's final order
 
 ### As a prospect, I can...
-- [ ] See a value proposition
-- [ ] See three use cases w/ icons
+- [x] See a value proposition
+- [x] See three use cases w/ icons
 - [ ] Sign up to get email updates
 
 ### Dev Chores
