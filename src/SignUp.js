@@ -5,16 +5,20 @@ export default React.createClass({
 		let inputProps = {
 			type: 'text',
 			style: {
-				height: 50,
 				margin: '20px auto',
 				width: '100%',
-				display: 'block'
+				display: 'block',
+				padding: 15,
+				background: 'black',
+				color: 'white',
+				border: 'none',
+				fontSize: 15
 			}
 	};
 
 		let header 		= React.DOM.h1({style: {textTransform: 'capitalize', fontSize: 42, marginTop: 45}}, "Get notified when it's released");
 		let subheader = React.DOM.p({style: {marginTop: 20}}, "You'll be able to create a ballot immediately, and it will be the last day your group priorities are unclear.");
-		let name 			= React.DOM.input(Object.assign(inputProps, {placeholder: "Full Name"}));
+		let name 			= React.DOM.input(Object.assign(inputProps, {placeholder: "Name"}));
 		let email 		= React.DOM.input(Object.assign(inputProps, {placeholder: "Email"}));
 		let submit 		= React.DOM.button({style: {margin: '20px auto', display: 'block'}}, "Submit");
 
@@ -24,6 +28,7 @@ export default React.createClass({
 			outerProps,
 			header,
 			subheader,
+			React.DOM.style({}, '::-webkit-input-placeholder { color: white }'),
 			React.DOM.form({},
 				name,
 				email,
