@@ -1,22 +1,13 @@
 import React from 'react';
-
+import Firebase from 'firebase';
+let caseBase = new Firebase("https://druthers-base.firebaseio.com/marketing/cases");
 
 export default React.createClass({
+	getInitialState: function () { return {cases: []}; },
+	componentDidMount: function () {
+		caseBase.on('value', function (data) { this.setState({cases: data.val()}) }, this);
+	},
 	render: function() {
-		let cases = [{
-			key: 'food',
-			title: 'Chow mein? Ramen? Phở?',
-			body: 'Whip up a ballot that ends the conversations about what kind of noodles to have for dinner. Send it to your compadres and let them rank their options.'
-		},{
-			key: 'music',
-			title: 'Nickelback? Nickel Creek? Nick Cave?',
-			body: 'Share your ballot with any number of individuals, public or private. Post your ballot online, and let your audience choose your next direction.'
-		},{
-			key: 'politics',
-			title: 'Democrat? Republican? Independent?',
-			body: 'Give the people what they want, or give them their second choice. With ranked-choice ballots, i.e. "instant runoffs", voters can prioritize their dream candidate, while still indicating a more realistic fallback.'
-		}];
-
 		let header 	= React.DOM.h2({style: {padding: 30, fontSize: 30}}, 'Get your druthers.');
 		let responsiveStyleBox = React.DOM.style(
 			{},
@@ -31,7 +22,7 @@ export default React.createClass({
 				}
 			`
 		)
-		let caseBox = React.DOM.div({id: 'caseBox'}, ...cases.map(this.hydrateCase))
+		let caseBox = React.DOM.div({id: 'caseBox'}, ...this.state.cases.map(this.hydrateCase))
 		return React.DOM.div({id: 'useCaseList'}, responsiveStyleBox, header, caseBox);
 	},
 	hydrateCase: function (data) {
