@@ -17,13 +17,14 @@ export default React.createClass({
 			body: 'Give the people what they want, or give them their second choice. With ranked-choice ballots, i.e. "instant runoffs", voters can prioritize their dream candidate, while still indicating a more realistic fallback.'
 		}];
 
-		let header = React.DOM.h2({key: 'header', style: {margin: '50px 0', fontSize: 30}}, 'Get your druthers.');
-		return React.DOM.div({style: {padding: 20}}, [header, ...cases.map(this.hydrateCase)]);
+		let header = React.DOM.h2({style: {margin: '50px 0', fontSize: 30}}, 'Get your druthers.');
+		return React.DOM.div({style: {padding: 20}}, header, cases.map(this.hydrateCase));
 	},
 	hydrateCase: function (data) {
-		let image = React.DOM.img({key: 'image',src: `image/${data.key}.svg`, style: {height: 120}});
-		let title = React.DOM.h1({key: 'title', style: {color: 'red', marginTop: 30}}, data.title);
-		let body 	= React.DOM.p({key: 'body', style: {marginTop: 20}}, data.body);
-		return React.DOM.div(Object.assign(data, {style: {marginTop: 30}}), [image, title, body])
+		let image = React.DOM.img({src: `image/${data.key}.svg`, style: {height: 120}});
+		let title = React.DOM.h1({style: {color: 'red', marginTop: 30}}, data.title);
+		let body 	= React.DOM.p({style: {marginTop: 20}}, data.body);
+
+		return React.DOM.div(Object.assign(data, {style: {marginTop: 30}}), image, title, body);
 	}
 });
