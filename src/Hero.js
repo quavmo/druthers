@@ -18,7 +18,8 @@ export default React.createClass({
     let header    = React.DOM.h1({style: {fontSize: 36}}, this.state.header);
     let subheader = React.DOM.h1({style: {marginTop: 10, fontSize: 14}}, this.state.subheader);
     let action    = React.DOM.a({href: '#signUp', style: {color: 'white', textDecoration: 'none', marginTop: 30, padding: 20, display: 'inline-block', background: blue, textTransform: 'capitalize'}}, this.state.action);
-		let appShot   = React.DOM.img({src: 'image/nexus4_portrait.png', style: {margin: '100px auto', maxWidth: 600, display: 'block'}});
+		let imageStyles = {margin: '100px auto', maxWidth: 280, display: 'block'}
+		let appShot   = React.DOM.img({src: 'image/iphone.png', style: imageStyles});
 		let responsiveStyleBox = React.DOM.style(
 			{},
 			`
