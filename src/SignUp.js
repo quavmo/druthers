@@ -42,7 +42,7 @@ export default React.createClass({
 		type: 'text',
 		style: {
 			margin: '20px auto',
-			width: '100%',
+			width: '80%',
 			display: 'block',
 			padding: 15,
 			background: 'black',
