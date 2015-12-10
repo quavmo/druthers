@@ -1,11 +1,9 @@
 import React from 'react';
 import Firebase from 'firebase';
-var interestedBase = new Firebase("https://druthers-base.firebaseio.com/interested");
+let interestedBase = new Firebase("https://druthers-base.firebaseio.com/interested");
 
 export default React.createClass({
-	getInitialState: function() {
-	 return {name: '', email: ''};
- },
+	getInitialState: function() { return {name: '', email: ''}; },
 	render: function() {
 		let header 		= React.DOM.h1({style: {textTransform: 'capitalize', fontSize: 42, marginTop: 45}}, "Get notified when it's released");
 		let subheader = React.DOM.p({style: {marginTop: 20}}, "You'll be able to create a ballot immediately, and it will be the last day your group priorities are unclear.");
@@ -13,7 +11,7 @@ export default React.createClass({
 		let email 		= React.DOM.input(Object.assign(this.inputProps, {placeholder: "Email", onChange: this.handleEmailChange, value: this.state.email}));
 		let submit 		= React.DOM.button({style: {margin: '20px auto', display: 'block'}}, "Submit");
 
-		let outerProps = {style: {padding: 20, color: 'white', background: 'rgba(0,84,255,1)', fontFamily: 'sans-serif'}}
+		let outerProps = {id: 'signUp', style: {padding: 20, color: 'white', background: 'rgba(0,84,255,1)', fontFamily: 'sans-serif'}}
 
 		return React.DOM.div(
 			outerProps,
