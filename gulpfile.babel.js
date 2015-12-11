@@ -3,5 +3,7 @@ import gulp from 'gulp';
 
 requireDir('./gulp', { recurse: true });
 
-gulp.task('default', ['watch-image', 'watch-script', 'watch-test', 'serve']);
-gulp.task('build', ['image', 'script', 'test']);
+gulp.task('default', ['watch', 'serve']);
+
+gulp.task('watch', ['watch-image', 'watch-web', 'watch-script', 'watch-test']);
+gulp.task('build', ['image', 'web', 'script']);
