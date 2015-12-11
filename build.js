@@ -19474,17 +19474,18 @@ exports.default = _react2.default.createClass({
 	},
 	render: function render() {
 		var header = _react2.default.DOM.h1({ style: { textTransform: 'capitalize', fontSize: 42 } }, "Get notified when it's released");
+		var gratitude = _react2.default.DOM.h1({ style: { marginTop: 50, textTransform: 'capitalize', fontSize: 42 } }, 'Rad, ' + this.state.name + '.');
 		var subheader = _react2.default.DOM.p({ style: { marginTop: 20 } }, "You'll be able to create a ballot immediately, and it will be the last day your group priorities are unclear.");
+
 		var name = _react2.default.DOM.input(Object.assign(this.inputProps, { placeholder: "Name", onChange: this.handleNameChange, value: this.state.name }));
 		var email = _react2.default.DOM.input(Object.assign(this.inputProps, { placeholder: "Email", onChange: this.handleEmailChange, value: this.state.email }));
-
 		var submit = _react2.default.DOM.button({ style: { cursor: 'pointer', border: '3px solid white', padding: 20, color: 'white', textTransform: 'capitalize', margin: '20px auto', display: 'block' } }, "Submit");
 
 		var outerProps = { id: 'signUp', style: { color: 'white', background: blue, fontFamily: 'sans-serif' } };
 
 		var responsiveStyleBox = _react2.default.DOM.style({}, '\n\t\t\t\t@media (max-width: 1000px) { #signUp { padding: 50px; } }\n\t\t\t\t@media (min-width: 1000px) { #signUp { padding: 130px; } }\n\t\t\t\tbutton { background: ' + blue + '; }\n\t\t\t\tbutton:hover { background: grey; }\n\t\t\t');
 
-		return _react2.default.DOM.div(outerProps, responsiveStyleBox, header, subheader, _react2.default.DOM.style({}, '::-webkit-input-placeholder { color: white }'), _react2.default.DOM.form({ onSubmit: this.handleSubmit }, name, email, submit));
+		return _react2.default.DOM.div(outerProps, responsiveStyleBox, header, subheader, _react2.default.DOM.style({}, '::-webkit-input-placeholder { color: white }'), !this.state.submitted ? _react2.default.DOM.form({ onSubmit: this.handleSubmit }, name, email, submit) : gratitude);
 	},
 	handleNameChange: function handleNameChange(e) {
 		e.preventDefault();
@@ -19497,7 +19498,7 @@ exports.default = _react2.default.createClass({
 	handleSubmit: function handleSubmit(e) {
 		e.preventDefault();
 		interestedBase.push(this.state);
-		this.setState({ email: '', name: '' });
+		this.setState({ submitted: true });
 	},
 	inputProps: {
 		type: 'text',
