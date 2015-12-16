@@ -5,7 +5,7 @@ import Reporter from 'jasmine-terminal-reporter';
 import gulpLoadPlugins from 'gulp-load-plugins';
 const $ = gulpLoadPlugins();
 
-let testCode    = 'test/**/*.js';
+let testCode    = 'test/**/*';
 let sourceCode  = 'src/**/*.js';
 
 gulp.task('test', function() {
@@ -15,6 +15,6 @@ gulp.task('test', function() {
    return testPipe.pipe($.jasmine({reporter: [new Reporter(), notifier]}));
 });
 
-gulp.task('watch-test', ['test'], function () {
+gulp.task('watch-test', function () {
   return gulp.watch([testCode, sourceCode], ['test']);
 })
