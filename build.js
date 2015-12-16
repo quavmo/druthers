@@ -19352,40 +19352,23 @@ module.exports = require('./lib/React');
 },{"./lib/React":54}],160:[function(require,module,exports){
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Hero = require('./Hero');
+var _reactDom = require('react-dom');
 
-var _Hero2 = _interopRequireDefault(_Hero);
+var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _UseCaseList = require('./UseCaseList');
+var _Page = require('./pages/marketing/Page.js');
 
-var _UseCaseList2 = _interopRequireDefault(_UseCaseList);
-
-var _SignUp = require('./SignUp');
-
-var _SignUp2 = _interopRequireDefault(_SignUp);
+var _Page2 = _interopRequireDefault(_Page);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _react2.default.createClass({
-	render: function render() {
+_reactDom2.default.render(_react2.default.createElement(_Page2.default), document.getElementById('app'));
 
-		var hero = _react2.default.createElement(_Hero2.default);
-		var useCaseList = _react2.default.createElement(_UseCaseList2.default);
-		var signUp = _react2.default.createElement(_SignUp2.default);
-
-		return _react2.default.DOM.div({ style: { fontFamily: 'sans-serif' } }, hero, useCaseList, signUp);
-	}
-});
-
-},{"./Hero":161,"./SignUp":162,"./UseCaseList":163,"react":159}],161:[function(require,module,exports){
+},{"./pages/marketing/Page.js":162,"react":159,"react-dom":30}],161:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -19459,6 +19442,42 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _Hero = require('./Hero');
+
+var _Hero2 = _interopRequireDefault(_Hero);
+
+var _UseCaseList = require('./UseCaseList');
+
+var _UseCaseList2 = _interopRequireDefault(_UseCaseList);
+
+var _SignUp = require('./SignUp');
+
+var _SignUp2 = _interopRequireDefault(_SignUp);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _react2.default.createClass({
+	render: function render() {
+
+		var hero = _react2.default.createElement(_Hero2.default);
+		var useCaseList = _react2.default.createElement(_UseCaseList2.default);
+		var signUp = _react2.default.createElement(_SignUp2.default);
+
+		return _react2.default.DOM.div({ style: { fontFamily: 'sans-serif' } }, hero, useCaseList, signUp);
+	}
+});
+
+},{"./Hero":161,"./SignUp":163,"./UseCaseList":164,"react":159}],163:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
 var _firebase = require('firebase');
 
 var _firebase2 = _interopRequireDefault(_firebase);
@@ -19515,7 +19534,7 @@ exports.default = _react2.default.createClass({
 	}
 });
 
-},{"firebase":28,"react":159}],163:[function(require,module,exports){
+},{"firebase":28,"react":159}],164:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -19562,26 +19581,7 @@ exports.default = _react2.default.createClass({
 	}
 });
 
-},{"firebase":28,"react":159}],164:[function(require,module,exports){
-'use strict';
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = require('react-dom');
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _App = require('./App.js');
-
-var _App2 = _interopRequireDefault(_App);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-_reactDom2.default.render(_react2.default.createElement(_App2.default), document.getElementById('app'));
-
-},{"./App.js":160,"react":159,"react-dom":30}]},{},[164])
+},{"firebase":28,"react":159}]},{},[160])
 
 
 //# sourceMappingURL=build.js.map
