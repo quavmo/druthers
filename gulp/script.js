@@ -11,9 +11,7 @@ import babel      from 'babelify';
 import path       from 'path';
 
 function compile(watch) {
-  var bundler = watchify(browserify('./src/index.js', { debug: true }).transform(babel, {
-    plugins: ["syntax-async-functions", "transform-regenerator"]
-  }));
+  var bundler = watchify(browserify('./src/index.js', {debug: true }).transform(babel));
 
   function rebundle() {
     return bundler.bundle()

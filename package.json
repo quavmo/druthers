@@ -7,6 +7,15 @@
   },
   "license": "UNLICENSED",
   "private": "true",
+  "babel": {
+    "presets": [
+      "es2015"
+    ],
+    "plugins": [
+      "syntax-async-functions",
+      "transform-regenerator"
+    ]
+  },
   "devDependencies": {
     "babel": "^6.1.18",
     "babel-core": "^6.2.1",
@@ -34,6 +43,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.3.14",
+    "firebase": "^2.3.2",
     "react": "^0.14.3",
     "react-dom": "^0.14.3"
   }

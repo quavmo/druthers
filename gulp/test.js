@@ -1,20 +1,23 @@
 import gulp from 'gulp';
-
 import Reporter from 'jasmine-terminal-reporter';
-
 import gulpLoadPlugins from 'gulp-load-plugins';
-const $ = gulpLoadPlugins();
 
-let testCode    = 'test/**/*';
-let sourceCode  = 'src/**/*.js';
+const $ = gulpLoadPlugins();
+const testCode = 'test/**/*';
+const sourceCode = 'src/**/*.js';
+const notifier = {
+  specDone: function(result) {
+    console.log('this could be a notification');
+  }
+};
 
 gulp.task('test', function() {
-   let testPipe = gulp.src(testCode);
-   let notifier = { specDone: function(result) { console.log('this could be a notification'); } };
-
-   return testPipe.pipe($.jasmine({reporter: [new Reporter(), notifier]}));
+  // gulp-jasmine works on filepaths so you can't have any plugins before it
+  return gulp.src(testCode).pipe($.jasmine({
+    reporter: [new Reporter(), notifier]
+  }));
 });
 
-gulp.task('watch-test', function () {
+gulp.task('watch-test', function() {
   return gulp.watch([testCode, sourceCode], ['test']);
 })
