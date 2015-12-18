@@ -1,5 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MarketingPage from './pages/marketing/Page.js';
+import Router from './router.js';
 
-ReactDOM.render(React.createElement(MarketingPage), document.getElementById('app'));
+let path = window.location.hash.substring(1);
+
+Router.dispatch(path, function(state, page) {
+  ReactDOM.render(React.createElement(page), document.getElementById('app'));
+});

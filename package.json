@@ -45,6 +45,7 @@
     "babel-polyfill": "^6.3.14",
     "firebase": "^2.3.2",
     "react": "^0.14.3",
-    "react-dom": "^0.14.3"
+    "react-dom": "^0.14.3",
+    "react-routing": "0.0.6"
   }
 }
