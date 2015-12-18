@@ -5,7 +5,7 @@ import gulpLoadPlugins  from 'gulp-load-plugins';
 const $ = gulpLoadPlugins();
 
 gulp.task('web', function() {
-  fs.writeFileSync('./build/CNAME', "hello.druthers.io");
+  fs.writeFileSync('./build/CNAME', "druthers.io");
 
   return gulp.src('src/index.html')
       .pipe(gulp.dest('build'))
