@@ -7,7 +7,7 @@ const testCode = 'test/**/*';
 const sourceCode = 'src/**/*.js';
 const notifier = {
   specDone: function(result) {
-    console.log('this could be a notification');
+    // console.log('this could be a notification');
   }
 };
 
