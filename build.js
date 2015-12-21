@@ -24857,11 +24857,12 @@ require('babel-polyfill');
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = new _reactRouting.Router(function (on) {
-  on('*', function (s) {
+  // on('*', s => MarketingPage);
+  on('/', function (s) {
     return _Page2.default;
   });
   on('/ballot', function (s) {
-    return _Page2.default;
+    return BallotPage;
   });
 });
 
