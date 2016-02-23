@@ -24622,7 +24622,140 @@ window.addEventListener('hashchange', function () {
 });
 render();
 
-},{"./router.js":360,"react":354,"react-dom":221}],356:[function(require,module,exports){
+},{"./router.js":364,"react":354,"react-dom":221}],356:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _react2.default.createClass({
+  render: function render() {
+    var style = {
+      color: 'black',
+      fontSize: 18,
+      background: 'white',
+      padding: 20,
+      margin: 20,
+      listStyle: 'none'
+    };
+
+    return _react2.default.DOM.li({ style: style }, this.props.name);
+  }
+});
+
+},{"react":354}],357:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Candidate = require('./Candidate');
+
+var _Candidate2 = _interopRequireDefault(_Candidate);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+exports.default = _react2.default.createClass({
+  render: function render() {
+    var _React$DOM;
+
+    var style = {
+      color: 'white',
+      fontSize: 28,
+      textAlign: 'center'
+    };
+
+    var candidateStrings = ["Get Off My LAN", "Pretty Fly For A WiFi", "TellMyWiFiLoveHer"];
+    var candidates = candidateStrings.map(function (name) {
+      return _react2.default.createElement(_Candidate2.default, { name: name });
+    });
+
+    return (_React$DOM = _react2.default.DOM).ol.apply(_React$DOM, [{ style: style }].concat(_toConsumableArray(candidates)));
+  }
+});
+
+},{"./Candidate":356,"react":354}],358:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Title = require('./Title');
+
+var _Title2 = _interopRequireDefault(_Title);
+
+var _CandidateSet = require('./CandidateSet');
+
+var _CandidateSet2 = _interopRequireDefault(_CandidateSet);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// import SubmitButton from './SubmitButton';
+
+var Candidate = _react2.default.DOM.div({}, "Get Off My LAN");
+var Submit = _react2.default.DOM.div({}, ">");
+
+exports.default = _react2.default.createClass({
+  render: function render() {
+    var title = _react2.default.createElement(_Title2.default);
+    var candidateSet = _react2.default.createElement(_CandidateSet2.default);
+
+    var style = {
+      background: 'rgb(60, 150, 130)',
+      height: '100%',
+      fontFamily: 'sans-serif',
+      padding: 20
+    };
+
+    return _react2.default.DOM.div({ style: style }, title, candidateSet, Submit);
+  }
+});
+
+},{"./CandidateSet":357,"./Title":359,"react":354}],359:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _react2.default.createClass({
+  render: function render() {
+    var style = {
+      color: 'white',
+      fontSize: 28,
+      textAlign: 'center'
+    };
+
+    return _react2.default.DOM.div({ style: style }, "What should we name our house WiFi?");
+  }
+});
+
+},{"react":354}],360:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24685,7 +24818,7 @@ exports.default = _react2.default.createClass({
 	}
 });
 
-},{"firebase":217,"react":354}],357:[function(require,module,exports){
+},{"firebase":217,"react":354}],361:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24721,7 +24854,7 @@ exports.default = _react2.default.createClass({
 	}
 });
 
-},{"./Hero":356,"./SignUp":358,"./UseCaseList":359,"react":354}],358:[function(require,module,exports){
+},{"./Hero":360,"./SignUp":362,"./UseCaseList":363,"react":354}],362:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24788,7 +24921,7 @@ exports.default = _react2.default.createClass({
 	}
 });
 
-},{"firebase":217,"react":354}],359:[function(require,module,exports){
+},{"firebase":217,"react":354}],363:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24835,7 +24968,7 @@ exports.default = _react2.default.createClass({
 	}
 });
 
-},{"firebase":217,"react":354}],360:[function(require,module,exports){
+},{"firebase":217,"react":354}],364:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24848,6 +24981,10 @@ var _Page = require('./pages/marketing/Page');
 
 var _Page2 = _interopRequireDefault(_Page);
 
+var _Page3 = require('./pages/ballot/Page');
+
+var _Page4 = _interopRequireDefault(_Page3);
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -24857,16 +24994,15 @@ require('babel-polyfill');
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = new _reactRouting.Router(function (on) {
-  // on('*', s => MarketingPage);
-  on('/', function (s) {
-    return _Page2.default;
-  });
   on('/ballot', function (s) {
-    return BallotPage;
+    return _Page4.default;
+  });
+  on('*', function (s) {
+    return _Page2.default;
   });
 });
 
-},{"./pages/marketing/Page":357,"babel-polyfill":1,"react":354,"react-routing":225}]},{},[355])
+},{"./pages/ballot/Page":358,"./pages/marketing/Page":361,"babel-polyfill":1,"react":354,"react-routing":225}]},{},[355])
 
 
 //# sourceMappingURL=build.js.map
