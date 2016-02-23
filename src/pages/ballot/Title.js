@@ -10,7 +10,7 @@ export default React.createClass({
 
     return React.DOM.div(
       {style: style},
-      "What should we name our house WiFi?"
+      this.props.text
     );
   }
 });

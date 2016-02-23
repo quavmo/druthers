@@ -9,8 +9,7 @@ export default React.createClass({
       textAlign: 'center'
     };
 
-    let candidateStrings = ["Get Off My LAN", "Pretty Fly For A WiFi", "TellMyWiFiLoveHer"];
-    let candidates = candidateStrings.map(function (name) {
+    let candidates = this.props.candidates.map(function (name) {
       return React.createElement(Candidate, {name});
     });
 

@@ -1,16 +1,25 @@
 import React 				from 'react';
+import Firebase from 'firebase';
 import Title        from './Title';
 import CandidateSet    from './CandidateSet';
 // import SubmitButton from './SubmitButton';
 
-
-let Candidate = React.DOM.div({}, "Get Off My LAN");
+let ballotBase = new Firebase("https://druthers-base.firebaseio.com/ballots/1");
 let Submit = React.DOM.div({}, ">");
 
 export default React.createClass({
+	getInitialState: function(){
+		return {
+			title: 'loading...',
+			candidates: []
+		}
+	},
+	componentDidMount: function () {
+		ballotBase.on('value', function (data) { this.setState(data.val()) }, this);
+	},
 	render: function() {
-    let title = React.createElement(Title)
-    let candidateSet = React.createElement(CandidateSet)
+    let title = React.createElement(Title, {text: this.state.title})
+    let candidateSet = React.createElement(CandidateSet, {candidates: this.state.candidates})
 
     let style = {
       background: 'rgb(60, 150, 130)',
