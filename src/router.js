@@ -5,6 +5,6 @@ import React from 'react';
 import 'babel-polyfill';
 
 export default new Router(on => {
-  on('/ballot', s => Ballot);
-  on('*', s => Marketing);
+  on('/ballot/:id', s => Ballot);
+  on('/', s => Marketing);
 });

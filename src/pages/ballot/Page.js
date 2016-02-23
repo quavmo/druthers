@@ -4,7 +4,6 @@ import Title        from './Title';
 import CandidateSet    from './CandidateSet';
 // import SubmitButton from './SubmitButton';
 
-let ballotBase = new Firebase("https://druthers-base.firebaseio.com/ballots/1");
 let Submit = React.DOM.div({}, ">");
 
 export default React.createClass({
@@ -15,6 +14,7 @@ export default React.createClass({
 		}
 	},
 	componentDidMount: function () {
+		let ballotBase = new Firebase(`https://druthers-base.firebaseio.com/ballots/${this.props.id}`);
 		ballotBase.on('value', function (data) { this.setState(data.val()) }, this);
 	},
 	render: function() {
