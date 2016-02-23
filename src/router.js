@@ -1,9 +1,10 @@
 import { Router } from 'react-routing';
-import MarketingPage from './pages/marketing/Page';
+import Marketing from './pages/marketing/Page';
+import Ballot from './pages/ballot/Page';
 import React from 'react';
 import 'babel-polyfill';
 
 export default new Router(on => {
-  on('*', s => MarketingPage);
-  on('/ballot', s => MarketingPage);
+  on('/ballot', s => Ballot);
+  on('*', s => Marketing);
 });
