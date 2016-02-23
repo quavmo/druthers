@@ -24611,9 +24611,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function render() {
   var path = window.location.hash.substring(1);
-  console.log('dispatching to ' + path);
   _router2.default.dispatch(path, function (state, page) {
-    _reactDom2.default.render(_react2.default.createElement(page), document.getElementById('app'));
+    var screen = _react2.default.createElement(page, { id: state.params.id });
+    var root = document.getElementById('app');
+    _reactDom2.default.render(screen, root);
   });
 }
 
@@ -24679,8 +24680,7 @@ exports.default = _react2.default.createClass({
       textAlign: 'center'
     };
 
-    var candidateStrings = ["Get Off My LAN", "Pretty Fly For A WiFi", "TellMyWiFiLoveHer"];
-    var candidates = candidateStrings.map(function (name) {
+    var candidates = this.props.candidates.map(function (name) {
       return _react2.default.createElement(_Candidate2.default, { name: name });
     });
 
@@ -24692,12 +24692,16 @@ exports.default = _react2.default.createClass({
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+	value: true
 });
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _firebase = require('firebase');
+
+var _firebase2 = _interopRequireDefault(_firebase);
 
 var _Title = require('./Title');
 
@@ -24711,26 +24715,37 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // import SubmitButton from './SubmitButton';
 
-var Candidate = _react2.default.DOM.div({}, "Get Off My LAN");
 var Submit = _react2.default.DOM.div({}, ">");
 
 exports.default = _react2.default.createClass({
-  render: function render() {
-    var title = _react2.default.createElement(_Title2.default);
-    var candidateSet = _react2.default.createElement(_CandidateSet2.default);
+	getInitialState: function getInitialState() {
+		return {
+			title: 'loading...',
+			candidates: []
+		};
+	},
+	componentDidMount: function componentDidMount() {
+		var ballotBase = new _firebase2.default('https://druthers-base.firebaseio.com/ballots/' + this.props.id);
+		ballotBase.on('value', function (data) {
+			this.setState(data.val());
+		}, this);
+	},
+	render: function render() {
+		var title = _react2.default.createElement(_Title2.default, { text: this.state.title });
+		var candidateSet = _react2.default.createElement(_CandidateSet2.default, { candidates: this.state.candidates });
 
-    var style = {
-      background: 'rgb(60, 150, 130)',
-      height: '100%',
-      fontFamily: 'sans-serif',
-      padding: 20
-    };
+		var style = {
+			background: 'rgb(60, 150, 130)',
+			height: '100%',
+			fontFamily: 'sans-serif',
+			padding: 20
+		};
 
-    return _react2.default.DOM.div({ style: style }, title, candidateSet, Submit);
-  }
+		return _react2.default.DOM.div({ style: style }, title, candidateSet, Submit);
+	}
 });
 
-},{"./CandidateSet":357,"./Title":359,"react":354}],359:[function(require,module,exports){
+},{"./CandidateSet":357,"./Title":359,"firebase":217,"react":354}],359:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24751,7 +24766,7 @@ exports.default = _react2.default.createClass({
       textAlign: 'center'
     };
 
-    return _react2.default.DOM.div({ style: style }, "What should we name our house WiFi?");
+    return _react2.default.DOM.div({ style: style }, this.props.text);
   }
 });
 
@@ -24995,10 +25010,10 @@ require('babel-polyfill');
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = new _reactRouting.Router(function (on) {
-  on('/ballot', function (s) {
+  on('/ballot/:id', function (s) {
     return _Page4.default;
   });
-  on('*', function (s) {
+  on('/', function (s) {
     return _Page2.default;
   });
 });
