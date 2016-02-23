@@ -24812,6 +24812,7 @@ exports.default = _react2.default.createClass({
 			background: 'url(' + this.bgndUri + ')',
 			backgroundSize: 'cover',
 			color: 'white',
+			textShadow: "0 0 1px black",
 			height: 550,
 			overflow: 'hidden'
 		};
