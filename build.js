@@ -24802,7 +24802,7 @@ exports.default = _react2.default.createClass({
 		return Math.round(Math.random() * 5);
 	},
 	get photoId() {
-		return 'photo-1447752875215-b2761acb3c5d';
+		return 'photo-1429743305873-d4065c15f93e';
 	},
 	get bgndUri() {
 		return 'https://images.unsplash.com/' + this.photoId + '?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=f2460c17083e439b73d250a7db2a889c';
