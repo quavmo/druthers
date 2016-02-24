@@ -15,7 +15,12 @@ export default React.createClass({
 
     return React.DOM.input({
 			style: style,
-			value: this.props.text
+			value: this.props.text,
+			onChange: this.updateText
 		});
-  }
+  },
+	updateText: function(e) {
+		let ballotBase = new Firebase(`https://druthers-base.firebaseio.com/ballots/1`);
+		ballotBase.update({title: e.target.value});
+	}
 });
