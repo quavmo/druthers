@@ -9,25 +9,26 @@ export default React.createClass({
 		this.titleBase.on('value', function (data) { this.setState({text: data.val()}) }, this);
 	},
 	render: function() {
-    return React.DOM.input({
-			style: this.style,
-			value: this.state.text,
-			onChange: this.updateText
-		});
-  },
-	updateText: function(e) {
-		this.titleBase.set(e.target.value);
-	},
-	get style () {
-		return {
+		let style = {
 			border: 'none',
 	    outline: 'none',
-	    backgroundColor: 'transparent',
+	    backgroundColor: this.state.highlighted ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0)',
 	    fontFamily: 'inherit',
 	    fontSize: 28,
 			color: 'white',
 			width: "100%",
-			textAlign: 'center'
-    };
-	}
+			textAlign: 'center',
+			padding: 10
+		};
+    return React.DOM.input({
+			style: style,
+			value: this.state.text,
+			onChange: this.updateText,
+			onFocus: this.highlight,
+			onBlur: this.lowlight
+		});
+  },
+	updateText: function(e) { this.titleBase.set(e.target.value); },
+	highlight: function() { this.setState({highlighted: true}) },
+	lowlight: function() { this.setState({highlighted: false}) },
 });
