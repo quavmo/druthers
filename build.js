@@ -24777,10 +24777,9 @@ exports.default = _react2.default.createClass({
 			fontSize: 28,
 			color: 'white',
 			width: "100%",
-			textAlign: 'center',
-			padding: 10
+			textAlign: 'center'
 		};
-		return _react2.default.DOM.input({
+		return _react2.default.DOM.textarea({
 			style: style,
 			value: this.state.text,
 			onChange: this.updateText,
