@@ -24749,7 +24749,7 @@ exports.default = _react2.default.createClass({
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+	value: true
 });
 
 var _react = require('react');
@@ -24759,15 +24759,28 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = _react2.default.createClass({
-  render: function render() {
-    var style = {
-      color: 'white',
-      fontSize: 28,
-      textAlign: 'center'
-    };
+	render: function render() {
+		var style = {
+			border: 'none',
+			outline: 'none',
+			backgroundColor: 'transparent',
+			fontFamily: 'inherit',
+			fontSize: 28,
+			color: 'white',
+			width: "100%",
+			textAlign: 'center'
+		};
 
-    return _react2.default.DOM.div({ style: style }, this.props.text);
-  }
+		return _react2.default.DOM.input({
+			style: style,
+			value: this.props.text,
+			onChange: this.updateText
+		});
+	},
+	updateText: function updateText(e) {
+		var ballotBase = new Firebase('https://druthers-base.firebaseio.com/ballots/1');
+		ballotBase.update({ title: e.target.value });
+	}
 });
 
 },{"react":354}],360:[function(require,module,exports){
