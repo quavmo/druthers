@@ -1,8 +1,25 @@
 import React 				from 'react';
 
 export default React.createClass({
+	getInitialState: function(){
+		return { text: 'loading...' }
+	},
+	componentDidMount: function () {
+		this.titleBase = new Firebase(`https://druthers-base.firebaseio.com/ballots/${this.props.ballotId}/title`);
+		this.titleBase.on('value', function (data) { this.setState({text: data.val()}) }, this);
+	},
 	render: function() {
-    let style = {
+    return React.DOM.input({
+			style: this.style,
+			value: this.state.text,
+			onChange: this.updateText
+		});
+  },
+	updateText: function(e) {
+		this.titleBase.set(e.target.value);
+	},
+	get style () {
+		return {
 			border: 'none',
 	    outline: 'none',
 	    backgroundColor: 'transparent',
@@ -12,15 +29,5 @@ export default React.createClass({
 			width: "100%",
 			textAlign: 'center'
     };
-
-    return React.DOM.input({
-			style: style,
-			value: this.props.text,
-			onChange: this.updateText
-		});
-  },
-	updateText: function(e) {
-		let ballotBase = new Firebase(`https://druthers-base.firebaseio.com/ballots/1`);
-		ballotBase.update({title: e.target.value});
 	}
 });

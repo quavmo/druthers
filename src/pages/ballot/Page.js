@@ -18,7 +18,7 @@ export default React.createClass({
 		ballotBase.on('value', function (data) { this.setState(data.val()) }, this);
 	},
 	render: function() {
-    let title = React.createElement(Title, {text: this.state.title})
+    let title = React.createElement(Title, {ballotId: this.props.id})
     let candidateSet = React.createElement(CandidateSet, {candidates: this.state.candidates})
 
     let style = {
