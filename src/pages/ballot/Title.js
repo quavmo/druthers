@@ -3,14 +3,19 @@ import React 				from 'react';
 export default React.createClass({
 	render: function() {
     let style = {
-      color: 'white',
-      fontSize: 28,
-      textAlign: 'center'
+			border: 'none',
+	    outline: 'none',
+	    backgroundColor: 'transparent',
+	    fontFamily: 'inherit',
+	    fontSize: 28,
+			color: 'white',
+			width: "100%",
+			textAlign: 'center'
     };
 
-    return React.DOM.div(
-      {style: style},
-      this.props.text
-    );
+    return React.DOM.input({
+			style: style,
+			value: this.props.text
+		});
   }
 });
