@@ -24731,7 +24731,7 @@ exports.default = _react2.default.createClass({
 		}, this);
 	},
 	render: function render() {
-		var title = _react2.default.createElement(_Title2.default, { text: this.state.title });
+		var title = _react2.default.createElement(_Title2.default, { ballotId: this.props.id });
 		var candidateSet = _react2.default.createElement(_CandidateSet2.default, { candidates: this.state.candidates });
 
 		var style = {
@@ -24759,27 +24759,43 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = _react2.default.createClass({
+	getInitialState: function getInitialState() {
+		return { text: 'loading...' };
+	},
+	componentDidMount: function componentDidMount() {
+		this.titleBase = new Firebase('https://druthers-base.firebaseio.com/ballots/' + this.props.ballotId + '/title');
+		this.titleBase.on('value', function (data) {
+			this.setState({ text: data.val() });
+		}, this);
+	},
 	render: function render() {
 		var style = {
 			border: 'none',
 			outline: 'none',
-			backgroundColor: 'transparent',
+			backgroundColor: this.state.highlighted ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0)',
 			fontFamily: 'inherit',
 			fontSize: 28,
 			color: 'white',
 			width: "100%",
-			textAlign: 'center'
+			textAlign: 'center',
+			padding: 10
 		};
-
 		return _react2.default.DOM.input({
 			style: style,
-			value: this.props.text,
-			onChange: this.updateText
+			value: this.state.text,
+			onChange: this.updateText,
+			onFocus: this.highlight,
+			onBlur: this.lowlight
 		});
 	},
 	updateText: function updateText(e) {
-		var ballotBase = new Firebase('https://druthers-base.firebaseio.com/ballots/1');
-		ballotBase.update({ title: e.target.value });
+		this.titleBase.set(e.target.value);
+	},
+	highlight: function highlight() {
+		this.setState({ highlighted: true });
+	},
+	lowlight: function lowlight() {
+		this.setState({ highlighted: false });
 	}
 });
 
