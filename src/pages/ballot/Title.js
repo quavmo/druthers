@@ -17,10 +17,9 @@ export default React.createClass({
 	    fontSize: 28,
 			color: 'white',
 			width: "100%",
-			textAlign: 'center',
-			padding: 10
+			textAlign: 'center'
 		};
-    return React.DOM.input({
+    return React.DOM.textarea({
 			style: style,
 			value: this.state.text,
 			onChange: this.updateText,
