@@ -1,14 +1,14 @@
 import React from 'react';
 import Firebase from 'firebase';
+import CallToAction from './CallToAction';
+
 let heroBase = new Firebase("https://druthers-base.firebaseio.com/marketing/hero");
-let blue = 'rgba(0,84,255,1)';
 
 export default React.createClass({
 	getInitialState: function(){
 		return {
 			header: 'Quit bickering.',
-			subheader: "Settle decisions with an eye on everyone's priorities.",
-			action: "Get notified when it's released."
+			subheader: "Settle decisions with an eye on everyone's priorities."
 		}
 	},
 	componentDidMount: function () {
@@ -17,7 +17,7 @@ export default React.createClass({
 	render: function() {
     let header    = React.DOM.h1({style: {fontSize: 36}}, this.state.header);
     let subheader = React.DOM.h1({style: {marginTop: 10, fontSize: 14}}, this.state.subheader);
-    let action    = React.DOM.a({href: '#signUp', style: {color: 'white', textDecoration: 'none', marginTop: 30, padding: 20, display: 'inline-block', background: blue, textTransform: 'capitalize'}}, this.state.action);
+    let action    = React.createElement(CallToAction, {alpha: false});
 		let appShotStyles = {margin: '50px auto', maxWidth: 360, display: 'block'}
 		let appShot   = React.DOM.img({src: `image/iphone00${this.randomShotNumber}.png`, style: appShotStyles});
 		let responsiveStyleBox = React.DOM.style(
