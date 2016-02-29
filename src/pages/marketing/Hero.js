@@ -5,7 +5,7 @@ import CallToAction from './CallToAction';
 let druthersBase = new Firebase("https://druthers-base.firebaseio.com")
 let heroBase = druthersBase.child('marketing').child('hero');
 let ballotsBase = druthersBase.child('ballots');
-let alpha = true;
+let alpha = false;
 
 export default React.createClass({
 	getInitialState: function(){
