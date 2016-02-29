@@ -9,12 +9,26 @@ export default React.createClass({
   },
 	render() {
     return React.DOM.a(
-      {href: '#signUp', style: this.style, onClick: this.handleClick},
+      { href: '#signUp', style: this.style, onClick: this.handleClick },
       this.state.message
     );
 	},
   handleClick(e) {
-    this.props.alpha && e.preventDefault();
+    if(!this.props.alpha) return;
+    e.preventDefault();
+    this.createAndShowNewBallot()
+  },
+  createAndShowNewBallot () {
+    let ballot = this.props.ballotsBase.push(this.defaultBallot)
+    let ballotId = ballot.toString().match(/([^\/]*)\/*$/)[1]
+    window.location.href = `/#/ballots/${ballotId}`
+  },
+  defaultBallot: {
+    title: 'What are you trying to settle?',
+    candidates: [
+      'This might be a solution...',
+      "Remove these, and add your own!"
+    ]
   },
   get style() {
     return {

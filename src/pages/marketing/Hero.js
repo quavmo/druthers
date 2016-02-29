@@ -2,7 +2,10 @@ import React from 'react';
 import Firebase from 'firebase';
 import CallToAction from './CallToAction';
 
-let heroBase = new Firebase("https://druthers-base.firebaseio.com/marketing/hero");
+let druthersBase = new Firebase("https://druthers-base.firebaseio.com")
+let heroBase = druthersBase.child('marketing').child('hero');
+let ballotsBase = druthersBase.child('ballots');
+let alpha = true;
 
 export default React.createClass({
 	getInitialState: function(){
@@ -17,7 +20,7 @@ export default React.createClass({
 	render: function() {
     let header    = React.DOM.h1({style: {fontSize: 36}}, this.state.header);
     let subheader = React.DOM.h1({style: {marginTop: 10, fontSize: 14}}, this.state.subheader);
-    let action    = React.createElement(CallToAction, {alpha: false});
+    let action    = React.createElement(CallToAction, {ballotsBase, alpha});
 		let appShotStyles = {margin: '50px auto', maxWidth: 360, display: 'block'}
 		let appShot   = React.DOM.img({src: `image/iphone00${this.randomShotNumber}.png`, style: appShotStyles});
 		let responsiveStyleBox = React.DOM.style(
