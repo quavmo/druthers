@@ -24611,8 +24611,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function render() {
   var path = window.location.hash.substring(1);
-  _router2.default.dispatch(path, function (state, page) {
-    var screen = _react2.default.createElement(page, { id: state.params.id });
+  _router2.default.dispatch(path, function (state, component) {
+    var screen = _react2.default.createElement(component, { id: state.params.id });
     var root = document.getElementById('app');
     _reactDom2.default.render(screen, root);
   });
@@ -24623,7 +24623,41 @@ window.addEventListener('hashchange', function () {
 });
 render();
 
-},{"./router.js":365,"react":354,"react-dom":221}],356:[function(require,module,exports){
+},{"./router.js":356,"react":354,"react-dom":221}],356:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRouting = require('react-routing');
+
+var _Screen = require('./screens/marketing/Screen');
+
+var _Screen2 = _interopRequireDefault(_Screen);
+
+var _Screen3 = require('./screens/ballot/Screen');
+
+var _Screen4 = _interopRequireDefault(_Screen3);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+require('babel-polyfill');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = new _reactRouting.Router(function (on) {
+  on('/ballots/:id', function (s) {
+    return _Screen4.default;
+  });
+  on('/', function (s) {
+    return _Screen2.default;
+  });
+});
+
+},{"./screens/ballot/Screen":359,"./screens/marketing/Screen":363,"babel-polyfill":1,"react":354,"react-routing":225}],357:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24651,7 +24685,7 @@ exports.default = _react2.default.createClass({
   }
 });
 
-},{"react":354}],357:[function(require,module,exports){
+},{"react":354}],358:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24688,7 +24722,7 @@ exports.default = _react2.default.createClass({
   }
 });
 
-},{"./Candidate":356,"react":354}],358:[function(require,module,exports){
+},{"./Candidate":357,"react":354}],359:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24745,7 +24779,7 @@ exports.default = _react2.default.createClass({
 	}
 });
 
-},{"./CandidateSet":357,"./Title":359,"firebase":217,"react":354}],359:[function(require,module,exports){
+},{"./CandidateSet":358,"./Title":360,"firebase":217,"react":354}],360:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24798,7 +24832,7 @@ exports.default = _react2.default.createClass({
 	}
 });
 
-},{"react":354}],360:[function(require,module,exports){
+},{"react":354}],361:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24850,7 +24884,7 @@ exports.default = _react2.default.createClass({
   }
 });
 
-},{"react":354}],361:[function(require,module,exports){
+},{"react":354}],362:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24902,7 +24936,7 @@ exports.default = _react2.default.createClass({
 		return Math.round(Math.random() * 5);
 	},
 	get photoId() {
-		return 'photo-1429743305873-d4065c15f93e';
+		return 'photo-1447752875215-b2761acb3c5d';
 	},
 	get bgndUri() {
 		return 'https://images.unsplash.com/' + this.photoId + '?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=f2460c17083e439b73d250a7db2a889c';
@@ -24919,7 +24953,7 @@ exports.default = _react2.default.createClass({
 	}
 });
 
-},{"./CallToAction":360,"firebase":217,"react":354}],362:[function(require,module,exports){
+},{"./CallToAction":361,"firebase":217,"react":354}],363:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24955,7 +24989,7 @@ exports.default = _react2.default.createClass({
 	}
 });
 
-},{"./Hero":361,"./SignUp":363,"./UseCaseList":364,"react":354}],363:[function(require,module,exports){
+},{"./Hero":362,"./SignUp":364,"./UseCaseList":365,"react":354}],364:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25022,7 +25056,7 @@ exports.default = _react2.default.createClass({
 	}
 });
 
-},{"firebase":217,"react":354}],364:[function(require,module,exports){
+},{"firebase":217,"react":354}],365:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25069,41 +25103,7 @@ exports.default = _react2.default.createClass({
 	}
 });
 
-},{"firebase":217,"react":354}],365:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _reactRouting = require('react-routing');
-
-var _Page = require('./pages/marketing/Page');
-
-var _Page2 = _interopRequireDefault(_Page);
-
-var _Page3 = require('./pages/ballot/Page');
-
-var _Page4 = _interopRequireDefault(_Page3);
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-require('babel-polyfill');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = new _reactRouting.Router(function (on) {
-  on('/ballots/:id', function (s) {
-    return _Page4.default;
-  });
-  on('/', function (s) {
-    return _Page2.default;
-  });
-});
-
-},{"./pages/ballot/Page":358,"./pages/marketing/Page":362,"babel-polyfill":1,"react":354,"react-routing":225}]},{},[355])
+},{"firebase":217,"react":354}]},{},[355])
 
 
 //# sourceMappingURL=build.js.map
