@@ -1,6 +1,6 @@
 import { Router } from 'react-routing';
-import Marketing from './pages/marketing/Page';
-import Ballot from './pages/ballot/Page';
+import Marketing from './screens/marketing/Screen';
+import Ballot from './screens/ballot/Screen';
 import React from 'react';
 import 'babel-polyfill';
 

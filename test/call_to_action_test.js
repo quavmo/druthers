@@ -1,5 +1,5 @@
 import React from 'react';
-import CallToAction from '../src/pages/marketing/CallToAction';
+import CallToAction from '../src/screens/marketing/CallToAction';
 import TestUtils from 'react-addons-test-utils';
 import Utils from './utils';
 
