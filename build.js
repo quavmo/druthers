@@ -24623,7 +24623,7 @@ window.addEventListener('hashchange', function () {
 });
 render();
 
-},{"./router.js":364,"react":354,"react-dom":221}],356:[function(require,module,exports){
+},{"./router.js":365,"react":354,"react-dom":221}],356:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24802,6 +24802,58 @@ exports.default = _react2.default.createClass({
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var blue = 'rgba(0,84,255,1)';
+
+exports.default = _react2.default.createClass({
+  getInitialState: function getInitialState() {
+    return {
+      message: this.props.alpha ? 'Create a ballot!' : "Get notified when it's released."
+    };
+  },
+  render: function render() {
+    return _react2.default.DOM.a({ href: '#signUp', style: this.style, onClick: this.handleClick }, this.state.message);
+  },
+  handleClick: function handleClick(e) {
+    if (!this.props.alpha) return;
+    e.preventDefault();
+    this.createAndShowNewBallot();
+  },
+  createAndShowNewBallot: function createAndShowNewBallot() {
+    var ballot = this.props.ballotsBase.push(this.defaultBallot);
+    var ballotId = ballot.toString().match(/([^\/]*)\/*$/)[1];
+    window.location.href = '/#/ballots/' + ballotId;
+  },
+
+  defaultBallot: {
+    title: 'What are you trying to settle?',
+    candidates: ['This might be a solution...', "Remove these, and add your own!"]
+  },
+  get style() {
+    return {
+      color: 'white',
+      textDecoration: 'none',
+      marginTop: 30,
+      padding: 20,
+      display: 'inline-block',
+      background: blue,
+      textTransform: 'capitalize'
+    };
+  }
+});
+
+},{"react":354}],361:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
@@ -24813,17 +24865,22 @@ var _firebase = require('firebase');
 
 var _firebase2 = _interopRequireDefault(_firebase);
 
+var _CallToAction = require('./CallToAction');
+
+var _CallToAction2 = _interopRequireDefault(_CallToAction);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var heroBase = new _firebase2.default("https://druthers-base.firebaseio.com/marketing/hero");
-var blue = 'rgba(0,84,255,1)';
+var druthersBase = new _firebase2.default("https://druthers-base.firebaseio.com");
+var heroBase = druthersBase.child('marketing').child('hero');
+var ballotsBase = druthersBase.child('ballots');
+var alpha = false;
 
 exports.default = _react2.default.createClass({
 	getInitialState: function getInitialState() {
 		return {
 			header: 'Quit bickering.',
-			subheader: "Settle decisions with an eye on everyone's priorities.",
-			action: "Get notified when it's released."
+			subheader: "Settle decisions with an eye on everyone's priorities."
 		};
 	},
 	componentDidMount: function componentDidMount() {
@@ -24834,7 +24891,7 @@ exports.default = _react2.default.createClass({
 	render: function render() {
 		var header = _react2.default.DOM.h1({ style: { fontSize: 36 } }, this.state.header);
 		var subheader = _react2.default.DOM.h1({ style: { marginTop: 10, fontSize: 14 } }, this.state.subheader);
-		var action = _react2.default.DOM.a({ href: '#signUp', style: { color: 'white', textDecoration: 'none', marginTop: 30, padding: 20, display: 'inline-block', background: blue, textTransform: 'capitalize' } }, this.state.action);
+		var action = _react2.default.createElement(_CallToAction2.default, { ballotsBase: ballotsBase, alpha: alpha });
 		var appShotStyles = { margin: '50px auto', maxWidth: 360, display: 'block' };
 		var appShot = _react2.default.DOM.img({ src: 'image/iphone00' + this.randomShotNumber + '.png', style: appShotStyles });
 		var responsiveStyleBox = _react2.default.DOM.style({}, '\n\t\t\t\t@media (max-width: 1000px) { #hero { padding: 50px; } }\n\t\t\t\t@media (min-width: 1000px) { #hero { padding: 130px; } }\n\t\t\t');
@@ -24862,7 +24919,7 @@ exports.default = _react2.default.createClass({
 	}
 });
 
-},{"firebase":217,"react":354}],361:[function(require,module,exports){
+},{"./CallToAction":360,"firebase":217,"react":354}],362:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24898,7 +24955,7 @@ exports.default = _react2.default.createClass({
 	}
 });
 
-},{"./Hero":360,"./SignUp":362,"./UseCaseList":363,"react":354}],362:[function(require,module,exports){
+},{"./Hero":361,"./SignUp":363,"./UseCaseList":364,"react":354}],363:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24965,7 +25022,7 @@ exports.default = _react2.default.createClass({
 	}
 });
 
-},{"firebase":217,"react":354}],363:[function(require,module,exports){
+},{"firebase":217,"react":354}],364:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25012,7 +25069,7 @@ exports.default = _react2.default.createClass({
 	}
 });
 
-},{"firebase":217,"react":354}],364:[function(require,module,exports){
+},{"firebase":217,"react":354}],365:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25038,7 +25095,7 @@ require('babel-polyfill');
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = new _reactRouting.Router(function (on) {
-  on('/ballot/:id', function (s) {
+  on('/ballots/:id', function (s) {
     return _Page4.default;
   });
   on('/', function (s) {
@@ -25046,7 +25103,7 @@ exports.default = new _reactRouting.Router(function (on) {
   });
 });
 
-},{"./pages/ballot/Page":358,"./pages/marketing/Page":361,"babel-polyfill":1,"react":354,"react-routing":225}]},{},[355])
+},{"./pages/ballot/Page":358,"./pages/marketing/Page":362,"babel-polyfill":1,"react":354,"react-routing":225}]},{},[355])
 
 
 //# sourceMappingURL=build.js.map
