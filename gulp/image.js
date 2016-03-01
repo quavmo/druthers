@@ -2,7 +2,7 @@ import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 const $ = gulpLoadPlugins();
 
-let imgSrc = 'src/image/**';
+let imgSrc = 'src/image/**/*';
 let imgDest = 'build/image';
 
 gulp.task('image', function() {
