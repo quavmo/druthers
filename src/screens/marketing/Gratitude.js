@@ -7,7 +7,7 @@ export default React.createClass({
 	},
 	render: function() {
     let message = `Cool, ${this.props.name}!  And how do you feel about all this?`;
-		let feelingsWiring = {placeholder: "I hope...", onChange: this.handleFeelingChange, ref: 'input'};
+		let feelingsWiring = {placeholder: "I hope...", onChange: this.handleFeelingChange, ref: 'input', value: this.state.latestFeeling};
     let feelingsBox = React.DOM.input(Object.assign({style: FormStyle.input}, feelingsWiring));
 		let submit = React.DOM.button({style: this.buttonStyle, ref: 'submit'}, "Tell us!");
 		let form = React.DOM.form({onSubmit: this.handleSubmit}, feelingsBox, submit);
