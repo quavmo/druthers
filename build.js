@@ -24933,7 +24933,7 @@ exports.default = _react2.default.createClass({
 		return _react2.default.DOM.div({ id: 'hero', style: this.outerStyle }, responsiveStyleBox, header, subheader, action, appShot);
 	},
 	get randomShotNumber() {
-		return Math.round(Math.random() * 5);
+		return Math.round(Math.random() * 5) + 1;
 	},
 	get randomMockupPath() {
 		return 'image/wrapped-mockups/screen' + this.randomShotNumber + '_nexus4_portrait.png';
