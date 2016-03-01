@@ -24927,13 +24927,16 @@ exports.default = _react2.default.createClass({
 		var subheader = _react2.default.DOM.h1({ style: { marginTop: 10, fontSize: 14 } }, this.state.subheader);
 		var action = _react2.default.createElement(_CallToAction2.default, { ballotsBase: ballotsBase, alpha: alpha });
 		var appShotStyles = { margin: '50px auto', maxWidth: 360, display: 'block' };
-		var appShot = _react2.default.DOM.img({ src: 'image/iphone00' + this.randomShotNumber + '.png', style: appShotStyles });
+		var appShot = _react2.default.DOM.img({ src: this.randomMockupPath, style: appShotStyles });
 		var responsiveStyleBox = _react2.default.DOM.style({}, '\n\t\t\t\t@media (max-width: 1000px) { #hero { padding: 50px; } }\n\t\t\t\t@media (min-width: 1000px) { #hero { padding: 130px; } }\n\t\t\t');
 
 		return _react2.default.DOM.div({ id: 'hero', style: this.outerStyle }, responsiveStyleBox, header, subheader, action, appShot);
 	},
 	get randomShotNumber() {
 		return Math.round(Math.random() * 5);
+	},
+	get randomMockupPath() {
+		return 'image/wrapped-mockups/screen' + this.randomShotNumber + '_nexus4_portrait.png';
 	},
 	get photoId() {
 		return 'photo-1447752875215-b2761acb3c5d';
