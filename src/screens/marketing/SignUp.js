@@ -1,5 +1,8 @@
 import React from 'react';
 import Firebase from 'firebase';
+import Gratitude from './Gratitude';
+import FormStyle from './FormStyle';
+
 let interestedBase = new Firebase("https://druthers-base.firebaseio.com/interested");
 let blue = 'rgba(0,84,255,1)';
 
@@ -7,7 +10,7 @@ export default React.createClass({
 	getInitialState: function() { return {name: '', email: ''}; },
 	render: function() {
 		let header 		= React.DOM.h1({style: {textTransform: 'capitalize', fontSize: 42}}, "Get notified when it's released");
-		let gratitude = React.DOM.h1({style: {marginTop: 50, textTransform: 'capitalize', fontSize: 42}}, `Rad, ${this.state.name}.`);
+		let gratitude = React.createElement(Gratitude, {feelingsBase: this.state.feelingsBase});
 		let subheader = React.DOM.p({style: {marginTop: 20}}, "You'll be able to create a ballot immediately, and it will be the last day your group priorities are unclear.");
 
 		let name 			= React.DOM.input(Object.assign(this.inputProps, {placeholder: "Name", onChange: this.handleNameChange, value: this.state.name}));
@@ -49,20 +52,11 @@ export default React.createClass({
  	},
 	handleSubmit: function (e) {
 		e.preventDefault();
-		interestedBase.push(this.state);
-		this.setState({submitted: true});
+		let user = interestedBase.push({name: this.state.name, email: this.state.email});
+		this.setState({submitted: true, feelingsBase: user.child('feelings')});
  	},
 	inputProps: {
 		type: 'text',
-		style: {
-			margin: '20px auto',
-			width: '80%',
-			display: 'block',
-			padding: 15,
-			background: 'black',
-			color: 'white',
-			border: 'none',
-			fontSize: 15
-	  }
+		style: FormStyle.input
 	}
 });
