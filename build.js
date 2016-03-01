@@ -24657,7 +24657,7 @@ exports.default = new _reactRouting.Router(function (on) {
   });
 });
 
-},{"./screens/ballot/Screen":359,"./screens/marketing/Screen":363,"babel-polyfill":1,"react":354,"react-routing":225}],357:[function(require,module,exports){
+},{"./screens/ballot/Screen":359,"./screens/marketing/Screen":365,"babel-polyfill":1,"react":354,"react-routing":225}],357:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24888,6 +24888,66 @@ exports.default = _react2.default.createClass({
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  input: {
+    margin: '20px auto',
+    width: '80%',
+    display: 'block',
+    padding: 15,
+    background: 'black',
+    color: 'white',
+    border: 'none',
+    fontSize: 15
+  }
+};
+
+},{}],363:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _FormStyle = require('./FormStyle');
+
+var _FormStyle2 = _interopRequireDefault(_FormStyle);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _react2.default.createClass({
+	getInitialState: function getInitialState() {
+		return { feeling: 'I hope...' };
+	},
+	render: function render() {
+		var message = 'Cool, ' + this.props.name + '!  And how do you feel about all this?';
+		var feelingsWiring = { placeholder: "I hope...", onChange: this.handleFeelingChange, ref: 'input', value: this.state.latestFeeling };
+		var feelingsBox = _react2.default.DOM.input(Object.assign({ style: _FormStyle2.default.input }, feelingsWiring));
+		var submit = _react2.default.DOM.button({ style: this.buttonStyle, ref: 'submit' }, "Tell us!");
+		var form = _react2.default.DOM.form({ onSubmit: this.handleSubmit }, feelingsBox, submit);
+		return _react2.default.DOM.div({ style: { marginTop: 20 } }, _react2.default.DOM.p({}, message), form);
+	},
+	handleSubmit: function handleSubmit(event) {
+		event.preventDefault();
+		event.stopPropagation();
+		this.props.feelingsBase.push(this.state.latestFeeling);
+		this.setState({ latestFeeling: 'I also hope...' });
+	},
+	handleFeelingChange: function handleFeelingChange(event) {
+		this.setState({ latestFeeling: event.target.value });
+	},
+	buttonStyle: { cursor: 'pointer', border: '3px solid white', padding: 20, color: 'white', textTransform: 'capitalize', margin: '20px auto', display: 'block' }
+});
+
+},{"./FormStyle":362,"react":354}],364:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
@@ -24956,7 +25016,7 @@ exports.default = _react2.default.createClass({
 	}
 });
 
-},{"./CallToAction":361,"firebase":217,"react":354}],363:[function(require,module,exports){
+},{"./CallToAction":361,"firebase":217,"react":354}],365:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24992,7 +25052,7 @@ exports.default = _react2.default.createClass({
 	}
 });
 
-},{"./Hero":362,"./SignUp":364,"./UseCaseList":365,"react":354}],364:[function(require,module,exports){
+},{"./Hero":364,"./SignUp":366,"./UseCaseList":367,"react":354}],366:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25007,6 +25067,14 @@ var _firebase = require('firebase');
 
 var _firebase2 = _interopRequireDefault(_firebase);
 
+var _Gratitude = require('./Gratitude');
+
+var _Gratitude2 = _interopRequireDefault(_Gratitude);
+
+var _FormStyle = require('./FormStyle');
+
+var _FormStyle2 = _interopRequireDefault(_FormStyle);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var interestedBase = new _firebase2.default("https://druthers-base.firebaseio.com/interested");
@@ -25018,7 +25086,7 @@ exports.default = _react2.default.createClass({
 	},
 	render: function render() {
 		var header = _react2.default.DOM.h1({ style: { textTransform: 'capitalize', fontSize: 42 } }, "Get notified when it's released");
-		var gratitude = _react2.default.DOM.h1({ style: { marginTop: 50, textTransform: 'capitalize', fontSize: 42 } }, 'Rad, ' + this.state.name + '.');
+		var gratitude = _react2.default.createElement(_Gratitude2.default, { name: this.state.name, feelingsBase: this.state.feelingsBase });
 		var subheader = _react2.default.DOM.p({ style: { marginTop: 20 } }, "You'll be able to create a ballot immediately, and it will be the last day your group priorities are unclear.");
 
 		var name = _react2.default.DOM.input(Object.assign(this.inputProps, { placeholder: "Name", onChange: this.handleNameChange, value: this.state.name }));
@@ -25041,25 +25109,16 @@ exports.default = _react2.default.createClass({
 	},
 	handleSubmit: function handleSubmit(e) {
 		e.preventDefault();
-		interestedBase.push(this.state);
-		this.setState({ submitted: true });
+		var user = interestedBase.push({ name: this.state.name, email: this.state.email });
+		this.setState({ submitted: true, feelingsBase: user.child('feelings') });
 	},
 	inputProps: {
 		type: 'text',
-		style: {
-			margin: '20px auto',
-			width: '80%',
-			display: 'block',
-			padding: 15,
-			background: 'black',
-			color: 'white',
-			border: 'none',
-			fontSize: 15
-		}
+		style: _FormStyle2.default.input
 	}
 });
 
-},{"firebase":217,"react":354}],365:[function(require,module,exports){
+},{"./FormStyle":362,"./Gratitude":363,"firebase":217,"react":354}],367:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
