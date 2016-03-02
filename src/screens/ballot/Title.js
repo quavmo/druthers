@@ -9,18 +9,9 @@ export default React.createClass({
 		this.titleBase.on('value', function (data) { this.setState({text: data.val()}) }, this);
 	},
 	render: function() {
-		let style = {
-			border: 'none',
-	    outline: 'none',
-	    backgroundColor: this.state.highlighted ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0)',
-	    fontFamily: 'inherit',
-	    fontSize: 28,
-			color: 'white',
-			width: "100%",
-			textAlign: 'center'
-		};
     return React.DOM.textarea({
-			style: style,
+			ref: 'input',
+			style: this.style(this.state.highlighted),
 			value: this.state.text,
 			onChange: this.updateText,
 			onFocus: this.highlight,
@@ -30,4 +21,16 @@ export default React.createClass({
 	updateText: function(e) { this.titleBase.set(e.target.value); },
 	highlight: function() { this.setState({highlighted: true}) },
 	lowlight: function() { this.setState({highlighted: false}) },
+	style: highlighted => {
+		return {
+			border: 'none',
+	    outline: 'none',
+	    backgroundColor: highlighted ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0)',
+	    fontFamily: 'inherit',
+	    fontSize: 28,
+			color: 'white',
+			width: "100%",
+			textAlign: 'center'
+		};
+	}
 });
