@@ -7,7 +7,6 @@ export default {
     return TestUtils.Simulate.click(ReactDOM.findDOMNode(instance));
   },
   fill(node, text) {
-    console.log(node.value)
     node.value = text
     TestUtils.Simulate.change(node);
   },
@@ -17,5 +16,11 @@ export default {
   },
   stub(component, methodName) {
     return spyOn(component.prototype.__reactAutoBindMap, methodName);
+  },
+  find(component, type) {
+    if(type instanceof Function) return TestUtils.scryRenderedComponentsWithType(component, type);
+
+    let node = ReactDOM.findDOMNode(component);
+    return node.querySelectorAll(type);
   }
 };

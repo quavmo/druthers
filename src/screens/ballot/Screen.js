@@ -12,16 +12,20 @@ export default React.createClass({
 			candidates: []
 		}
 	},
-	componentDidMount: function () {
-		let ballotBase = new Firebase(`https://druthers-base.firebaseio.com/ballots/${this.props.id}`);
-		ballotBase.on('value', function (data) { this.setState(data.val()) }, this);
-	},
 	render: function() {
-    let title = React.createElement(Title, {ref: 'title', ballotId: this.props.id})
-    let candidateSet = React.createElement(CandidateSet, {candidates: this.state.candidates})
+    let title = React.createElement(Title, {ref: 'title', ballotId: this.props.id});
+    let candidateSet = React.createElement(CandidateSet, {candidates: this.state.candidates});
 
     return React.DOM.div({style: this.style}, title, candidateSet, Submit);
   },
+	componentDidMount: function () {
+		let dataPath = `https://druthers-base.firebaseio.com/ballots/${this.props.id}`;
+		let ballotBase = new Firebase(dataPath);
+		ballotBase.on('value', this.setStateIfData, this);
+	},
+	setStateIfData(data) {
+		data.val() && this.setState(data.val());
+	},
  	style: {
 		// background: 'rgb(60, 150, 130)',
 		background: 'rgb(60, 150, 130)',
