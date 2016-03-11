@@ -1,24 +1,20 @@
-import React 				from 'react';
+import React from 'react';
 
 export default React.createClass({
-	getInitialState: function(){
-		return { text: 'loading...' }
-	},
-	componentDidMount: function () {
-		this.titleBase = new Firebase(`https://druthers-base.firebaseio.com/ballots/${this.props.ballotId}/title`);
-		this.titleBase.on('value', function (data) { this.setState({text: data.val()}) }, this);
-	},
+	getInitialState: () => new Object,
 	render: function() {
     return React.DOM.textarea({
 			ref: 'input',
 			style: this.style(this.state.highlighted),
-			value: this.state.text,
+			value: this.props.text,
 			onChange: this.updateText,
 			onFocus: this.highlight,
 			onBlur: this.lowlight
 		});
   },
-	updateText: function(e) { this.titleBase.set(e.target.value); },
+	updateText: function(e) {
+		this.props.titleRef.set(e.target.value);
+	},
 	highlight: function() { this.setState({highlighted: true}) },
 	lowlight: function() { this.setState({highlighted: false}) },
 	style: highlighted => {

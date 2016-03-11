@@ -9,7 +9,7 @@ export default React.createClass({
       textAlign: 'center'
     };
 
-    let candidates = this.props.candidates.map(function (name) {
+    let candidates = this.props.members.map(function (name) {
       return React.createElement(Candidate, {name});
     });
 

@@ -11,7 +11,7 @@ export default React.createClass({
 	getInitialState: function(){
 		return {
 			header: 'Quit bickering.',
-			subheader: "Settle decisions with an eye on everyone's priorities."
+			subheader: "Settle decisions with an eye for everyone's priorities."
 		}
 	},
 	componentDidMount: function () {

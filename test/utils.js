@@ -18,9 +18,14 @@ export default {
     return spyOn(component.prototype.__reactAutoBindMap, methodName);
   },
   find(component, type) {
-    if(type instanceof Function) return TestUtils.scryRenderedComponentsWithType(component, type);
+    var findings;
+    if(type instanceof Function) {
+      findings = TestUtils.scryRenderedComponentsWithType(component, type);
+    } else {
+      let node = ReactDOM.findDOMNode(component);
+      findings = node.querySelectorAll(type);
+    }
 
-    let node = ReactDOM.findDOMNode(component);
-    return node.querySelectorAll(type);
+    return (findings.length === 1 ? findings[0] : findings)
   }
 };

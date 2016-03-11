@@ -1,30 +1,31 @@
 import React 				from 'react';
-import Firebase from 'firebase';
 import Title        from './Title';
 import CandidateSet    from './CandidateSet';
+import Firebase from 'firebase';
+
 
 let Submit = React.DOM.div({}, ">");
+var firebase = new Firebase('druthers-base.firebaseio.com');
 
 export default React.createClass({
-	getInitialState: function(){
-		return {
-			title: 'loading...',
-			candidates: []
-		}
-	},
+	getInitialState: () => {return {candidates:[]}},
 	render: function() {
-    let title = React.createElement(Title, {ref: 'title', ballotId: this.props.id});
-    let candidateSet = React.createElement(CandidateSet, {candidates: this.state.candidates});
+		let ballotRef = firebase.child(`ballots/${this.props.id}`);
+
+		let title = React.createElement(Title,
+			{text: this.state.title, titleRef: ballotRef.child('title')}
+		);
+    let candidateSet = React.createElement(CandidateSet,
+			{members: this.state.candidates, membersRef: ballotRef.child('candidates')}
+		);
 
     return React.DOM.div({style: this.style}, title, candidateSet, Submit);
   },
 	componentDidMount: function () {
-		let dataPath = `https://druthers-base.firebaseio.com/ballots/${this.props.id}`;
-		let ballotBase = new Firebase(dataPath);
-		ballotBase.on('value', this.setStateIfData, this);
+		firebase.on('value', this.setStateIfData, this);
 	},
 	setStateIfData(data) {
-		data.val() && this.setState(data.val());
+		data.val() && this.setState(data.val().ballots[this.props.id]);
 	},
  	style: {
 		// background: 'rgb(60, 150, 130)',
@@ -33,5 +34,4 @@ export default React.createClass({
 		fontFamily: 'sans-serif',
 		padding: 20
 	}
-
 });
