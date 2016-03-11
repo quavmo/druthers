@@ -1,16 +1,14 @@
 import React 				from 'react';
 import Title        from './Title';
 import CandidateSet    from './CandidateSet';
-import Firebase from 'firebase';
-
+import DataService from '../../DataService';
 
 let Submit = React.DOM.div({}, ">");
-var firebase = new Firebase('druthers-base.firebaseio.com');
 
 export default React.createClass({
 	getInitialState: () => {return {candidates:[]}},
 	render: function() {
-		let ballotRef = firebase.child(`ballots/${this.props.id}`);
+		let ballotRef = DataService.child(`ballots/${this.props.id}`);
 
 		let title = React.createElement(Title,
 			{text: this.state.title, titleRef: ballotRef.child('title')}
@@ -22,7 +20,7 @@ export default React.createClass({
     return React.DOM.div({style: this.style}, title, candidateSet, Submit);
   },
 	componentDidMount: function () {
-		firebase.on('value', this.setStateIfData, this);
+		DataService.on('value', this.setStateIfData, this);
 	},
 	setStateIfData(data) {
 		data.val() && this.setState(data.val().ballots[this.props.id]);

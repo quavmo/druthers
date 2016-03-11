@@ -13,6 +13,7 @@ export default React.createClass({
       return React.createElement(Candidate, {name});
     });
 
-    return React.DOM.ol({style: style}, ...candidates);
+		let newMemberField = React.DOM.input({});
+    return React.DOM.ol({style: style}, ...candidates, newMemberField);
   }
 });
