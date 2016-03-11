@@ -24714,7 +24714,7 @@ exports.default = _react2.default.createClass({
       textAlign: 'center'
     };
 
-    var candidates = this.props.candidates.map(function (name) {
+    var candidates = this.props.members.map(function (name) {
       return _react2.default.createElement(_Candidate2.default, { name: name });
     });
 
@@ -24733,10 +24733,6 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _firebase = require('firebase');
-
-var _firebase2 = _interopRequireDefault(_firebase);
-
 var _Title = require('./Title');
 
 var _Title2 = _interopRequireDefault(_Title);
@@ -24745,37 +24741,40 @@ var _CandidateSet = require('./CandidateSet');
 
 var _CandidateSet2 = _interopRequireDefault(_CandidateSet);
 
+var _firebase = require('firebase');
+
+var _firebase2 = _interopRequireDefault(_firebase);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import SubmitButton from './SubmitButton';
-
 var Submit = _react2.default.DOM.div({}, ">");
+var firebase = new _firebase2.default('druthers-base.firebaseio.com');
 
 exports.default = _react2.default.createClass({
 	getInitialState: function getInitialState() {
-		return {
-			title: 'loading...',
-			candidates: []
-		};
-	},
-	componentDidMount: function componentDidMount() {
-		var ballotBase = new _firebase2.default('https://druthers-base.firebaseio.com/ballots/' + this.props.id);
-		ballotBase.on('value', function (data) {
-			this.setState(data.val());
-		}, this);
+		return { candidates: [] };
 	},
 	render: function render() {
-		var title = _react2.default.createElement(_Title2.default, { ballotId: this.props.id });
-		var candidateSet = _react2.default.createElement(_CandidateSet2.default, { candidates: this.state.candidates });
+		var ballotRef = firebase.child('ballots/' + this.props.id);
 
-		var style = {
-			background: 'rgb(60, 150, 130)',
-			height: '100%',
-			fontFamily: 'sans-serif',
-			padding: 20
-		};
+		var title = _react2.default.createElement(_Title2.default, { text: this.state.title, titleRef: ballotRef.child('title') });
+		var candidateSet = _react2.default.createElement(_CandidateSet2.default, { members: this.state.candidates, membersRef: ballotRef.child('candidates') });
 
-		return _react2.default.DOM.div({ style: style }, title, candidateSet, Submit);
+		return _react2.default.DOM.div({ style: this.style }, title, candidateSet, Submit);
+	},
+	componentDidMount: function componentDidMount() {
+		firebase.on('value', this.setStateIfData, this);
+	},
+	setStateIfData: function setStateIfData(data) {
+		data.val() && this.setState(data.val().ballots[this.props.id]);
+	},
+
+	style: {
+		// background: 'rgb(60, 150, 130)',
+		background: 'rgb(60, 150, 130)',
+		height: '100%',
+		fontFamily: 'sans-serif',
+		padding: 20
 	}
 });
 
@@ -24794,41 +24793,38 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = _react2.default.createClass({
 	getInitialState: function getInitialState() {
-		return { text: 'loading...' };
-	},
-	componentDidMount: function componentDidMount() {
-		this.titleBase = new Firebase('https://druthers-base.firebaseio.com/ballots/' + this.props.ballotId + '/title');
-		this.titleBase.on('value', function (data) {
-			this.setState({ text: data.val() });
-		}, this);
+		return new Object();
 	},
 	render: function render() {
-		var style = {
-			border: 'none',
-			outline: 'none',
-			backgroundColor: this.state.highlighted ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0)',
-			fontFamily: 'inherit',
-			fontSize: 28,
-			color: 'white',
-			width: "100%",
-			textAlign: 'center'
-		};
 		return _react2.default.DOM.textarea({
-			style: style,
-			value: this.state.text,
+			ref: 'input',
+			style: this.style(this.state.highlighted),
+			value: this.props.text,
 			onChange: this.updateText,
 			onFocus: this.highlight,
 			onBlur: this.lowlight
 		});
 	},
 	updateText: function updateText(e) {
-		this.titleBase.set(e.target.value);
+		this.props.titleRef.set(e.target.value);
 	},
 	highlight: function highlight() {
 		this.setState({ highlighted: true });
 	},
 	lowlight: function lowlight() {
 		this.setState({ highlighted: false });
+	},
+	style: function style(highlighted) {
+		return {
+			border: 'none',
+			outline: 'none',
+			backgroundColor: highlighted ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0)',
+			fontFamily: 'inherit',
+			fontSize: 28,
+			color: 'white',
+			width: "100%",
+			textAlign: 'center'
+		};
 	}
 });
 
@@ -24974,7 +24970,7 @@ exports.default = _react2.default.createClass({
 	getInitialState: function getInitialState() {
 		return {
 			header: 'Quit bickering.',
-			subheader: "Settle decisions with an eye on everyone's priorities."
+			subheader: "Settle decisions with an eye for everyone's priorities."
 		};
 	},
 	componentDidMount: function componentDidMount() {
