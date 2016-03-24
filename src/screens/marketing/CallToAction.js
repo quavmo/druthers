@@ -19,16 +19,12 @@ export default React.createClass({
     this.createAndShowNewBallot()
   },
   createAndShowNewBallot () {
-    let ballot = this.props.ballotsBase.push(this.defaultBallot)
+    let ballot = this.props.ballotsBase.push(this.defaultBallot);
     let ballotId = ballot.toString().match(/([^\/]*)\/*$/)[1]
     window.location.href = `/#/ballots/${ballotId}`
   },
   defaultBallot: {
-    title: 'What are you trying to settle?',
-    candidates: [
-      'This might be a solution...',
-      "Remove these, and add your own!"
-    ]
+    title: 'What are you trying to settle?'
   },
   get style() {
     return {

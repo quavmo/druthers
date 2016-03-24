@@ -1,7 +1,7 @@
 import React from 'react';
 import Ballot from '../src/screens/ballot/Screen';
 // import Title from '../src/screens/ballot/Title';
-import Utils from './Utils';
+import Utils from './utils';
 
 describe('the ballot screen', function(){
   it('has a title', function() {

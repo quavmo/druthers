@@ -8,14 +8,16 @@ let Submit = React.DOM.div({}, ">");
 export default React.createClass({
 	getInitialState: () => {return {candidates:[]}},
 	render: function() {
-		let ballotRef = DataService.child(`ballots/${this.props.id}`);
+		let ballotBase = DataService.child(`ballots/${this.props.id}`);
 
 		let title = React.createElement(Title,
-			{text: this.state.title, titleRef: ballotRef.child('title')}
+			{text: this.state.title, titleRef: ballotBase.child('title')}
 		);
-    let candidateSet = React.createElement(CandidateSet,
-			{members: this.state.candidates, membersRef: ballotRef.child('candidates')}
-		);
+
+    let candidateSet = React.createElement(CandidateSet, {
+				members: this.state.candidates,
+				membersBase: ballotBase.child('candidates')
+		});
 
     return React.DOM.div({style: this.style}, title, candidateSet, Submit);
   },
