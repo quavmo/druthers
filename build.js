@@ -33455,7 +33455,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var druthersBase = new _firebase2.default("https://druthers-base.firebaseio.com");
 var heroBase = druthersBase.child('marketing').child('hero');
 var ballotsBase = druthersBase.child('ballots');
-var alpha = true;
+var alpha = false;
 
 exports.default = _react2.default.createClass({
 	getInitialState: function getInitialState() {
