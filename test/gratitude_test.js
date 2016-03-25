@@ -3,7 +3,7 @@ import Gratitude from '../src/screens/marketing/Gratitude';
 import TestUtils from 'react-addons-test-utils';
 import Utils from './utils';
 
-describe('the gritutude seciotn', function(){
+describe('the gratitude section', function(){
   describe('when submitted', function () {
     beforeEach(function() {
       let pushSpy = jasmine.createSpy('push');

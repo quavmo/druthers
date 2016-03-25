@@ -9,5 +9,5 @@ describe('the ballot screen', function(){
     let input = Utils.find(screen, 'textarea')
     let titleText = input.value;
     expect(titleText).toEqual('');
-  })
+  });
 });
