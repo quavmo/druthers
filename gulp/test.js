@@ -6,7 +6,8 @@ var webpack = require('webpack-stream');
 var JasminePlugin = require('gulp-jasmine-browser/webpack/jasmine-plugin');
 
 let plugin = new JasminePlugin();
-let testFiles = ['test/**/*_test.js'];
+let testFiles = 'test/**/*_test.js';
+let sourceFiles = 'src/**/*.js';
 let webpackConfig = {
   output: {filename: 'test.js'},
   module: {
@@ -37,5 +38,5 @@ gulp.task('test-console', function () {
 });
 
 gulp.task('test-console-watch', function() {
-  gulp.watch(testFiles, ['test-console']);
+  gulp.watch([testFiles, sourceFiles], ['test-console']);
 });

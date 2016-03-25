@@ -5,7 +5,7 @@ import CallToAction from './CallToAction';
 let druthersBase = new Firebase("https://druthers-base.firebaseio.com")
 let heroBase = druthersBase.child('marketing').child('hero');
 let docketsBase = druthersBase.child('dockets');
-let alpha = true;
+let alpha = false;
 
 export default class Hero extends React.Component {
 	constructor() {
