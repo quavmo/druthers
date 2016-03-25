@@ -7,7 +7,7 @@ export default class CallToAction extends React.Component {
     this.state = {
       message: props.alpha ? 'Create a ballot!' : "Get notified when it's released."
     };
-    this.defaultBallot = {
+    this.defaultDocket = {
       title: 'What are you trying to settle?'
     };
     this.style = {
@@ -35,12 +35,12 @@ export default class CallToAction extends React.Component {
   handleClick(e) {
     if(!this.props.alpha) return;
     e.preventDefault();
-    this.createAndShowNewBallot()
+    this.createAndShowNewDocket()
   }
 
-  createAndShowNewBallot () {
-    let ballot = this.props.ballotsBase.push(this.defaultBallot);
-    let ballotId = ballot.toString().match(/([^\/]*)\/*$/)[1]
-    window.location.href = `/#/ballots/${ballotId}`
+  createAndShowNewDocket () {
+    let docket = this.props.docketsBase.push(this.defaultDocket);
+    let docketId = docket.toString().match(/([^\/]*)\/*$/)[1]
+    window.location.href = `/#/dockets/${docketId}`
   }
 }

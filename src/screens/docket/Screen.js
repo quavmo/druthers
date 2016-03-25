@@ -18,15 +18,15 @@ export default class Candidate extends React.Component {
 			fontFamily: 'sans-serif',
 			padding: 20
 		};
-		let ballotBase = DataService.child(`ballots/${this.props.id}`);
+		let docketBase = DataService.child(`dockets/${this.props.id}`);
 
 		let title = React.createElement(Title,
-			{text: this.state.title, titleRef: ballotBase.child('title')}
+			{text: this.state.title, titleRef: docketBase.child('title')}
 		);
 
     let candidateSet = React.createElement(CandidateSet, {
 				members: this.state.candidates,
-				membersBase: ballotBase.child('candidates')
+				membersBase: docketBase.child('candidates')
 		});
 
     return React.DOM.div(
@@ -42,6 +42,6 @@ export default class Candidate extends React.Component {
 	}
 
 	setStateIfData(data) {
-		data.val() && this.setState(data.val().ballots[this.props.id]);
+		data.val() && this.setState(data.val().dockets[this.props.id]);
 	}
 }

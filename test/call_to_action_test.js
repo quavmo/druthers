@@ -7,26 +7,26 @@ describe('the CallToAction', function(){
   describe('when clicked', function () {
     beforeEach(function() {
       let pushSpy = jasmine.createSpy('push');
-      this.ballotId = "-KBiomm73LN_2g9sxTXT";
-      let ballotRef = {toString: ()=>`https://druthers-base.firebaseio.com/ballots/${this.ballotId}`};
-      pushSpy.and.returnValue(ballotRef);
-      this.ballotsBase = {push: pushSpy};
-      this.props = {ballotsBase: this.ballotsBase, alpha: true};
+      this.docketId = "-KBiomm73LN_2g9sxTXT";
+      let docketRef = {toString: ()=>`https://druthers-base.firebaseio.com/dockets/${this.docketId}`};
+      pushSpy.and.returnValue(docketRef);
+      this.docketsBase = {push: pushSpy};
+      this.props = {docketsBase: this.docketsBase, alpha: true};
     });
 
-    it('creates a ballot', function () {
+    it('creates a docket', function () {
       this.component = Utils.plant(CallToAction, this.props);
       Utils.click(this.component);
 
-      expect(this.component.defaultBallot).toBeDefined();
-      expect(this.ballotsBase.push).toHaveBeenCalledWith(this.component.defaultBallot);
+      expect(this.component.defaultDocket).toBeDefined();
+      expect(this.docketsBase.push).toHaveBeenCalledWith(this.component.defaultDocket);
     });
 
-    it('navigates to show the new ballot', function() {
+    it('navigates to show the new docket', function() {
       window.location.href = "#";
       this.component = Utils.plant(CallToAction, this.props);
       Utils.click(this.component);
-      expect(window.location.href).toEqual(`http://localhost:8888/#/ballots/${this.ballotId}`);
+      expect(window.location.href).toEqual(`http://localhost:8888/#/dockets/${this.docketId}`);
     });
   });
 });

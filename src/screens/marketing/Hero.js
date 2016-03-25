@@ -4,8 +4,8 @@ import CallToAction from './CallToAction';
 
 let druthersBase = new Firebase("https://druthers-base.firebaseio.com")
 let heroBase = druthersBase.child('marketing').child('hero');
-let ballotsBase = druthersBase.child('ballots');
-let alpha = false;
+let docketsBase = druthersBase.child('dockets');
+let alpha = true;
 
 export default class Hero extends React.Component {
 	constructor() {
@@ -23,7 +23,7 @@ export default class Hero extends React.Component {
 	render() {
     let header    = React.DOM.h1({style: {fontSize: 36}}, this.state.header);
     let subheader = React.DOM.h1({style: {marginTop: 10, fontSize: 14}}, this.state.subheader);
-    let action    = React.createElement(CallToAction, {ballotsBase, alpha});
+    let action    = React.createElement(CallToAction, {docketsBase, alpha});
 		let appShotStyles = {margin: '50px auto', maxWidth: 360, display: 'block'}
 		let appShot   = React.DOM.img({src: this.randomMockupPath, style: appShotStyles});
 		let responsiveStyleBox = React.DOM.style(

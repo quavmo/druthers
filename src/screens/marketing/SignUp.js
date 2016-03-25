@@ -18,7 +18,7 @@ export default class SignUp extends React.Component {
 	render() {
 		let header 		= React.DOM.h1({style: {textTransform: 'capitalize', fontSize: 42}}, "Get notified when it's released");
 		let gratitude = React.createElement(Gratitude, {name: this.state.name, feelingsBase: this.state.feelingsBase});
-		let subheader = React.DOM.p({style: {marginTop: 20}}, "You'll be able to create a ballot immediately, and it will be the last day your group priorities are unclear.");
+		let subheader = React.DOM.p({style: {marginTop: 20}}, "You'll be able to create a docket immediately, and it will be the last day your group priorities are unclear.");
 
 		let name 			= React.DOM.input(Object.assign(this.inputProps, {
 			placeholder: "Name",

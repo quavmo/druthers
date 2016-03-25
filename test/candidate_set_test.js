@@ -1,5 +1,5 @@
 import React from 'react';
-import CandidateSet from '../src/screens/ballot/CandidateSet';
+import CandidateSet from '../src/screens/docket/CandidateSet';
 import Utils from './utils';
 
 describe('the CandidateSet', function(){
