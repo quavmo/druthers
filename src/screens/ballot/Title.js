@@ -1,23 +1,28 @@
 import React from 'react';
 
-export default React.createClass({
-	getInitialState: () => new Object,
-	render: function() {
+export default class Title extends React.Component {
+	constructor(){
+		super(...arguments);
+		this.state = {};
+	}
+	render() {
     return React.DOM.textarea({
 			ref: 'input',
 			style: this.style(this.state.highlighted),
 			value: this.props.text,
-			onChange: this.updateText,
-			onFocus: this.highlight,
-			onBlur: this.lowlight
+			onChange: this.updateText.bind(this),
+			onFocus: this.highlight.bind(this),
+			onBlur: this.lowlight.bind(this)
 		});
-  },
-	updateText: function(e) {
+  }
+
+	updateText(e) {
 		this.props.titleRef.set(e.target.value);
-	},
-	highlight: function() { this.setState({highlighted: true}) },
-	lowlight: function() { this.setState({highlighted: false}) },
-	style: highlighted => {
+	}
+
+	highlight() { this.setState({highlighted: true}) }
+	lowlight() { this.setState({highlighted: false}) }
+	style(highlighted) {
 		return {
 			border: 'none',
 	    outline: 'none',
@@ -29,4 +34,4 @@ export default React.createClass({
 			textAlign: 'center'
 		};
 	}
-});
+}

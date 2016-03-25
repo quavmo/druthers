@@ -1,7 +1,7 @@
-import React 				from 'react';
+import React from 'react';
 
-export default React.createClass({
-	render: function() {
+export default class Candidate extends React.Component {
+	render() {
     let style = {
       color: 'black',
       fontSize: 18,
@@ -16,4 +16,4 @@ export default React.createClass({
       this.props.name
     );
   }
-});
+}

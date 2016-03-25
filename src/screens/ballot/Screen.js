@@ -5,9 +5,19 @@ import DataService from '../../DataService';
 
 let Submit = React.DOM.div({}, ">");
 
-export default React.createClass({
-	getInitialState: () => {return {candidates:[]}},
-	render: function() {
+export default class Candidate extends React.Component {
+	constructor() {
+		super(...arguments);
+		this.state = {candidates:[]};
+	}
+
+	render() {
+		let style = {
+			background: 'rgb(60, 150, 130)',
+			height: '100%',
+			fontFamily: 'sans-serif',
+			padding: 20
+		};
 		let ballotBase = DataService.child(`ballots/${this.props.id}`);
 
 		let title = React.createElement(Title,
@@ -19,19 +29,19 @@ export default React.createClass({
 				membersBase: ballotBase.child('candidates')
 		});
 
-    return React.DOM.div({style: this.style}, title, candidateSet, Submit);
-  },
-	componentDidMount: function () {
+    return React.DOM.div(
+			{style},
+			title,
+			candidateSet,
+			Submit
+		);
+  }
+
+	componentDidMount() {
 		DataService.on('value', this.setStateIfData, this);
-	},
+	}
+
 	setStateIfData(data) {
 		data.val() && this.setState(data.val().ballots[this.props.id]);
-	},
- 	style: {
-		// background: 'rgb(60, 150, 130)',
-		background: 'rgb(60, 150, 130)',
-		height: '100%',
-		fontFamily: 'sans-serif',
-		padding: 20
 	}
-});
+}

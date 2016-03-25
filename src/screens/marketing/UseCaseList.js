@@ -2,12 +2,17 @@ import React from 'react';
 import Firebase from 'firebase';
 let caseBase = new Firebase("https://druthers-base.firebaseio.com/marketing/cases");
 
-export default React.createClass({
-	getInitialState: function () { return {cases: []}; },
-	componentDidMount: function () {
+export default class UseCaseList extends React.Component {
+	constructor() {
+		super(...arguments);
+		this.state = {cases: []};
+	}
+
+	componentDidMount() {
 		caseBase.on('value', function (data) { this.setState({cases: data.val()}) }, this);
-	},
-	render: function() {
+	}
+
+	render() {
 		let header 	= React.DOM.h2({style: {padding: 30, fontSize: 30}}, 'Get your druthers.');
 		let responsiveStyleBox = React.DOM.style(
 			{},
@@ -24,12 +29,13 @@ export default React.createClass({
 		)
 		let caseBox = React.DOM.div({id: 'caseBox'}, ...this.state.cases.map(this.hydrateCase))
 		return React.DOM.div({id: 'useCaseList'}, responsiveStyleBox, header, caseBox);
-	},
-	hydrateCase: function (data) {
+	}
+
+	hydrateCase(data) {
 		let image = React.DOM.img({src: `image/${data.key}.svg`, style: {height: 120}});
 		let title = React.DOM.h1({style: {color: 'red', marginTop: 30}}, data.title);
 		let body 	= React.DOM.p({style: {marginTop: 20}}, data.body);
 
 		return React.DOM.div(Object.assign(data, {style: {padding: 30}}), image, title, body);
 	}
-});
+}
