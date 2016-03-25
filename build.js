@@ -33123,6 +33123,8 @@ exports.default = new _reactRouting.Router(function (on) {
 },{"./screens/ballot/Screen":361,"./screens/marketing/Screen":367,"babel-polyfill":1,"react":355,"react-routing":226}],359:[function(require,module,exports){
 'use strict';
 
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -33133,23 +33135,46 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _react2.default.createClass({
-  render: function render() {
-    var style = {
-      color: 'black',
-      fontSize: 18,
-      background: 'white',
-      padding: 20,
-      margin: 20,
-      listStyle: 'none'
-    };
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    return _react2.default.DOM.li({ style: style }, this.props.name);
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Candidate = (function (_React$Component) {
+  _inherits(Candidate, _React$Component);
+
+  function Candidate() {
+    _classCallCheck(this, Candidate);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(Candidate).apply(this, arguments));
   }
-});
+
+  _createClass(Candidate, [{
+    key: 'render',
+    value: function render() {
+      var style = {
+        color: 'black',
+        fontSize: 18,
+        background: 'white',
+        padding: 20,
+        margin: 20,
+        listStyle: 'none'
+      };
+
+      return _react2.default.DOM.li({ style: style }, this.props.name);
+    }
+  }]);
+
+  return Candidate;
+})(_react2.default.Component);
+
+exports.default = Candidate;
 
 },{"react":355}],360:[function(require,module,exports){
 'use strict';
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
@@ -33171,48 +33196,77 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-exports.default = _react2.default.createClass({
-	getInitialState: function getInitialState() {
-		return { newCandidate: { name: '' } };
-	},
-	render: function render() {
-		var _React$DOM;
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-		var style = {
-			color: 'white',
-			fontSize: 28,
-			textAlign: 'center'
-		};
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-		var candidates = _ramda2.default.toPairs(this.props.members).map(this.hydrateCandidate);
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-		var newMemberField = _react2.default.DOM.input({
-			onChange: this.stageCandidate,
-			value: this.state.newCandidate.name
-		});
-		var newMemberForm = _react2.default.DOM.form({ onSubmit: this.pushCandidate }, newMemberField);
-		return (_React$DOM = _react2.default.DOM).ol.apply(_React$DOM, [{ style: style }].concat(_toConsumableArray(candidates), [newMemberForm]));
-	},
-	hydrateCandidate: function hydrateCandidate(pair) {
-		return _react2.default.createElement(_Candidate2.default, { name: pair[1].name });
-	},
-	stageCandidate: function stageCandidate(event) {
-		event.preventDefault();
-		event.stopPropagation();
+var CandidateSet = (function (_React$Component) {
+	_inherits(CandidateSet, _React$Component);
 
-		this.setState({ newCandidate: { name: event.target.value } });
-	},
-	pushCandidate: function pushCandidate(event) {
-		event.preventDefault();
-		event.stopPropagation();
+	function CandidateSet() {
+		_classCallCheck(this, CandidateSet);
 
-		this.props.membersBase.push(this.state.newCandidate);
-		this.setState({ newCandidate: { name: '' } });
+		var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(CandidateSet).apply(this, arguments));
+
+		_this.state = { newCandidate: { name: '' } };
+		return _this;
 	}
-});
+
+	_createClass(CandidateSet, [{
+		key: 'render',
+		value: function render() {
+			var _React$DOM;
+
+			var style = {
+				color: 'white',
+				fontSize: 28,
+				textAlign: 'center'
+			};
+
+			var candidates = _ramda2.default.toPairs(this.props.members).map(this.hydrateCandidate);
+
+			var newMemberField = _react2.default.DOM.input({
+				onChange: this.stageCandidate.bind(this),
+				value: this.state.newCandidate.name
+			});
+			var newMemberForm = _react2.default.DOM.form({ onSubmit: this.pushCandidate.bind(this) }, newMemberField);
+			return (_React$DOM = _react2.default.DOM).ol.apply(_React$DOM, [{ style: style }].concat(_toConsumableArray(candidates), [newMemberForm]));
+		}
+	}, {
+		key: 'hydrateCandidate',
+		value: function hydrateCandidate(pair) {
+			return _react2.default.createElement(_Candidate2.default, { name: pair[1].name });
+		}
+	}, {
+		key: 'stageCandidate',
+		value: function stageCandidate(event) {
+			event.preventDefault();
+			event.stopPropagation();
+
+			this.setState({ newCandidate: { name: event.target.value } });
+		}
+	}, {
+		key: 'pushCandidate',
+		value: function pushCandidate(event) {
+			event.preventDefault();
+			event.stopPropagation();
+
+			this.props.membersBase.push(this.state.newCandidate);
+			this.setState({ newCandidate: { name: '' } });
+		}
+	}]);
+
+	return CandidateSet;
+})(_react2.default.Component);
+
+exports.default = CandidateSet;
 
 },{"./Candidate":359,"ramda":221,"react":355}],361:[function(require,module,exports){
 'use strict';
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
@@ -33236,42 +33290,67 @@ var _DataService2 = _interopRequireDefault(_DataService);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 var Submit = _react2.default.DOM.div({}, ">");
 
-exports.default = _react2.default.createClass({
-	getInitialState: function getInitialState() {
-		return { candidates: [] };
-	},
-	render: function render() {
-		var ballotBase = _DataService2.default.child('ballots/' + this.props.id);
+var Candidate = (function (_React$Component) {
+	_inherits(Candidate, _React$Component);
 
-		var title = _react2.default.createElement(_Title2.default, { text: this.state.title, titleRef: ballotBase.child('title') });
+	function Candidate() {
+		_classCallCheck(this, Candidate);
 
-		var candidateSet = _react2.default.createElement(_CandidateSet2.default, {
-			members: this.state.candidates,
-			membersBase: ballotBase.child('candidates')
-		});
+		var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Candidate).apply(this, arguments));
 
-		return _react2.default.DOM.div({ style: this.style }, title, candidateSet, Submit);
-	},
-	componentDidMount: function componentDidMount() {
-		_DataService2.default.on('value', this.setStateIfData, this);
-	},
-	setStateIfData: function setStateIfData(data) {
-		data.val() && this.setState(data.val().ballots[this.props.id]);
-	},
-
-	style: {
-		// background: 'rgb(60, 150, 130)',
-		background: 'rgb(60, 150, 130)',
-		height: '100%',
-		fontFamily: 'sans-serif',
-		padding: 20
+		_this.state = { candidates: [] };
+		return _this;
 	}
-});
+
+	_createClass(Candidate, [{
+		key: 'render',
+		value: function render() {
+			var style = {
+				background: 'rgb(60, 150, 130)',
+				height: '100%',
+				fontFamily: 'sans-serif',
+				padding: 20
+			};
+			var ballotBase = _DataService2.default.child('ballots/' + this.props.id);
+
+			var title = _react2.default.createElement(_Title2.default, { text: this.state.title, titleRef: ballotBase.child('title') });
+
+			var candidateSet = _react2.default.createElement(_CandidateSet2.default, {
+				members: this.state.candidates,
+				membersBase: ballotBase.child('candidates')
+			});
+
+			return _react2.default.DOM.div({ style: style }, title, candidateSet, Submit);
+		}
+	}, {
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			_DataService2.default.on('value', this.setStateIfData, this);
+		}
+	}, {
+		key: 'setStateIfData',
+		value: function setStateIfData(data) {
+			data.val() && this.setState(data.val().ballots[this.props.id]);
+		}
+	}]);
+
+	return Candidate;
+})(_react2.default.Component);
+
+exports.default = Candidate;
 
 },{"../../DataService":356,"./CandidateSet":360,"./Title":362,"react":355}],362:[function(require,module,exports){
 'use strict';
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
@@ -33283,45 +33362,76 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _react2.default.createClass({
-	getInitialState: function getInitialState() {
-		return new Object();
-	},
-	render: function render() {
-		return _react2.default.DOM.textarea({
-			ref: 'input',
-			style: this.style(this.state.highlighted),
-			value: this.props.text,
-			onChange: this.updateText,
-			onFocus: this.highlight,
-			onBlur: this.lowlight
-		});
-	},
-	updateText: function updateText(e) {
-		this.props.titleRef.set(e.target.value);
-	},
-	highlight: function highlight() {
-		this.setState({ highlighted: true });
-	},
-	lowlight: function lowlight() {
-		this.setState({ highlighted: false });
-	},
-	style: function style(highlighted) {
-		return {
-			border: 'none',
-			outline: 'none',
-			backgroundColor: highlighted ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0)',
-			fontFamily: 'inherit',
-			fontSize: 28,
-			color: 'white',
-			width: "100%",
-			textAlign: 'center'
-		};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Title = (function (_React$Component) {
+	_inherits(Title, _React$Component);
+
+	function Title() {
+		_classCallCheck(this, Title);
+
+		var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Title).apply(this, arguments));
+
+		_this.state = {};
+		return _this;
 	}
-});
+
+	_createClass(Title, [{
+		key: 'render',
+		value: function render() {
+			return _react2.default.DOM.textarea({
+				ref: 'input',
+				style: this.style(this.state.highlighted),
+				value: this.props.text,
+				onChange: this.updateText.bind(this),
+				onFocus: this.highlight.bind(this),
+				onBlur: this.lowlight.bind(this)
+			});
+		}
+	}, {
+		key: 'updateText',
+		value: function updateText(e) {
+			this.props.titleRef.set(e.target.value);
+		}
+	}, {
+		key: 'highlight',
+		value: function highlight() {
+			this.setState({ highlighted: true });
+		}
+	}, {
+		key: 'lowlight',
+		value: function lowlight() {
+			this.setState({ highlighted: false });
+		}
+	}, {
+		key: 'style',
+		value: function style(highlighted) {
+			return {
+				border: 'none',
+				outline: 'none',
+				backgroundColor: highlighted ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0)',
+				fontFamily: 'inherit',
+				fontSize: 28,
+				color: 'white',
+				width: "100%",
+				textAlign: 'center'
+			};
+		}
+	}]);
+
+	return Title;
+})(_react2.default.Component);
+
+exports.default = Title;
 
 },{"react":355}],363:[function(require,module,exports){
 'use strict';
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -33333,33 +33443,29 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 var blue = 'rgba(0,84,255,1)';
 
-exports.default = _react2.default.createClass({
-  getInitialState: function getInitialState() {
-    return {
-      message: this.props.alpha ? 'Create a ballot!' : "Get notified when it's released."
-    };
-  },
-  render: function render() {
-    return _react2.default.DOM.a({ href: '#signUp', style: this.style, onClick: this.handleClick }, this.state.message);
-  },
-  handleClick: function handleClick(e) {
-    if (!this.props.alpha) return;
-    e.preventDefault();
-    this.createAndShowNewBallot();
-  },
-  createAndShowNewBallot: function createAndShowNewBallot() {
-    var ballot = this.props.ballotsBase.push(this.defaultBallot);
-    var ballotId = ballot.toString().match(/([^\/]*)\/*$/)[1];
-    window.location.href = '/#/ballots/' + ballotId;
-  },
+var CallToAction = (function (_React$Component) {
+  _inherits(CallToAction, _React$Component);
 
-  defaultBallot: {
-    title: 'What are you trying to settle?'
-  },
-  get style() {
-    return {
+  function CallToAction(props) {
+    _classCallCheck(this, CallToAction);
+
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(CallToAction).apply(this, arguments));
+
+    _this.state = {
+      message: props.alpha ? 'Create a ballot!' : "Get notified when it's released."
+    };
+    _this.defaultBallot = {
+      title: 'What are you trying to settle?'
+    };
+    _this.style = {
       color: 'white',
       textDecoration: 'none',
       marginTop: 30,
@@ -33368,8 +33474,38 @@ exports.default = _react2.default.createClass({
       background: blue,
       textTransform: 'capitalize'
     };
+    return _this;
   }
-});
+
+  _createClass(CallToAction, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.DOM.a({
+        href: '#signUp',
+        style: this.style,
+        onClick: this.handleClick.bind(this)
+      }, this.state.message);
+    }
+  }, {
+    key: 'handleClick',
+    value: function handleClick(e) {
+      if (!this.props.alpha) return;
+      e.preventDefault();
+      this.createAndShowNewBallot();
+    }
+  }, {
+    key: 'createAndShowNewBallot',
+    value: function createAndShowNewBallot() {
+      var ballot = this.props.ballotsBase.push(this.defaultBallot);
+      var ballotId = ballot.toString().match(/([^\/]*)\/*$/)[1];
+      window.location.href = '/#/ballots/' + ballotId;
+    }
+  }]);
+
+  return CallToAction;
+})(_react2.default.Component);
+
+exports.default = CallToAction;
 
 },{"react":355}],364:[function(require,module,exports){
 'use strict';
@@ -33393,6 +33529,8 @@ exports.default = {
 },{}],365:[function(require,module,exports){
 'use strict';
 
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
@@ -33407,32 +33545,67 @@ var _FormStyle2 = _interopRequireDefault(_FormStyle);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _react2.default.createClass({
-	getInitialState: function getInitialState() {
-		return { feeling: 'I hope...' };
-	},
-	render: function render() {
-		var message = 'Cool, ' + this.props.name + '!  And how do you feel about all this?';
-		var feelingsWiring = { placeholder: "I hope...", onChange: this.handleFeelingChange, ref: 'input', value: this.state.latestFeeling };
-		var feelingsBox = _react2.default.DOM.input(Object.assign({ style: _FormStyle2.default.input }, feelingsWiring));
-		var submit = _react2.default.DOM.button({ style: this.buttonStyle, ref: 'submit' }, "Tell us!");
-		var form = _react2.default.DOM.form({ onSubmit: this.handleSubmit }, feelingsBox, submit);
-		return _react2.default.DOM.div({ style: { marginTop: 20 } }, _react2.default.DOM.p({}, message), form);
-	},
-	handleSubmit: function handleSubmit(event) {
-		event.preventDefault();
-		event.stopPropagation();
-		this.props.feelingsBase.push(this.state.latestFeeling);
-		this.setState({ latestFeeling: 'I also hope...' });
-	},
-	handleFeelingChange: function handleFeelingChange(event) {
-		this.setState({ latestFeeling: event.target.value });
-	},
-	buttonStyle: { cursor: 'pointer', border: '3px solid white', padding: 20, color: 'white', textTransform: 'capitalize', margin: '20px auto', display: 'block' }
-});
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Gratitude = (function (_React$Component) {
+	_inherits(Gratitude, _React$Component);
+
+	function Gratitude() {
+		_classCallCheck(this, Gratitude);
+
+		var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Gratitude).apply(this, arguments));
+
+		_this.state = { feeling: 'I hope...' };
+		_this.buttonStyle = {
+			cursor: 'pointer',
+			border: '3px solid white',
+			padding: 20,
+			color: 'white',
+			textTransform: 'capitalize',
+			margin: '20px auto',
+			display: 'block'
+		};
+		return _this;
+	}
+
+	_createClass(Gratitude, [{
+		key: 'render',
+		value: function render() {
+			var message = 'Cool, ' + this.props.name + '!  And how do you feel about all this?';
+			var feelingsWiring = { placeholder: "I hope...", onChange: this.handleFeelingChange.bind(this), ref: 'input', value: this.state.latestFeeling };
+			var feelingsBox = _react2.default.DOM.input(Object.assign({ style: _FormStyle2.default.input }, feelingsWiring));
+			var submit = _react2.default.DOM.button({ style: this.buttonStyle, ref: 'submit' }, "Tell us!");
+			var form = _react2.default.DOM.form({ onSubmit: this.handleSubmit.bind(this) }, feelingsBox, submit);
+			return _react2.default.DOM.div({ style: { marginTop: 20 } }, _react2.default.DOM.p({}, message), form);
+		}
+	}, {
+		key: 'handleSubmit',
+		value: function handleSubmit(event) {
+			event.preventDefault();
+			event.stopPropagation();
+			this.props.feelingsBase.push(this.state.latestFeeling);
+			this.setState({ latestFeeling: 'I also hope...' });
+		}
+	}, {
+		key: 'handleFeelingChange',
+		value: function handleFeelingChange(event) {
+			this.setState({ latestFeeling: event.target.value });
+		}
+	}]);
+
+	return Gratitude;
+})(_react2.default.Component);
+
+exports.default = Gratitude;
 
 },{"./FormStyle":364,"react":355}],366:[function(require,module,exports){
 'use strict';
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
@@ -33452,59 +33625,94 @@ var _CallToAction2 = _interopRequireDefault(_CallToAction);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 var druthersBase = new _firebase2.default("https://druthers-base.firebaseio.com");
 var heroBase = druthersBase.child('marketing').child('hero');
 var ballotsBase = druthersBase.child('ballots');
 var alpha = false;
 
-exports.default = _react2.default.createClass({
-	getInitialState: function getInitialState() {
-		return {
+var Hero = (function (_React$Component) {
+	_inherits(Hero, _React$Component);
+
+	function Hero() {
+		_classCallCheck(this, Hero);
+
+		var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Hero).apply(this, arguments));
+
+		_this.state = {
 			header: 'Quit bickering.',
 			subheader: "Settle decisions with an eye for everyone's priorities."
 		};
-	},
-	componentDidMount: function componentDidMount() {
-		heroBase.on('value', function (data) {
-			this.setState(data.val());
-		}, this);
-	},
-	render: function render() {
-		var header = _react2.default.DOM.h1({ style: { fontSize: 36 } }, this.state.header);
-		var subheader = _react2.default.DOM.h1({ style: { marginTop: 10, fontSize: 14 } }, this.state.subheader);
-		var action = _react2.default.createElement(_CallToAction2.default, { ballotsBase: ballotsBase, alpha: alpha });
-		var appShotStyles = { margin: '50px auto', maxWidth: 360, display: 'block' };
-		var appShot = _react2.default.DOM.img({ src: this.randomMockupPath, style: appShotStyles });
-		var responsiveStyleBox = _react2.default.DOM.style({}, '\n\t\t\t\t@media (max-width: 1000px) { #hero { padding: 50px; } }\n\t\t\t\t@media (min-width: 1000px) { #hero { padding: 130px; } }\n\t\t\t');
-
-		return _react2.default.DOM.div({ id: 'hero', style: this.outerStyle }, responsiveStyleBox, header, subheader, action, appShot);
-	},
-	get randomShotNumber() {
-		return Math.round(Math.random() * 5) + 1;
-	},
-	get randomMockupPath() {
-		return 'image/wrapped-mockups/screen' + this.randomShotNumber + '_nexus4_portrait.png';
-	},
-	get photoId() {
-		return 'photo-1447752875215-b2761acb3c5d';
-	},
-	get bgndUri() {
-		return 'https://images.unsplash.com/' + this.photoId + '?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=f2460c17083e439b73d250a7db2a889c';
-	},
-	get outerStyle() {
-		return {
-			background: 'url(' + this.bgndUri + ')',
-			backgroundSize: 'cover',
-			color: 'white',
-			textShadow: "0 0 1px black",
-			height: 550,
-			overflow: 'hidden'
-		};
+		return _this;
 	}
-});
+
+	_createClass(Hero, [{
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			heroBase.on('value', function (data) {
+				this.setState(data.val());
+			}, this);
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			var header = _react2.default.DOM.h1({ style: { fontSize: 36 } }, this.state.header);
+			var subheader = _react2.default.DOM.h1({ style: { marginTop: 10, fontSize: 14 } }, this.state.subheader);
+			var action = _react2.default.createElement(_CallToAction2.default, { ballotsBase: ballotsBase, alpha: alpha });
+			var appShotStyles = { margin: '50px auto', maxWidth: 360, display: 'block' };
+			var appShot = _react2.default.DOM.img({ src: this.randomMockupPath, style: appShotStyles });
+			var responsiveStyleBox = _react2.default.DOM.style({}, '\n\t\t\t\t@media (max-width: 1000px) { #hero { padding: 50px; } }\n\t\t\t\t@media (min-width: 1000px) { #hero { padding: 130px; } }\n\t\t\t');
+
+			return _react2.default.DOM.div({ id: 'hero', style: this.outerStyle }, responsiveStyleBox, header, subheader, action, appShot);
+		}
+	}, {
+		key: 'randomShotNumber',
+		get: function get() {
+			return Math.round(Math.random() * 5) + 1;
+		}
+	}, {
+		key: 'randomMockupPath',
+		get: function get() {
+			return 'image/wrapped-mockups/screen' + this.randomShotNumber + '_nexus4_portrait.png';
+		}
+	}, {
+		key: 'photoId',
+		get: function get() {
+			return 'photo-1447752875215-b2761acb3c5d';
+		}
+	}, {
+		key: 'bgndUri',
+		get: function get() {
+			return 'https://images.unsplash.com/' + this.photoId + '?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=f2460c17083e439b73d250a7db2a889c';
+		}
+	}, {
+		key: 'outerStyle',
+		get: function get() {
+			return {
+				background: 'url(' + this.bgndUri + ')',
+				backgroundSize: 'cover',
+				color: 'white',
+				textShadow: "0 0 1px black",
+				height: 550,
+				overflow: 'hidden'
+			};
+		}
+	}]);
+
+	return Hero;
+})(_react2.default.Component);
+
+exports.default = Hero;
 
 },{"./CallToAction":363,"firebase":217,"react":355}],367:[function(require,module,exports){
 'use strict';
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
@@ -33528,19 +33736,41 @@ var _SignUp2 = _interopRequireDefault(_SignUp);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _react2.default.createClass({
-	render: function render() {
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-		var hero = _react2.default.createElement(_Hero2.default);
-		var useCaseList = _react2.default.createElement(_UseCaseList2.default);
-		var signUp = _react2.default.createElement(_SignUp2.default);
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-		return _react2.default.DOM.div({ style: { fontFamily: 'sans-serif' } }, hero, useCaseList, signUp);
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Marketing = (function (_React$Component) {
+	_inherits(Marketing, _React$Component);
+
+	function Marketing() {
+		_classCallCheck(this, Marketing);
+
+		return _possibleConstructorReturn(this, Object.getPrototypeOf(Marketing).apply(this, arguments));
 	}
-});
+
+	_createClass(Marketing, [{
+		key: 'render',
+		value: function render() {
+			var hero = _react2.default.createElement(_Hero2.default);
+			var useCaseList = _react2.default.createElement(_UseCaseList2.default);
+			var signUp = _react2.default.createElement(_SignUp2.default);
+
+			return _react2.default.DOM.div({ style: { fontFamily: 'sans-serif' } }, hero, useCaseList, signUp);
+		}
+	}]);
+
+	return Marketing;
+})(_react2.default.Component);
+
+exports.default = Marketing;
 
 },{"./Hero":366,"./SignUp":368,"./UseCaseList":369,"react":355}],368:[function(require,module,exports){
 'use strict';
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
@@ -33564,49 +33794,86 @@ var _FormStyle2 = _interopRequireDefault(_FormStyle);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 var interestedBase = new _firebase2.default("https://druthers-base.firebaseio.com/interested");
 var blue = 'rgba(0,84,255,1)';
 
-exports.default = _react2.default.createClass({
-	getInitialState: function getInitialState() {
-		return { name: '', email: '' };
-	},
-	render: function render() {
-		var header = _react2.default.DOM.h1({ style: { textTransform: 'capitalize', fontSize: 42 } }, "Get notified when it's released");
-		var gratitude = _react2.default.createElement(_Gratitude2.default, { name: this.state.name, feelingsBase: this.state.feelingsBase });
-		var subheader = _react2.default.DOM.p({ style: { marginTop: 20 } }, "You'll be able to create a ballot immediately, and it will be the last day your group priorities are unclear.");
+var SignUp = (function (_React$Component) {
+	_inherits(SignUp, _React$Component);
 
-		var name = _react2.default.DOM.input(Object.assign(this.inputProps, { placeholder: "Name", onChange: this.handleNameChange, value: this.state.name }));
-		var email = _react2.default.DOM.input(Object.assign(this.inputProps, { placeholder: "Email", onChange: this.handleEmailChange, value: this.state.email }));
-		var submit = _react2.default.DOM.button({ style: { cursor: 'pointer', border: '3px solid white', padding: 20, color: 'white', textTransform: 'capitalize', margin: '20px auto', display: 'block' } }, "Submit");
+	function SignUp() {
+		_classCallCheck(this, SignUp);
 
-		var outerProps = { id: 'signUp', style: { color: 'white', background: blue, fontFamily: 'sans-serif' } };
+		var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SignUp).apply(this, arguments));
 
-		var responsiveStyleBox = _react2.default.DOM.style({}, '\n\t\t\t\t@media (max-width: 1000px) { #signUp { padding: 50px; } }\n\t\t\t\t@media (min-width: 1000px) { #signUp { padding: 130px; } }\n\t\t\t\tbutton { background: ' + blue + '; }\n\t\t\t\tbutton:hover { background: grey; }\n\t\t\t');
-
-		return _react2.default.DOM.div(outerProps, responsiveStyleBox, header, subheader, _react2.default.DOM.style({}, '::-webkit-input-placeholder { color: white }'), !this.state.submitted ? _react2.default.DOM.form({ onSubmit: this.handleSubmit }, name, email, submit) : gratitude);
-	},
-	handleNameChange: function handleNameChange(e) {
-		e.preventDefault();
-		this.setState({ name: e.target.value });
-	},
-	handleEmailChange: function handleEmailChange(e) {
-		e.preventDefault();
-		this.setState({ email: e.target.value });
-	},
-	handleSubmit: function handleSubmit(e) {
-		e.preventDefault();
-		var user = interestedBase.push({ name: this.state.name, email: this.state.email });
-		this.setState({ submitted: true, feelingsBase: user.child('feelings') });
-	},
-	inputProps: {
-		type: 'text',
-		style: _FormStyle2.default.input
+		_this.state = { name: '', email: '' };
+		_this.inputProps = {
+			type: 'text',
+			style: _FormStyle2.default.input
+		};
+		return _this;
 	}
-});
+
+	_createClass(SignUp, [{
+		key: 'render',
+		value: function render() {
+			var header = _react2.default.DOM.h1({ style: { textTransform: 'capitalize', fontSize: 42 } }, "Get notified when it's released");
+			var gratitude = _react2.default.createElement(_Gratitude2.default, { name: this.state.name, feelingsBase: this.state.feelingsBase });
+			var subheader = _react2.default.DOM.p({ style: { marginTop: 20 } }, "You'll be able to create a ballot immediately, and it will be the last day your group priorities are unclear.");
+
+			var name = _react2.default.DOM.input(Object.assign(this.inputProps, {
+				placeholder: "Name",
+				onChange: this.handleNameChange.bind(this),
+				value: this.state.name
+			}));
+			var email = _react2.default.DOM.input(Object.assign(this.inputProps, {
+				placeholder: "Email",
+				onChange: this.handleEmailChange.bind(this),
+				value: this.state.email
+			}));
+			var submit = _react2.default.DOM.button({ style: { cursor: 'pointer', border: '3px solid white', padding: 20, color: 'white', textTransform: 'capitalize', margin: '20px auto', display: 'block' } }, "Submit");
+
+			var outerProps = { id: 'signUp', style: { color: 'white', background: blue, fontFamily: 'sans-serif' } };
+
+			var responsiveStyleBox = _react2.default.DOM.style({}, '\n\t\t\t\t@media (max-width: 1000px) { #signUp { padding: 50px; } }\n\t\t\t\t@media (min-width: 1000px) { #signUp { padding: 130px; } }\n\t\t\t\tbutton { background: ' + blue + '; }\n\t\t\t\tbutton:hover { background: grey; }\n\t\t\t');
+			var signupForm = _react2.default.DOM.form({ onSubmit: this.handleSubmit.bind(this) }, name, email, submit);
+			return _react2.default.DOM.div(outerProps, responsiveStyleBox, header, subheader, _react2.default.DOM.style({}, '::-webkit-input-placeholder { color: white }'), this.state.submitted ? gratitude : signupForm);
+		}
+	}, {
+		key: 'handleNameChange',
+		value: function handleNameChange(event) {
+			event.preventDefault();
+			this.setState({ name: event.target.value });
+		}
+	}, {
+		key: 'handleEmailChange',
+		value: function handleEmailChange(event) {
+			event.preventDefault();
+			this.setState({ email: event.target.value });
+		}
+	}, {
+		key: 'handleSubmit',
+		value: function handleSubmit(event) {
+			event.preventDefault();
+			var user = interestedBase.push({ name: this.state.name, email: this.state.email });
+			this.setState({ submitted: true, feelingsBase: user.child('feelings') });
+		}
+	}]);
+
+	return SignUp;
+})(_react2.default.Component);
+
+exports.default = SignUp;
 
 },{"./FormStyle":364,"./Gratitude":365,"firebase":217,"react":355}],369:[function(require,module,exports){
 'use strict';
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
@@ -33624,33 +33891,58 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 var caseBase = new _firebase2.default("https://druthers-base.firebaseio.com/marketing/cases");
 
-exports.default = _react2.default.createClass({
-	getInitialState: function getInitialState() {
-		return { cases: [] };
-	},
-	componentDidMount: function componentDidMount() {
-		caseBase.on('value', function (data) {
-			this.setState({ cases: data.val() });
-		}, this);
-	},
-	render: function render() {
-		var _React$DOM;
+var UseCaseList = (function (_React$Component) {
+	_inherits(UseCaseList, _React$Component);
 
-		var header = _react2.default.DOM.h2({ style: { padding: 30, fontSize: 30 } }, 'Get your druthers.');
-		var responsiveStyleBox = _react2.default.DOM.style({}, '\n\t\t\t\t@media (max-width: 1000px) {\n\t\t\t\t\t#caseBox { display: block; }\n\t\t\t\t\t#useCaseList { padding: 20px; }\n\t\t\t\t}\n\t\t\t\t@media (min-width: 1000px) {\n\t\t\t\t\t#caseBox { display: flex; }\n\t\t\t\t\t#useCaseList { padding: 100px; }\n\t\t\t\t}\n\t\t\t');
-		var caseBox = (_React$DOM = _react2.default.DOM).div.apply(_React$DOM, [{ id: 'caseBox' }].concat(_toConsumableArray(this.state.cases.map(this.hydrateCase))));
-		return _react2.default.DOM.div({ id: 'useCaseList' }, responsiveStyleBox, header, caseBox);
-	},
-	hydrateCase: function hydrateCase(data) {
-		var image = _react2.default.DOM.img({ src: 'image/' + data.key + '.svg', style: { height: 120 } });
-		var title = _react2.default.DOM.h1({ style: { color: 'red', marginTop: 30 } }, data.title);
-		var body = _react2.default.DOM.p({ style: { marginTop: 20 } }, data.body);
+	function UseCaseList() {
+		_classCallCheck(this, UseCaseList);
 
-		return _react2.default.DOM.div(Object.assign(data, { style: { padding: 30 } }), image, title, body);
+		var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(UseCaseList).apply(this, arguments));
+
+		_this.state = { cases: [] };
+		return _this;
 	}
-});
+
+	_createClass(UseCaseList, [{
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			caseBase.on('value', function (data) {
+				this.setState({ cases: data.val() });
+			}, this);
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			var _React$DOM;
+
+			var header = _react2.default.DOM.h2({ style: { padding: 30, fontSize: 30 } }, 'Get your druthers.');
+			var responsiveStyleBox = _react2.default.DOM.style({}, '\n\t\t\t\t@media (max-width: 1000px) {\n\t\t\t\t\t#caseBox { display: block; }\n\t\t\t\t\t#useCaseList { padding: 20px; }\n\t\t\t\t}\n\t\t\t\t@media (min-width: 1000px) {\n\t\t\t\t\t#caseBox { display: flex; }\n\t\t\t\t\t#useCaseList { padding: 100px; }\n\t\t\t\t}\n\t\t\t');
+			var caseBox = (_React$DOM = _react2.default.DOM).div.apply(_React$DOM, [{ id: 'caseBox' }].concat(_toConsumableArray(this.state.cases.map(this.hydrateCase))));
+			return _react2.default.DOM.div({ id: 'useCaseList' }, responsiveStyleBox, header, caseBox);
+		}
+	}, {
+		key: 'hydrateCase',
+		value: function hydrateCase(data) {
+			var image = _react2.default.DOM.img({ src: 'image/' + data.key + '.svg', style: { height: 120 } });
+			var title = _react2.default.DOM.h1({ style: { color: 'red', marginTop: 30 } }, data.title);
+			var body = _react2.default.DOM.p({ style: { marginTop: 20 } }, data.body);
+
+			return _react2.default.DOM.div(Object.assign(data, { style: { padding: 30 } }), image, title, body);
+		}
+	}]);
+
+	return UseCaseList;
+})(_react2.default.Component);
+
+exports.default = UseCaseList;
 
 },{"firebase":217,"react":355}]},{},[357])
 
