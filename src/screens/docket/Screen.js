@@ -2,8 +2,9 @@ import React 				from 'react';
 import Title        from './Title';
 import CandidateSet    from './CandidateSet';
 import DataService from '../../DataService';
+import Style from '../../Style';
 
-let Submit = React.DOM.div({}, ">");
+let Vote = React.DOM.div({style: Style.button}, "Vote");
 
 export default class Candidate extends React.Component {
 	constructor() {
@@ -33,7 +34,7 @@ export default class Candidate extends React.Component {
 			{style},
 			title,
 			candidateSet,
-			Submit
+			Vote
 		);
   }
 

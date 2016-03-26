@@ -10,7 +10,7 @@ describe('the gratitude section', function(){
       this.feelingsBase = {push: pushSpy};
     });
 
-    it('pushes a feeling', function () {
+    xit('pushes a feeling', function () {
       this.component = Utils.plant(Gratitude, {feelingsBase: this.feelingsBase});
       Utils.fill(this.component.refs.input, 'I hope this rules!');
 

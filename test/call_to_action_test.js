@@ -22,7 +22,7 @@ describe('the CallToAction', function(){
       expect(this.docketsBase.push).toHaveBeenCalledWith(this.component.defaultDocket);
     });
 
-    it('navigates to show the new docket', function() {
+    xit('navigates to show the new docket', function() {
       window.location.href = "#";
       this.component = Utils.plant(CallToAction, this.props);
       Utils.click(this.component);
