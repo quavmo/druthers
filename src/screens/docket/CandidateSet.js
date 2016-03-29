@@ -1,5 +1,6 @@
 import React 				from 'react';
 import Candidate 	  from './Candidate';
+import Style from '../../Style';
 import R from 'ramda';
 
 export default class CandidateSet extends React.Component {
@@ -20,9 +21,11 @@ export default class CandidateSet extends React.Component {
 			.map(this.hydrateCandidate);
 
 		let newMemberField = React.DOM.input({
+			style: Style.input,
 			onChange: this.stageCandidate.bind(this),
 			value: this.state.newCandidate.name
 		});
+
 		let newMemberForm = React.DOM.form(
 			{onSubmit: this.pushCandidate.bind(this)},
 			newMemberField

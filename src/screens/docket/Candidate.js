@@ -1,18 +1,10 @@
 import React from 'react';
+import Style from '../../Style';
 
 export default class Candidate extends React.Component {
 	render() {
-    let style = {
-      color: 'black',
-      fontSize: 18,
-      background: 'white',
-      padding: 20,
-      margin: 20,
-      listStyle: 'none'
-    };
-
     return React.DOM.li(
-      {style: style},
+      {style: Style.li},
       this.props.name
     );
   }
