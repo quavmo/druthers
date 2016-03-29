@@ -7,7 +7,7 @@ export default class CallToAction extends React.Component {
     this.state = {
       message: props.alpha ? 'Create a ballot!' : "Get notified when it's released."
     };
-    this.defaultDocket = { title: 'What are you trying to settle?' };
+    this.defaultDocket = { title: 'What are we trying to settle?' };
   }
 
 	render() {

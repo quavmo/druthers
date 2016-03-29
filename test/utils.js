@@ -17,14 +17,19 @@ export default {
   stub(component, methodName) {
     return spyOn(component.prototype.__reactAutoBindMap, methodName);
   },
-  find(component, type) {
+  find(component, needle) {
     var findings;
-    if(type instanceof Function) {
-      findings = TestUtils.scryRenderedComponentsWithType(component, type);
+
+    if(needle instanceof Function) {
+      findings = TestUtils.scryRenderedComponentsWithType(component, needle);
     } else {
-      let node = ReactDOM.findDOMNode(component);
-      findings = node.querySelectorAll(type);
+      let haystack = ReactDOM.findDOMNode(component);
+      findings = haystack.querySelectorAll(needle);
     }
+
+    if(findings.length === 0) throw(
+      `Gadzooks! No ${needle} found in ${component.constructor.name}!`
+    );
 
     return (findings.length === 1 ? findings[0] : findings)
   }

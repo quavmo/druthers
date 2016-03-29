@@ -8,6 +8,7 @@ export default {
     padding: 20,
     display: 'inline-block',
     background: blue,
-    textTransform: 'capitalize'
+    textTransform: 'capitalize',
+    cursor: 'pointer'
   }
 }

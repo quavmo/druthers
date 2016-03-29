@@ -1,10 +1,8 @@
 import React 				from 'react';
 import Title        from './Title';
+import Finalize     from './Finalize';
 import CandidateSet    from './CandidateSet';
 import DataService from '../../DataService';
-import Style from '../../Style';
-
-let Vote = React.DOM.div({style: Style.button}, "Vote");
 
 export default class Candidate extends React.Component {
 	constructor() {
@@ -25,6 +23,10 @@ export default class Candidate extends React.Component {
 			{text: this.state.title, titleRef: docketBase.child('title')}
 		);
 
+		let finalize = React.createElement(Finalize,
+			{docketBase: docketBase, final: this.state.final}
+		);
+
     let candidateSet = React.createElement(CandidateSet, {
 				members: this.state.candidates,
 				membersBase: docketBase.child('candidates')
@@ -34,7 +36,7 @@ export default class Candidate extends React.Component {
 			{style},
 			title,
 			candidateSet,
-			Vote
+			finalize
 		);
   }
 
