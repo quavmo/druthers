@@ -1,4 +1,5 @@
 import gulp from 'gulp';
+import Util from './util';
 import gulpLoadPlugins from 'gulp-load-plugins';
 const $ = gulpLoadPlugins();
 
@@ -15,7 +16,7 @@ function compile(watch) {
 
   function rebundle() {
     return bundler.bundle()
-      .on('error', $.notify.onError(meticulouslyParseError))
+      .on('error', $.notify.onError(Util.meticulouslyParseError))
       .pipe(source('build.js'))
       .pipe(buffer())
       .pipe(sourcemaps.init({ loadMaps: true }))
@@ -30,13 +31,3 @@ function compile(watch) {
 
 gulp.task('script', function() { return compile(); });
 gulp.task('watch-script', function() { return compile(true) });
-
-function meticulouslyParseError(error) {
-    console.error(error.toString());
-    error.codeFrame && console.error(error.codeFrame);
-    let file      = error.filename && path.basename(error.filename);
-    let position  = error.loc && [error.loc.line, error.loc.column].join(':')
-    let type      = error.name;
-
-    return (file || position) ? `${type}: ${file} (${position})` : error.toString();
-}
