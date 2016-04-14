@@ -14,7 +14,10 @@ export default class Candidate extends React.Component {
     );
 
     let urlField = React.DOM.input(
-      {readOnly: true, value: window.location.toString()}
+      {
+				readOnly: true,
+				value: window.location.toString().replace("dockets", "vote")
+			}
     );
 
     let contents = R.reject(R.isNil)([(this.props.final && urlField), button])

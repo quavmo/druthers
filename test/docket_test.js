@@ -1,6 +1,5 @@
 import React from 'react';
 import Docket from '../src/screens/docket/Screen';
-import Finalize from '../src/screens/docket/Finalize';
 import Util from './utils';
 
 describe('the docket screen', function(){

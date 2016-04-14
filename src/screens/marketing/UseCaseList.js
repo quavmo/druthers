@@ -1,15 +1,16 @@
 import React from 'react';
-import Firebase from 'firebase';
-let caseBase = new Firebase("https://druthers-base.firebaseio.com/marketing/cases");
+import DataService from '../../DataService';
+
 
 export default class UseCaseList extends React.Component {
 	constructor() {
 		super(...arguments);
 		this.state = {cases: []};
+		this.caseBase = DataService.child('marketing').child('cases');
 	}
 
 	componentDidMount() {
-		caseBase.on('value', function (data) { this.setState({cases: data.val()}) }, this);
+		this.caseBase.on('value', function (data) { this.setState({cases: data.val()}) }, this);
 	}
 
 	render() {

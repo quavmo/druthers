@@ -1,10 +1,8 @@
 import React from 'react';
 import Firebase from 'firebase';
 import CallToAction from './CallToAction';
+import DataService from '../../DataService';
 
-let druthersBase = new Firebase("https://druthers-base.firebaseio.com")
-let heroBase = druthersBase.child('marketing').child('hero');
-let docketsBase = druthersBase.child('dockets');
 let alpha = true;
 
 export default class Hero extends React.Component {
@@ -14,16 +12,19 @@ export default class Hero extends React.Component {
 			header: 'Quit bickering.',
 			subheader: "Settle decisions with an eye for everyone's priorities."
 		};
+
+		this.heroBase = DataService.child('marketing').child('hero');
+		this.docketsBase = DataService.child('dockets');
 	}
 
 	componentDidMount() {
-		heroBase.on('value', function (data) { this.setState(data.val()) }, this);
+		this.heroBase.on('value', function (data) { this.setState(data.val()) }, this);
 	}
 
 	render() {
     let header    = React.DOM.h1({style: {fontSize: 36}}, this.state.header);
     let subheader = React.DOM.h1({style: {marginTop: 10, fontSize: 14}}, this.state.subheader);
-    let action    = React.createElement(CallToAction, {docketsBase, alpha});
+    let action    = React.createElement(CallToAction, {docketsBase: this.docketsBase, alpha: alpha});
 		let appShotStyles = {margin: '50px auto', maxWidth: 360, display: 'block'}
 		let appShot   = React.DOM.img({src: this.randomMockupPath, style: appShotStyles});
 		let responsiveStyleBox = React.DOM.style(
