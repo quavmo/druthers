@@ -1,0 +1,41 @@
+h2 {
+  padding: 30px;
+  fontSize: 30px;
+}
+
+h3 {
+  color: red;
+  marginTop: 30px;
+}
+
+p {
+  marginTop: 20px;
+}
+
+.caseIcon {
+   height: 120px;
+}
+
+.useCase {
+  padding: 30px;
+}
+
+.callToAction {
+  color: white;
+  text-decoration: none;
+  margin-top: 30px;
+  padding: 20px;
+  display: inline-block;
+  background: blue;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.li {
+  color: black;
+  font-size: 18px;
+  background: white;
+  padding: 20px;
+  margin: 20px;
+  list-style: none;
+}
