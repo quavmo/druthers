@@ -1,6 +1,6 @@
 import React, { DOM } from 'react';
 const { textarea } = DOM;
-import s from '../styles.css';
+import s from './style.css';
 import classNames from 'classnames';
 
 export default class Title extends React.Component {

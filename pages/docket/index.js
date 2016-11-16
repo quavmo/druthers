@@ -1,7 +1,7 @@
 import { curry } from 'ramda';
 import { connect } from 'react-redux'
 import React, { Component, createElement, DOM } from 'react';
-import Title from './Title';
+import Title from '../../components/Title';
 import AbstractScreen from '../../components/AbstractScreen';
 import Finalize from './Finalize';
 import CandidateSet from '../../components/CandidateSet';

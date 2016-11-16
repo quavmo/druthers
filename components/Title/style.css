@@ -1,0 +1,10 @@
+.titleField {
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 28px;
+  color: white;
+  width: 100%;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0);
+}
