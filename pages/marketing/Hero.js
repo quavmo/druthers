@@ -5,10 +5,9 @@ const {
   style,
   div
 } = DOM;
-import Firebase from 'firebase';
+import { druthersBase } from '../../core/services/DataService';
 import CallToAction from './CallToAction';
 
-let druthersBase = new Firebase("https://druthers-base.firebaseio.com")
 let heroBase = druthersBase.child('marketing').child('hero');
 let docketsBase = druthersBase.child('dockets');
 let alpha = true;

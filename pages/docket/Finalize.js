@@ -11,7 +11,7 @@ export default class Finalize extends Component {
       {
         className: s.callToAction,
         onClick: this.finalizeDocket, 
-        disabled: this.props.docket.finalizing
+        disabled: false && this.props.docket.finalizing
       },
       'Finalize'
     );

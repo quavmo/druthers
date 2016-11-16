@@ -1,9 +1,8 @@
 import React from 'react';
-import Firebase from 'firebase';
+import { interestedBase } from '../../core/services/DataService';
 import Gratitude from './Gratitude';
 import FormStyle from './FormStyle';
 
-let interestedBase = new Firebase("https://druthers-base.firebaseio.com/interested");
 let blue = 'rgba(0,84,255,1)';
 export default class SignUp extends React.Component {
 	constructor() {

@@ -1,3 +1,11 @@
-import Firebase from 'firebase';
+import firebase from 'firebase';
 
-export default new Firebase('druthers-base.firebaseio.com');
+firebase.initializeApp({databaseURL: "https://druthers-base.firebaseio.com"});
+
+const db = firebase.database();
+
+export const druthersBase = db.ref();
+export const caseBase = db.ref("/marketing/cases");
+export const interestedBase = db.ref("/interested");
+
+export default firebase;

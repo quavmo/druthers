@@ -2,9 +2,7 @@ import React, { DOM } from 'react';
 const {
   h2, h3, style, div, img, h1, p
 } = DOM;
-import Firebase from 'firebase';
-let caseBase = new Firebase("https://druthers-base.firebaseio.com/marketing/cases");
-
+import { caseBase } from '../../core/services/DataService';
 import s from '../styles.css';
 
 export default class UseCaseList extends React.Component {
