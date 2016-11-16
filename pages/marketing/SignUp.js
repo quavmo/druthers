@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { DOM, Component, createElement } from 'react';
 import { interestedBase } from '../../core/services/DataService';
 import Gratitude from './Gratitude';
 import FormStyle from './FormStyle';
+const {
+  h1, p, input, button, style, form, div
+} = DOM;
+const blue = 'rgba(0,84,255,1)';
 
-let blue = 'rgba(0,84,255,1)';
-export default class SignUp extends React.Component {
+export default class SignUp extends Component {
 	constructor() {
 		super(...arguments);
 		this.state = {name: '', email: ''};
@@ -15,28 +18,36 @@ export default class SignUp extends React.Component {
 	}
 
 	render() {
-		let header 		= React.DOM.h1({style: {textTransform: 'capitalize', fontSize: 42}}, "Get notified when it's released");
-		let gratitude = React.createElement(Gratitude, {name: this.state.name, feelingsBase: this.state.feelingsBase});
-		let subheader = React.DOM.p({style: {marginTop: 20}}, "You'll be able to create a docket immediately, and it will be the last day your group priorities are unclear.");
+    const subheaderTagline = "You'll be able to create a docket immediately, and it will be the last day your group priorities are unclear.";
+		let header = h1(
+      {style: {textTransform: 'capitalize', fontSize: 42}},
+      "Get notified when it's released"
+    );
+		let gratitude = createElement(Gratitude,
+      {name: this.state.name, feelingsBase: this.state.feelingsBase}
+    );
+		let subheader = p( {style: {marginTop: 20}}, subheaderTagline );
 
-		let name 			= React.DOM.input(Object.assign(this.inputProps, {
+		let name = input(Object.assign(this.inputProps, {
 			placeholder: "Name",
 			onChange: this.handleNameChange.bind(this),
 			value: this.state.name
 		}));
-		let email 		= React.DOM.input(Object.assign(this.inputProps, {
+		let email = input(Object.assign(this.inputProps, {
 			placeholder: "Email",
 			onChange: this.handleEmailChange.bind(this),
 			value: this.state.email
 		}));
-		let submit 		= React.DOM.button(
+		let submit = button(
 			{style: {cursor: 'pointer', border: '3px solid white', padding: 20, color: 'white', textTransform: 'capitalize', margin: '20px auto', display: 'block'}},
 			"Submit"
 		);
 
-		let outerProps = {id: 'signUp', style: {color: 'white', background: blue, fontFamily: 'sans-serif'}}
+		let outerProps = {
+      id: 'signUp', style: {color: 'white', background: blue, fontFamily: 'sans-serif'}
+    }
 
-		let responsiveStyleBox = React.DOM.style(
+		let responsiveStyleBox = style(
 			{},
 			`
 				@media (max-width: 1000px) { #signUp { padding: 50px; } }
@@ -45,16 +56,16 @@ export default class SignUp extends React.Component {
 				button:hover { background: grey; }
 			`
 		)
-	 let signupForm = React.DOM.form(
+	 let signupForm = form(
 		 {onSubmit: this.handleSubmit.bind(this)},
 		 name, email, submit
 	 );
-		return React.DOM.div(
+		return div(
 			outerProps,
 			responsiveStyleBox,
 			header,
 			subheader,
-			React.DOM.style({}, '::-webkit-input-placeholder { color: white }'),
+			style({}, '::-webkit-input-placeholder { color: white }'),
 			this.state.submitted ? gratitude : signupForm
 		);
 	}
