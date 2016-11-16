@@ -5,7 +5,7 @@ const {
 import Firebase from 'firebase';
 let caseBase = new Firebase("https://druthers-base.firebaseio.com/marketing/cases");
 
-import s from './styles.css';
+import s from '../styles.css';
 
 export default class UseCaseList extends React.Component {
 	constructor() {
@@ -36,11 +36,11 @@ export default class UseCaseList extends React.Component {
 		return div({id: 'useCaseList'}, responsiveStyleBox, header, caseBox);
 	}
 
-	hydrateCase(data) {
-		let image = img({className: s.caseIcon, src: `icons/${data.key}.svg`});
-		let title = h3({}, data.title);
-		let body 	= p({}, data.body);
-
-		return div(Object.assign(data, {className: s.useCase}), image, title, body);
+	hydrateCase({key, title, body}) {
+		return div({className: s.useCase, key},
+      img({className: s.caseIcon, src: `icons/${key}.svg`}),
+      h3({}, title),
+      p({}, body)
+    );
 	}
 }
