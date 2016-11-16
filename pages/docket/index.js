@@ -1,3 +1,4 @@
+import { curry } from 'ramda';
 import { connect } from 'react-redux'
 import React, { Component, createElement, DOM } from 'react';
 import Title from './Title';
@@ -13,15 +14,21 @@ const { div } = DOM;
 
 class Docket extends Component {
 	render() {
-    const { members, final, title, id } = this.props.currentDocket;
-    const { updateTitle, addMember } = this.props;
+    const { 
+      updateTitle,
+      addMember,
+      finalizeDocket,
+      currentDocket
+    } = this.props;
+    const { members, final, title, id } = currentDocket;
+    const docket = currentDocket;
     
     return div(
 			{className: s.docket},
 			el(Title, {text: title, updateTitle}),
 			el(CandidateSet, {members}),
       final ? '' : el(NewMemberForm, {addMember}),
-			el(Finalize, {final, docketID: id})
+			el(Finalize, {finalizeDocket, docket})
 		);
   }
 }

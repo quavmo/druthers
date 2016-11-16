@@ -7,3 +7,8 @@ export const addMember = payload => ({
   type: 'ADD_MEMBER',
   payload
 });
+
+export const finalizeDocket = payload => ({
+  type: 'FINALIZE_DOCKET',
+  payload
+});

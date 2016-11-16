@@ -4,9 +4,9 @@ import s from '../styles.css';
 
 export default class NewMemberForm extends Component {
   constructor() {
-		super(...arguments);
-		this.state = {name: ''};
-	}
+    super(...arguments);
+    this.state = {name: ''};
+  }
   
   render = () => form(
 		{onSubmit: this.pushCandidate},

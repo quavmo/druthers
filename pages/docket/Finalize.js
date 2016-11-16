@@ -1,32 +1,31 @@
-import React from 'react';
+import React, { DOM, Component } from 'react';
+const { span, button, input } = DOM;
 import s from '../styles.css';
-import R from 'ramda';
 
-export default class Finalize extends React.Component {
-	constructor() { super(...arguments); }
+const host = 'http://localhost:8080';
 
-  render(){
-    let contents = this.props.final ? [this.urlField, this.button] : [this.button]
-    return React.DOM.span({}, ...contents);
-  }
-  
-  finalizeDocket(event) {
-		event.preventDefault();
-    this.props.docketBase.child('final').set(true);
-  }
-  
-  get button() {
-    return React.DOM.a(
-    	{className: s.callToAction, onClick: this.finalizeDocket.bind(this)},
-    	this.props.final ? 'Share' : 'Finalize'
+export default class Finalize extends Component {
+  render() { 
+
+    const submitButton = button(
+      {
+        className: s.callToAction,
+        onClick: this.finalizeDocket, 
+        disabled: this.props.docket.finalizing
+      },
+      'Finalize'
     );
-  }  
+    
+    const urlField = input({
+      readOnly: true,
+      value: `${host}/dockets/${this.props.docket.id}/ballots/new`
+    });
+
+    return span({}, (this.props.docket.id ? urlField : submitButton));
+  }
   
-  get urlField() {
-    let url = `http://localhost:8080/#/dockets/${this.props.docketID}/ballots/new`;
-    return url;
-    // return React.DOM.input(
-    //   {readOnly: true, value: url}
-    // );
+  finalizeDocket = event => {
+    event.preventDefault();
+    this.props.finalizeDocket(this.props.docket);
   }
 }
