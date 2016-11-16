@@ -5,12 +5,14 @@ const defaultDocket = {
 export const currentDocket = (state=defaultDocket, {type, payload}) => {
   console.log(type, payload)
   switch (type) {
+    case 'DOCKET_CREATION_SUCCEEDED':
+      return { ...state, id: payload.key };
     case 'UPDATE_TITLE':
       return { ...state, title: payload};
     case 'ADD_MEMBER':
       return { ...state, members: [...state.members, payload] };
     case 'FINALIZE_DOCKET':
-        return { ...state, finalizing: true }
+      return { ...state, finalizing: true }
     default:
       return state;
   }
