@@ -12,7 +12,7 @@ export function generateBallot(snapshot) {
 
 export function candidateSort (candidates, order) {
   const byOrder = function (a,b) {
-    return R.indexOf(a.key, order) - R.indexOf(b.key, order)
+    return R.indexOf(a.name, order) - R.indexOf(b.name, order)
   }
   return R.sort(byOrder, candidates);
 };

@@ -2,11 +2,10 @@ import React, { DOM, Component } from 'react';
 const { span, button, input } = DOM;
 import s from '../styles.css';
 
-const host = 'http://localhost:8080';
+const host = 'http://localhost:3000';
 
 export default class Finalize extends Component {
-  render() { 
-
+  render() {
     const submitButton = button(
       {
         className: s.callToAction,

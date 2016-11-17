@@ -32,7 +32,6 @@ function decodeParam(val) {
 //   matchURI({ path: '/posts/:id' }, '/posts/123') => { id: 123 }
 function matchURI(route, path) {
   const match = route.pattern.exec(path);
-
   if (!match) {
     return null;
   }
@@ -42,7 +41,7 @@ function matchURI(route, path) {
   for (let i = 1; i < match.length; i++) {
     params[route.keys[i - 1].name] = match[i] !== undefined ? decodeParam(match[i]) : undefined;
   }
-
+  
   return params;
 }
 
@@ -51,7 +50,7 @@ function matchURI(route, path) {
 function resolve(routes, context) {
   for (const route of routes) {
     const params = matchURI(route, context.error ? '/error' : context.pathname);
-
+    
     if (!params) {
       continue;
     }
@@ -72,11 +71,12 @@ function resolve(routes, context) {
         }),
       ]).then(([Page, ...data]) => {
         const props = keys.reduce((result, key, i) => ({ ...result, [key]: data[i] }), {});
-        return <Page route={route} error={context.error} {...props} />;
+        return <Page route={route} error={context.error} {...propsWithParams} />;
       });
     }
-
-    return route.load().then(Page => <Page route={route} error={context.error} />);
+    
+    const routeWithParams = { ...route, params }
+    return route.load().then(Page => <Page route={routeWithParams} error={context.error} />);
   }
 
   const error = new Error('Page not found');

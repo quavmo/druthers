@@ -1,10 +1,16 @@
+import { sort, prop } from 'ramda';
+
+const random = (a, b) => Math.random() < 0.5 ? -1 : 1;
+
 const defaultDocket = {
-  members: [], title: 'whatever'
+  members: [{name: 'foo'}], title: 'whatever'
 }
 
 export const currentDocket = (state=defaultDocket, {type, payload}) => {
-  console.log(type, payload)
+  // console.log("## currentDocket", type, payload)
   switch (type) {
+    case 'DOCKET_FETCH_SUCCEEDED':
+      return { ...payload.val() }
     case 'DOCKET_CREATION_SUCCEEDED':
       return { ...state, id: payload.key };
     case 'UPDATE_TITLE':
@@ -17,3 +23,20 @@ export const currentDocket = (state=defaultDocket, {type, payload}) => {
       return state;
   }
 };
+
+const defaultBallot = {
+  order: []
+};
+
+export const currentBallot = (state=defaultBallot, {type, payload}) => {
+  // console.log("• currentBallot", type, payload)
+  switch (type) {
+    case 'DOCKET_FETCH_SUCCEEDED':
+      const names = payload.val().members.map(prop('name'))
+      return { ...state, order: sort(random, names) }
+    case 'MOVE_CARD':
+      return { ...state, order: sort(random, state.order) }
+    default:
+      return state;
+  }
+}
