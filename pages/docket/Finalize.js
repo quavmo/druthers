@@ -1,6 +1,6 @@
 import React, { DOM, Component } from 'react';
 const { span, button, input } = DOM;
-import s from '../styles.css';
+import { callToAction as className } from '../styles.css';
 
 const host = 'http://localhost:3000';
 
@@ -8,9 +8,9 @@ export default class Finalize extends Component {
   render() {
     const submitButton = button(
       {
-        className: s.callToAction,
+        className,
         onClick: this.finalizeDocket, 
-        disabled: false && this.props.docket.finalizing
+        disabled: this.props.docket.finalizing
       },
       'Finalize'
     );

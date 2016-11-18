@@ -8,18 +8,21 @@ import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { candidateSet as className } from './style.css';
 
-const random = (a, b) => Math.random() < 0.5 ? -1 : 1;
-const thisOrder = order => random
+const byOrder = (order=[]) => (a, b) => order.indexOf(a.name) - order.indexOf(b.name);
 
 @DragDropContext(HTML5Backend)
 export default class CandidateSet extends Component {
-  render() {
-    const sortedMembers = sort(thisOrder(this.props.order), this.props.members)
-    return div({className}, sortedMembers.map(this.hydrateCard));
+  render = () => { 
+    const sortedMembers = sort(byOrder(this.props.order), this.props.members);
+    return div(
+      {className},
+      sortedMembers.map(this.hydrateCard)
+    );
   }
   
+  
   hydrateCard = ({name}, index) => el(Card, {
-    key: name,
+    key: name + index,
     index,
     id: name,
     text: name,

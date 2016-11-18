@@ -13,12 +13,12 @@ class Ballot extends Component {
     props.fetchDocket(props.route.params.docketID)
   }
   render() { 
-    const { title, members } = this.props.currentDocket;
-    const { order } = this.props.currentBallot;
-    const href = `#/dockets/${this.props.docketID}/results`;
-    const { moveCard } = this.props;
+    const { moveCard, docketID, currentBallot, currentDocket } = this.props;
+    const { title, members } = currentDocket;
+    const { order } = currentBallot;
+    const href = `#/dockets/${docketID}/results`;
     
-     return div({className},
+    return div({className},
       el(Title, {text: title}),
       el(CandidateSet, { members, order, moveCard }),
       a( {href}, 'Results' )

@@ -10,7 +10,7 @@ export const currentDocket = (state=defaultDocket, {type, payload}) => {
   // console.log("## currentDocket", type, payload)
   switch (type) {
     case 'DOCKET_FETCH_SUCCEEDED':
-      return { ...payload.val() }
+      return { ...payload.val(), finalizing: false }
     case 'DOCKET_CREATION_SUCCEEDED':
       return { ...state, id: payload.key };
     case 'UPDATE_TITLE':
@@ -35,7 +35,9 @@ export const currentBallot = (state=defaultBallot, {type, payload}) => {
       const names = payload.val().members.map(prop('name'))
       return { ...state, order: sort(random, names) }
     case 'MOVE_CARD':
-      return { ...state, order: sort(random, state.order) }
+      const order = sort(random, state.order);
+      console.log('MOVE_CARD', payload)
+      return { ...state, order }
     default:
       return state;
   }
