@@ -17,7 +17,6 @@ class Ballot extends Component {
     const { title, members } = currentDocket;
     const { order } = currentBallot;
     const href = `#/dockets/${docketID}/results`;
-    
     return div({className},
       el(Title, {text: title}),
       el(CandidateSet, { members, order, moveCard }),

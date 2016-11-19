@@ -35,9 +35,12 @@ export const currentBallot = (state=defaultBallot, {type, payload}) => {
       const names = payload.val().members.map(prop('name'))
       return { ...state, order: sort(random, names) }
     case 'MOVE_CARD':
-      const order = sort(random, state.order);
-      console.log('MOVE_CARD', payload)
-      return { ...state, order }
+      const { order } = state;
+      const { dragIndex, hoverIndex } = payload;
+      const dragCard = order[dragIndex];
+      order.splice(dragIndex, 1)
+      order.splice(hoverIndex, 0, dragCard);
+      return { ...state, order: [...order] }
     default:
       return state;
   }

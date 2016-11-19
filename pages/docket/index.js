@@ -26,7 +26,7 @@ class Docket extends Component {
     return div(
 			{className: s.docket},
 			el(Title, {text: title, updateTitle}),
-			el(CandidateSet, {members}),
+			el(CandidateSet, {members, moveCard: new Function}),
       final ? '' : el(NewMemberForm, {addMember}),
 			el(Finalize, {finalizeDocket, docket})
 		);
