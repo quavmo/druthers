@@ -10,9 +10,7 @@ const { a, button, div } = DOM;
 import Title from '../../components/Title';
 import CandidateSet from '../../components/CandidateSet';
 import { ballot as className } from './style.css';
-import {
-  callToAction
-} from '../styles.css';
+import { callToAction } from '../styles.css';
 
 class Ballot extends Component {
   constructor(props) {
@@ -28,7 +26,6 @@ class Ballot extends Component {
     } = this.props;
     const { title, members } = currentDocket;
     const { order } = currentBallot;
-    console.log(currentDocket.id)
     const href = `/dockets/${currentDocket.id}/results`;
     const submitButton = button(
       {

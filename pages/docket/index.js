@@ -30,13 +30,8 @@ class Docket extends Component {
     
     return div({className},
 			el(Title, { text: title, updateTitle }),
-			el(CandidateSet, {
-        members,
-        moveCard: new Function
-      }),
-      final ? null : el(NewMemberForm, {
-        addMember
-      }),
+			el(CandidateSet, { members }),
+      final ? null : el(NewMemberForm, { addMember }),
 			el(Finalize, { 
         finalizeDocket,
         docket: currentDocket 

@@ -1,6 +1,23 @@
 import DataService from './DataService';
-import R from 'ramda';
-const peek = R.tap(console.log);
+import {
+  compose,
+  countBy,
+  indexOf,
+  insert,
+  map,
+  sortBy,
+  prop,
+  remove,
+  reverse,
+  sort,
+  tap,
+  times,
+  toPairs,
+  unnest,
+  values,
+  zipObj
+} from 'ramda';
+const peek = tap(console.log);
 export function createBallot(id) { return getDocket(id).then(generateBallot) };
 
 export function getDocket(id) { return DataService.child('dockets').child(id).once('value'); };
@@ -12,28 +29,28 @@ export function generateBallot(snapshot) {
 
 export function candidateSort (candidates, order) {
   const byOrder = function (a,b) {
-    return R.indexOf(a.name, order) - R.indexOf(b.name, order)
+    return indexOf(a.name, order) - indexOf(b.name, order)
   }
-  return R.sort(byOrder, candidates);
+  return sort(byOrder, candidates);
 };
 
 export function keyedObjArray(snapshot) { 
-  return R.compose(R.map(R.zipObj(['key', 'datom'])), R.toPairs)(snapshot) 
+  return compose(map(zipObj(['key', 'datom'])), toPairs)(snapshot) 
 };
 
 export function newOrder (list, source, destination) {
-  return R.insert(destination, list[source], R.remove(source, 1, list))
+  return insert(destination, list[source], remove(source, 1, list))
 }
 
 export function condorcet(basket) {
-  return sortedKeysByValue(winFrequencies(R.unnest(R.map(pairContests, R.values(basket)))));
+  return sortedKeysByValue(winFrequencies(unnest(map(pairContests, values(basket)))));
 }
 export function winFrequencies(contests) {
-  return R.countBy(R.prop(0), contests);
+  return countBy(prop(0), contests);
 }
 
 function sortedKeysByValue(obj) {
-  return R.reverse(R.map(R.prop(0), R.sortBy(R.prop(1), R.toPairs(obj))))
+  return reverse(map(prop(0), sortBy(prop(1), toPairs(obj))))
 }
 
 export function pairContests(ballot) {
@@ -44,7 +61,7 @@ export function pairContests(ballot) {
       pairs.push([ballot[i], ballot[j]])
     }
   }
-  // R.times(f, ballot.length - 1)
+  // times(f, ballot.length - 1)
   return pairs;
 }
 

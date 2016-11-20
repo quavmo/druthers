@@ -18,6 +18,10 @@
     "page": "./pages/ballot"
   },
   {
+    "path": "/dockets/:docketID/results",
+    "page": "./pages/leaderboard"
+  },
+  {
     "path": "/about",
     "page": "./pages/about"
   },

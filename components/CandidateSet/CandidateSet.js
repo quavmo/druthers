@@ -1,7 +1,7 @@
 import React, { Component, createElement as el, DOM } from 'react';
 const { div } = DOM;
 import { newOrder, candidateSort, keyedObjArray } from '../../core/services/ballot';
-import { sort } from 'ramda';
+import { identity, sort } from 'ramda';
 import update from 'react/lib/update';
 import Card from '../Card';
 import { DragDropContext } from 'react-dnd';
@@ -27,6 +27,6 @@ export default class CandidateSet extends Component {
     index,
     id: name,
     text: name,
-    moveCard: this.props.moveCard
+    moveCard: this.props.moveCard || identity
   });
 }
