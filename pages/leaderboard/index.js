@@ -5,6 +5,7 @@ const { div } = DOM;
 import { condorcet } from '../../core/services/ballot';
 import * as mapDispatchToProps from '../../core/actions';
 import CandidateSet from '../../components/CandidateSet';
+import Title from '../../components/Title';
 import { leaderBoard as className } from './style.css';
 
 const sortByCondorcet = ballots => {
@@ -20,10 +21,13 @@ class LeaderBoard extends Component {
   }
   
   render() {
-    const { ballots, members } = this.props.currentDocket;
+    const { ballots, members, title } = this.props.currentDocket;
     const order = sortByCondorcet(ballots);
     console.log(className)
-    return div({className}, el(CandidateSet, { members, order }));
+    return div({className},
+      el(Title, {text: title}),
+      el(CandidateSet, { members, order })
+    );
   }
 }
 
