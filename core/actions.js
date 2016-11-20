@@ -1,30 +1,32 @@
+import { default as act } from './actionTypes.js';
+
 export const updateTitle = payload => ({
-  type: 'UPDATE_TITLE',
+  type: act.UPDATE_TITLE,
   payload
 });
 
 export const addMember = payload => ({
-  type: 'ADD_MEMBER',
+  type: act.ADD_MEMBER,
   payload
 });
 
 export const finalizeDocket = payload => ({
-  type: 'FINALIZE_DOCKET',
+  type: act.FINALIZE_DOCKET,
   payload
 });
 
 export const fetchDocket = payload => ({
-  type: 'FETCH_DOCKET',
+  type: act.FETCH_DOCKET,
   payload
 })
 
 export const moveCard = (dragIndex, hoverIndex) => ({
-  type: 'MOVE_CARD',
+  type: act.MOVE_CARD,
   payload: { dragIndex, hoverIndex }
 })
 
 export const createBallot = payload => ({
-  type: 'CREATE_BALLOT',
+  type: act.CREATE_BALLOT,
   payload
 });
 

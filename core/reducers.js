@@ -1,4 +1,5 @@
 import { sort, prop, remove, insert } from 'ramda';
+import { default as act } from './actionTypes';
 
 const random = (a, b) => Math.random() < 0.5 ? -1 : 1;
 const swap = (srcIndex, destIndex, list) => insert(
@@ -13,17 +14,17 @@ const defaultDocket = {
 
 export const currentDocket = (state=defaultDocket, {type, payload}) => {
   switch (type) {
-    case 'FETCH_DOCKET':
+    case act.FETCH_DOCKET:
       return { ...state, id: payload };
-    case 'DOCKET_FETCH_SUCCEEDED':
+    case act.DOCKET_FETCH_SUCCEEDED:
       return { ...state, ...payload.val(), finalizing: false }
-    case 'DOCKET_CREATION_SUCCEEDED':
+    case act.DOCKET_CREATION_SUCCEEDED:
       return { ...state, id: payload.key };
-    case 'UPDATE_TITLE':
+    case act.UPDATE_TITLE:
       return { ...state, title: payload};
-    case 'ADD_MEMBER':
+    case act.ADD_MEMBER:
       return { ...state, members: [...state.members, payload] };
-    case 'FINALIZE_DOCKET':
+    case act.FINALIZE_DOCKET:
       return { ...state, finalizing: true }
     default:
       return state;
@@ -37,11 +38,11 @@ const defaultBallot = {
 export const currentBallot = (state=defaultBallot, {type, payload}) => {
   console.log("• currentBallot", type, payload)
   switch (type) {
-    case 'DOCKET_FETCH_SUCCEEDED':
+    case act.DOCKET_FETCH_SUCCEEDED:
       const names = payload.val().members.map(prop('name'))
       console.log(state, "yahoo")
       return { ...state, order: sort(random, names) }
-    case 'MOVE_CARD':
+    case act.MOVE_CARD:
       return {
         ...state,
         order: swap(payload.dragIndex, payload.hoverIndex, state.order)
