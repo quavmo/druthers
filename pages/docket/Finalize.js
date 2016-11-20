@@ -1,6 +1,8 @@
 import React, { DOM, Component } from 'react';
 const { span, a, button, input } = DOM;
-import { callToAction as className } from '../styles.css';
+import {
+  callToAction as className
+} from '../styles.css';
 
 const host = 'http://24878a7d.ngrok.io';
 

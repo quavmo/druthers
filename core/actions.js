@@ -23,3 +23,8 @@ export const moveCard = (dragIndex, hoverIndex) => ({
   payload: { dragIndex, hoverIndex }
 })
 
+export const createBallot = payload => ({
+  type: 'CREATE_BALLOT',
+  payload
+});
+

@@ -20,13 +20,27 @@ class Docket extends Component {
       finalizeDocket,
       currentDocket
     } = this.props;
-    const { members, final, title, id } = currentDocket;
+    
+    const {
+      members,
+      final,
+      title,
+      id
+    } = currentDocket;
     
     return div({className},
 			el(Title, { text: title, updateTitle }),
-			el(CandidateSet, { members, moveCard: new Function }),
-      final ? null : el(NewMemberForm, { addMember }),
-			el(Finalize, { finalizeDocket, docket: currentDocket })
+			el(CandidateSet, {
+        members,
+        moveCard: new Function
+      }),
+      final ? null : el(NewMemberForm, {
+        addMember
+      }),
+			el(Finalize, { 
+        finalizeDocket,
+        docket: currentDocket 
+      })
 		);
   }
 }
