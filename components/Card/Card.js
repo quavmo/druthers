@@ -1,15 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes, DOM } from 'react';
+const { div } = DOM;
 import { findDOMNode } from 'react-dom';
 import ItemTypes from './ItemTypes';
 import { DragSource, DropTarget } from 'react-dnd';
-
-const style = {
-  border: '1px dashed gray',
-  padding: '0.5rem 1rem',
-  marginBottom: '.5rem',
-  backgroundColor: 'white',
-  cursor: 'move'
-};
+import { card as className } from './style.css';
 
 const cardSource = {
   beginDrag({ id, index }) {
@@ -53,12 +47,9 @@ export default class Card extends Component {
 
   render() {
     const { text, isDragging, connectDragSource, connectDropTarget } = this.props;
-    const opacity = isDragging ? 0 : 1;
 
     return connectDragSource(connectDropTarget(
-      <div style={{ ...style, opacity }}>
-        {text}
-      </div>
+      div({className}, text)
     ));
   }
 }
