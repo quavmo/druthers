@@ -19,15 +19,17 @@ class Ballot extends Component {
     super(props);
     props.fetchDocket(props.route.params.docketID)
   }
+  
   render() { 
     const { 
       moveCard,
       currentBallot,
       currentDocket
     } = this.props;
-    const { title, members, docketID } = currentDocket;
-    const { order, ballotID } = currentBallot;
-    const href = `#/dockets/${docketID}/results`;
+    const { title, members } = currentDocket;
+    const { order } = currentBallot;
+    console.log(currentDocket.id)
+    const href = `/dockets/${currentDocket.id}/results`;
     const submitButton = button(
       {
         className: callToAction,
@@ -38,7 +40,7 @@ class Ballot extends Component {
     return div({className},
       el(Title, {text: title}),
       el(CandidateSet, { members, order, moveCard }),
-      ballotID ? a({href}) : submitButton
+      currentBallot.id ? a({href}, "Results") : submitButton
     );
   }
   onClick = () => this.props.createBallot({

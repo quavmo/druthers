@@ -4,7 +4,6 @@ import { docketBase } from './services/DataService';
 import { sync, VALUE } from 'firebase-saga';
 import { default as act } from './actionTypes.js';
 
-console.log(act)
 const pushDocket = docket => docketBase.push(docket);
 const pushBallotToDocketID = docketID => ballot =>
   docketBase.child(docketID).child('ballots').push(ballot)
@@ -14,7 +13,7 @@ function* createDocket({type, payload}) {
    try {
       yield put({
         type: act.DOCKET_CREATION_SUCCEEDED,
-        payload: yield call(pushDocket, payload)
+        payload: yield call(push, payload)
       });
    } catch (error) {
       yield put({

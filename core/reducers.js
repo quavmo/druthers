@@ -36,17 +36,23 @@ const defaultBallot = {
 };
 
 export const currentBallot = (state=defaultBallot, {type, payload}) => {
-  console.log("• currentBallot", type, payload)
+  console.log("•ß• currentBallot", type, payload)
   switch (type) {
+    case act.BALLOT_CREATION_SUCCEEDED:
+      return {
+        ...state,
+        id: payload.key
+      };
     case act.DOCKET_FETCH_SUCCEEDED:
-      const names = payload.val().members.map(prop('name'))
-      console.log(state, "yahoo")
-      return { ...state, order: sort(random, names) }
+      return { 
+        ...state,
+        order: sort(random, payload.val().members.map(prop('name')))
+      };
     case act.MOVE_CARD:
       return {
         ...state,
         order: swap(payload.dragIndex, payload.hoverIndex, state.order)
-      }
+      };
     default:
       return state;
   }
