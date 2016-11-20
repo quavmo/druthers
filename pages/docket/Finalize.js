@@ -1,8 +1,8 @@
 import React, { DOM, Component } from 'react';
-const { span, button, input } = DOM;
+const { span, a, button, input } = DOM;
 import { callToAction as className } from '../styles.css';
 
-const host = 'http://localhost:3000';
+const host = 'http://24878a7d.ngrok.io';
 
 export default class Finalize extends Component {
   render() {
@@ -15,12 +15,10 @@ export default class Finalize extends Component {
       'Finalize'
     );
     
-    const urlField = input({
-      readOnly: true,
-      value: `${host}/dockets/${this.props.docket.id}/ballots/new`
-    });
-
-    return span({}, (this.props.docket.id ? urlField : submitButton));
+    const href = `${host}/dockets/${this.props.docket.id}/ballots/new`;
+    const urlLink = a({ href }, href);
+    
+    return span({}, (this.props.docket.id ? urlLink : submitButton));
   }
   
   finalizeDocket = event => {

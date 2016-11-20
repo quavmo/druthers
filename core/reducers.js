@@ -1,13 +1,17 @@
-import { sort, prop } from 'ramda';
+import { sort, prop, remove, insert } from 'ramda';
 
 const random = (a, b) => Math.random() < 0.5 ? -1 : 1;
+const swap = (srcIndex, destIndex, list) => insert(
+  destIndex,
+  list[srcIndex],
+  remove(srcIndex, 1, list)
+)
 
 const defaultDocket = {
   members: [{name: 'foo'}], title: 'whatever'
 }
 
 export const currentDocket = (state=defaultDocket, {type, payload}) => {
-  // console.log("## currentDocket", type, payload)
   switch (type) {
     case 'DOCKET_FETCH_SUCCEEDED':
       return { ...payload.val(), finalizing: false }
@@ -35,12 +39,10 @@ export const currentBallot = (state=defaultBallot, {type, payload}) => {
       const names = payload.val().members.map(prop('name'))
       return { ...state, order: sort(random, names) }
     case 'MOVE_CARD':
-      const { order } = state;
-      const { dragIndex, hoverIndex } = payload;
-      const dragCard = order[dragIndex];
-      order.splice(dragIndex, 1)
-      order.splice(hoverIndex, 0, dragCard);
-      return { ...state, order: [...order] }
+      return {
+        ...state,
+        order: swap(payload.dragIndex, payload.hoverIndex, state.order)
+      }
     default:
       return state;
   }
