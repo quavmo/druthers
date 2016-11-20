@@ -8,7 +8,7 @@ import CandidateSet from '../../components/CandidateSet';
 import DataService from '../../core/services/DataService';
 import NewMemberForm from './NewMemberForm';
 import * as mapDispatchToProps from '../../core/actions';
-import s from '../styles.css';
+import { docket as className } from '../styles.css';
 const el = createElement;
 const { div } = DOM;
 
@@ -21,14 +21,12 @@ class Docket extends Component {
       currentDocket
     } = this.props;
     const { members, final, title, id } = currentDocket;
-    const docket = currentDocket;
     
-    return div(
-			{className: s.docket},
-			el(Title, {text: title, updateTitle}),
-			el(CandidateSet, {members, moveCard: new Function}),
-      final ? '' : el(NewMemberForm, {addMember}),
-			el(Finalize, {finalizeDocket, docket})
+    return div({className},
+			el(Title, { text: title, updateTitle }),
+			el(CandidateSet, { members, moveCard: new Function }),
+      final ? null : el(NewMemberForm, { addMember }),
+			el(Finalize, { finalizeDocket, docket: currentDocket })
 		);
   }
 }
