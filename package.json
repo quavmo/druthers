@@ -8,7 +8,9 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.9.1",
+    "caritat": "^0.0.4",
     "classnames": "^2.2.5",
+    "fair-vote-profile": "^0.0.7",
     "faker": "^3.1.0",
     "fastclick": "^1.0.6",
     "firebase": "^3.6.1",

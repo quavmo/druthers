@@ -1,18 +1,22 @@
-import { pick, map, prop, toPairs } from 'ramda';
+import { flatten, pick, values, prop, map, reduce } from 'ramda';
 import { connect } from 'react-redux';
 import { Component, DOM, createElement as el } from 'react';
 const { div } = DOM;
-import { condorcet } from '../../core/services/ballot';
 import * as mapDispatchToProps from '../../core/actions';
 import CandidateSet from '../../components/CandidateSet';
 import Title from '../../components/Title';
 import { leaderBoard as className } from './style.css';
+import { Election, irv, plurality, condorcet } from 'caritat';
 
-const sortByCondorcet = ballots => {
-  if (!toPairs(ballots)[0]) return [];
-  
-  return toPairs(ballots)[0][1].order;
+const countBallot = (election, ballot) => { return election.addBallot(ballot, 1) && election; }
+
+const elect = (nestedBallots, nestedCandidates) => {
+  const ballots = map(prop('order'), values(nestedBallots));
+  const candidates = map(prop('name'), nestedCandidates);
+  const election = reduce(countBallot, new Election({candidates}), ballots)
+  return condorcet.schulze(election);
 }
+
 
 class LeaderBoard extends Component {
   constructor(props) {
@@ -22,11 +26,9 @@ class LeaderBoard extends Component {
   
   render() {
     const { ballots, members, title } = this.props.currentDocket;
-    const order = sortByCondorcet(ballots);
-    console.log(className)
     return div({className},
-      el(Title, {text: title}),
-      el(CandidateSet, { members, order })
+      el(Title, { text: title }),
+      el(CandidateSet, { members, order: elect(ballots, members) })
     );
   }
 }

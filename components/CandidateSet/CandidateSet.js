@@ -1,6 +1,5 @@
 import React, { Component, createElement as el, DOM } from 'react';
 const { div } = DOM;
-import { newOrder, candidateSort, keyedObjArray } from '../../core/services/ballot';
 import { identity, sort } from 'ramda';
 import update from 'react/lib/update';
 import Card from '../Card';
@@ -11,7 +10,7 @@ import { candidateSet as className } from './style.css';
 
 const byOrder = (order=[]) => (a, b) => order.indexOf(a.name) - order.indexOf(b.name);
 
-@DragDropContext(TouchBackend)
+@DragDropContext(HTML5Backend)
 export default class CandidateSet extends Component {
   render = () => { 
     const sortedMembers = sort(byOrder(this.props.order), this.props.members);
