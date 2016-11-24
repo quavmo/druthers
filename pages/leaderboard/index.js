@@ -7,6 +7,7 @@ import CandidateSet from '../../components/CandidateSet';
 import Title from '../../components/Title';
 import { leaderBoard as className } from './style.css';
 import { Election, irv, plurality, condorcet } from 'caritat';
+import { docketBase } from '../../core/services/DataService';
 
 const countBallot = (election, ballot) => { return election.addBallot(ballot, 1) && election; }
 
@@ -17,11 +18,10 @@ const elect = (nestedBallots, nestedCandidates) => {
   return condorcet.schulze(election);
 }
 
-
 class LeaderBoard extends Component {
   constructor(props) {
     super(props);
-    props.fetchDocket(props.route.params.docketID)
+    docketBase.child(props.route.params.docketID).on('value', props.docketFetchSucceeded)
   }
   
   render() {

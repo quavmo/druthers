@@ -1,10 +1,11 @@
-import React, { DOM, Component } from 'react';
-const { span, a, button, input } = DOM;
+import CopyToClipboard from 'react-copy-to-clipboard';
+import React, { DOM, Component, createElement as el } from 'react';
+const { span, a, button, input, div } = DOM;
 import {
   callToAction as className
 } from '../styles.css';
 
-const host = 'http://24878a7d.ngrok.io';
+const newBallotPath = docketID => `${window.location.host}/dockets/${docketID}/ballots/new`;
 
 export default class Finalize extends Component {
   render() {
@@ -17,10 +18,15 @@ export default class Finalize extends Component {
       'Finalize'
     );
     
-    const href = `${host}/dockets/${this.props.docket.id}/ballots/new`;
-    const urlLink = a({ href }, href);
     
-    return span({}, (this.props.docket.id ? urlLink : submitButton));
+    // const urlLink = a({newBallotPath}, "Share This Link");
+    const path = newBallotPath(this.props.docket.id)
+    const urlContainer = input({value: path});
+    const urlCopyButton = el(CopyToClipboard, {text: path},
+        button({}, "Copy Link to Share")
+    )
+    const urlWidget = div({}, urlContainer, urlCopyButton)
+    return span({}, (this.props.docket.id ? urlWidget : submitButton));
   }
   
   finalizeDocket = event => {

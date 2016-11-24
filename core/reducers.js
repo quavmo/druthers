@@ -9,7 +9,7 @@ const swap = (srcIndex, destIndex, list) => insert(
 )
 
 const defaultDocket = {
-  members: [{name: 'foo'}], title: 'whatever'
+  members: [], title: 'Where shall we go, this afternoon?'
 }
 
 export const currentDocket = (state=defaultDocket, {type, payload}) => {
@@ -36,7 +36,6 @@ const defaultBallot = {
 };
 
 export const currentBallot = (state=defaultBallot, {type, payload}) => {
-  console.log("•ß• currentBallot", type, payload)
   switch (type) {
     case act.BALLOT_CREATION_SUCCEEDED:
       return {

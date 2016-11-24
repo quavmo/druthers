@@ -30,3 +30,8 @@ export const createBallot = payload => ({
   payload
 });
 
+export const docketFetchSucceeded = payload => ({
+  type: act.DOCKET_FETCH_SUCCEEDED,
+  payload
+})
+
