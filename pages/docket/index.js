@@ -23,7 +23,6 @@ class Docket extends Component {
     
     const {
       members,
-      final,
       title,
       id
     } = currentDocket;
@@ -31,7 +30,7 @@ class Docket extends Component {
     return div({className},
 			el(Title, { text: title, updateTitle }),
 			el(CandidateSet, { members }),
-      final ? null : el(NewMemberForm, { addMember }),
+      id ? null : el(NewMemberForm, { addMember }),
 			el(Finalize, { 
         finalizeDocket,
         docket: currentDocket 

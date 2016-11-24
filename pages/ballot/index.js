@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import * as mapDispatchToProps from '../../core/actions';
-import React from 'react';
-import { 
+import React, { 
   Component,
   createElement as el,
   DOM
@@ -9,8 +8,8 @@ import {
 const { a, button, div } = DOM;
 import Title from '../../components/Title';
 import CandidateSet from '../../components/CandidateSet';
+import SubmitBallot from '../../components/SubmitBallot';
 import { ballot as className } from './style.css';
-import { callToAction } from '../styles.css';
 
 class Ballot extends Component {
   constructor(props) {
@@ -22,28 +21,18 @@ class Ballot extends Component {
     const { 
       moveCard,
       currentBallot,
-      currentDocket
+      currentDocket,
+      createBallot
     } = this.props;
     const { title, members } = currentDocket;
     const { order } = currentBallot;
-    const href = `/dockets/${currentDocket.id}/results`;
-    const submitButton = button(
-      {
-        className: callToAction,
-        onClick: this.onClick
-      },
-      "Submit Ballot"
-    );
+
     return div({className},
       el(Title, {text: title}),
       el(CandidateSet, { members, order, moveCard }),
-      currentBallot.id ? a({href}, "Results") : submitButton
+      el(SubmitBallot, { ballotID: currentBallot.id, docketID: currentDocket.id, createBallot, order })
     );
   }
-  onClick = () => this.props.createBallot({
-    order: this.props.currentBallot.order,
-    docketID: this.props.currentDocket.id
-  });
     
   updateTitle(snapshot) { this.setState({title: snapshot.val()}); }
   updateCandidates(snapshot) { this.setState({candidates: snapshot.val()}); }

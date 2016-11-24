@@ -21,7 +21,7 @@ export default class Finalize extends Component {
     
     // const urlLink = a({newBallotPath}, "Share This Link");
     const path = newBallotPath(this.props.docket.id)
-    const urlContainer = input({value: path});
+    const urlContainer = input({value: path, readOnly: true});
     const urlCopyButton = el(CopyToClipboard, {text: path},
         button({}, "Copy Link to Share")
     )
