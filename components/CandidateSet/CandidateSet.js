@@ -10,7 +10,7 @@ import { candidateSet as className } from './style.css';
 
 const byOrder = (order=[]) => (a, b) => order.indexOf(a.name) - order.indexOf(b.name);
 
-@DragDropContext(TouchBackend)
+@DragDropContext(HTML5Backend)
 export default class CandidateSet extends Component {
   render = () => { 
     const sortedMembers = sort(byOrder(this.props.order), this.props.members);

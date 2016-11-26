@@ -15,6 +15,6 @@ export default function SubmitBallot({docketID, createBallot, order, ballotID}) 
     "Submit Ballot"
   );
   
-  const linkToResults = a({href: docketResultsPath}, "Results");
+  const linkToResults = a({href: docketResultsPath, style: {color: "white", fontSize: "24"}}, "View Results");
   return ballotID ? linkToResults : submitButton;
 };

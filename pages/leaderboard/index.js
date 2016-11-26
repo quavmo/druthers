@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Component, DOM, createElement as el } from 'react';
 const { div } = DOM;
 import * as mapDispatchToProps from '../../core/actions';
-import CandidateSet from '../../components/CandidateSet';
+import ResultSet from '../../components/ResultSet';
 import Title from '../../components/Title';
 import { leaderBoard as className } from './style.css';
 import { Election, irv, plurality, condorcet } from 'caritat';
@@ -28,7 +28,7 @@ class LeaderBoard extends Component {
     const { ballots, members, title } = this.props.currentDocket;
     return div({className},
       el(Title, { text: title }),
-      el(CandidateSet, { members, order: elect(ballots, members) })
+      el(ResultSet, { members, order: elect(ballots, members) })
     );
   }
 }

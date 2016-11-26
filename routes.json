@@ -28,9 +28,5 @@
   {
     "path": "/marketing",
     "page": "./pages/marketing"
-  },
-  {
-    "path": "/tasks/:status(pending|completed)?",
-    "page": "./pages/home"
   }
 ]

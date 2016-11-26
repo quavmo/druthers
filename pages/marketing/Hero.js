@@ -49,6 +49,7 @@ export default class Hero extends React.Component {
 	get bgndUri () { return `https://images.unsplash.com/${this.photoId}?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=f2460c17083e439b73d250a7db2a889c`; }
 	get outerStyle () {
 		return {
+      margin: -8,
 			background: 'url('+this.bgndUri+')',
 			backgroundSize: 'cover',
 			color: 'white',

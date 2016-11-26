@@ -26,15 +26,9 @@ const babelConfig = Object.assign({}, pkg.babel, {
 // Webpack configuration (main.js => public/dist/main.{hash}.js)
 // http://webpack.github.io/docs/configuration.html
 const config = {
-
-  // The base directory for resolving the entry option
   context: __dirname,
-
   // The entry point for the bundle
   entry: [
-    /* Material Design Lite (https://getmdl.io) */
-    '!!style!css!react-mdl/extra/material.min.css',
-    'react-mdl/extra/material.min.js',
     /* The main entry point of your JavaScript application */
     './main.js',
   ],
