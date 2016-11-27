@@ -1,4 +1,4 @@
-import { flatten, pick, values, prop, map, reduce } from 'ramda';
+import { pick } from 'ramda';
 import { connect } from 'react-redux';
 import { Component, DOM, createElement as el } from 'react';
 const { div } = DOM;
@@ -7,17 +7,8 @@ import ResultSet from '../../components/ResultSet';
 import Layout from '../../components/Layout'
 import Title from '../../components/Title';
 import { leaderBoard as className } from './style.css';
-import { Election, irv, plurality, condorcet } from 'caritat';
 import { docketBase } from '../../core/services/DataService';
 
-const countBallot = (election, ballot) => { return election.addBallot(ballot, 1) && election; }
-
-const elect = (nestedBallots, nestedCandidates) => {
-  const ballots = map(prop('order'), values(nestedBallots));
-  const candidates = map(prop('name'), nestedCandidates);
-  const election = reduce(countBallot, new Election({candidates}), ballots)
-  return condorcet.schulze(election);
-}
 
 class LeaderBoard extends Component {
   constructor(props) {
@@ -29,7 +20,7 @@ class LeaderBoard extends Component {
     const { ballots, members, title } = this.props.currentDocket;
     return el(Layout, {className},
       el(Title, { text: title }),
-      el(ResultSet, { members, order: elect(ballots, members) })
+      el(ResultSet, { members, ballots })
     );
   }
 }
