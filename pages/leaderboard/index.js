@@ -4,6 +4,7 @@ import { Component, DOM, createElement as el } from 'react';
 const { div } = DOM;
 import * as mapDispatchToProps from '../../core/actions';
 import ResultSet from '../../components/ResultSet';
+import Layout from '../../components/Layout'
 import Title from '../../components/Title';
 import { leaderBoard as className } from './style.css';
 import { Election, irv, plurality, condorcet } from 'caritat';
@@ -26,7 +27,7 @@ class LeaderBoard extends Component {
   
   render() {
     const { ballots, members, title } = this.props.currentDocket;
-    return div({className},
+    return el(Layout, {className},
       el(Title, { text: title }),
       el(ResultSet, { members, order: elect(ballots, members) })
     );
