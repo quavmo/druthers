@@ -1,3 +1,4 @@
 node_modules
-public/dist
+public/dist/assets.json
 public/sitemap.xml
+public/index.html
