@@ -1,4 +1,5 @@
 import CopyToClipboard from 'react-copy-to-clipboard';
+import { RaisedButton } from 'material-ui';
 import React, { DOM, Component, createElement as el } from 'react';
 const { span, a, button, input, div } = DOM;
 import {
@@ -9,13 +10,12 @@ const newBallotPath = docketID => `${window.location.host}/dockets/${docketID}/b
 
 export default class Finalize extends Component {
   render() {
-    const submitButton = button(
+    const submitButton = el(RaisedButton,
       {
-        className,
         onClick: this.finalizeDocket, 
-        disabled: this.props.docket.finalizing
-      },
-      'Finalize'
+        disabled: this.props.docket.finalizing,
+        label: 'Finalize and Share'
+      }
     );
     
     
