@@ -1,6 +1,10 @@
-import React, {Component, DOM} from 'react';
+import { TextField } from 'material-ui';
+import React, {
+  Component, 
+  DOM, 
+  createElement as el
+} from 'react';
 const { form, input } = DOM;
-import s from '../styles.css';
 
 export default class NewMemberForm extends Component {
   constructor() {
@@ -13,10 +17,13 @@ export default class NewMemberForm extends Component {
 		this.newMemberField(this.state.name)
 	);
   
-  newMemberField = name => input({
-		className: s.newMemberField,
+  newMemberField = name => el(TextField, {
 		onChange: this.stageCandidate,
-		value: name
+		value: name,
+    name: 'newMemberField',
+    floatingLabelText: "Add a Candidate",
+    hintText: "e.g. Chocolate, Vanilla, Strawberry...",
+    fullWidth: true
 	});
 
 
