@@ -7,10 +7,13 @@ import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { default as TouchBackend } from 'react-dnd-touch-backend';
 import { candidateSet as className } from './style.css';
+import { 
+  byOrder
+} from '../../core/services/helpers';
 
-const byOrder = (order=[]) => (a, b) => order.indexOf(a.name) - order.indexOf(b.name);
+const mobile = 'ontouchstart' in document.documentElement;
 
-@DragDropContext(HTML5Backend)
+@DragDropContext(mobile ? TouchBackend : HTML5Backend)
 export default class CandidateSet extends Component {
   render = () => { 
     const sortedMembers = sort(byOrder(this.props.order), this.props.members);
