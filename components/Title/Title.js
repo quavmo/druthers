@@ -1,15 +1,12 @@
 import React, { DOM } from 'react';
 const { textarea } = DOM;
-import s from './style.css';
-import classNames from 'classnames';
+import { titleField as className } from './style.css';
 
-export default class Title extends React.Component {
-	render = () => textarea({
-		ref: 'input',
-    className: s.titleField,
-		value: this.props.text,
-		onChange: this.updateText
-	});
+const Title = props => textarea({
+  className,
+	value: props.text,
+	onChange: ({target}) => props.updateTitle(target.value)
+});
 
-  updateText = ({target}) => this.props.updateTitle(target.value);
-}
+
+export default Title;

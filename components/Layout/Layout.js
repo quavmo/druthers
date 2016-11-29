@@ -1,8 +1,7 @@
 import { MuiThemeProvider } from 'material-ui';
 import React, { PropTypes, DOM, createElement as el } from 'react';
-const { div, main } = DOM;
+const { main } = DOM;
 import cx from 'classnames';
-// import s from './Layout.css';
 
 class Layout extends React.Component {
   render() {

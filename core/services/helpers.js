@@ -1,5 +1,5 @@
 import { Election, condorcet } from 'caritat';
-import { map, reduce, prop, values } from 'ramda';
+import { map, reduce, prop, values, addIndex } from 'ramda';
 
 export const byOrder = (order=[]) => (a, b) => 
   order.indexOf(a.name) - order.indexOf(b.name);
@@ -13,3 +13,5 @@ export const elect = (nestedBallots, nestedCandidates) => {
   const election = reduce(countBallot, new Election({candidates}), ballots)
   return condorcet.schulze(election);
 }
+
+export const indexedMap = addIndex(map);

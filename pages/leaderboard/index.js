@@ -18,7 +18,7 @@ class LeaderBoard extends Component {
   
   render() {
     const { ballots, members, title } = this.props.currentDocket;
-    return el(Layout, {className},
+    return el(Layout, {},
       el(Title, { text: title }),
       el(ResultSet, { members, ballots })
     );
