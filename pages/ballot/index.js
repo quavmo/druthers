@@ -31,7 +31,7 @@ class Ballot extends Component {
       currentBallot.id, currentDocket.id
     ];
     
-    return el('div', {className},
+    return el(Layout, {className},
       el(Title, {text: title}),
       el(CandidateSet, { members, order, moveCard }),
       el(SubmitBallot, { ballotID, docketID, createBallot, order })
