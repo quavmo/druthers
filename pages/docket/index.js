@@ -1,6 +1,10 @@
-import { curry } from 'ramda';
 import { connect } from 'react-redux'
-import React, { Component, createElement as el, DOM } from 'react';
+import * as mapDispatchToProps from '../../core/actions';
+import React, {
+  Component,
+  createElement as el,
+  DOM
+} from 'react';
 const { div } = DOM;
 import Title from '../../components/Title';
 import Layout from '../../components/Layout';
@@ -8,7 +12,7 @@ import Finalize from './Finalize';
 import CandidateSet from '../../components/CandidateSet';
 import DataService from '../../core/services/DataService';
 import NewMemberForm from './NewMemberForm';
-import * as mapDispatchToProps from '../../core/actions';
+import { curry } from 'ramda';
 import { docket as className } from '../styles.css';
 
 
@@ -31,10 +35,7 @@ class Docket extends Component {
 			el(Title, { text: title, updateTitle }),
 			el(CandidateSet, { members }),
       id ? null : el(NewMemberForm, { addMember }),
-			el(Finalize, { 
-        finalizeDocket,
-        docket: currentDocket 
-      })
+			el(Finalize, { finalizeDocket, docket: currentDocket })
 		);
   }
 }

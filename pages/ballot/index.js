@@ -7,6 +7,7 @@ import React, {
 } from 'react';
 const { a, button, div } = DOM;
 import Title from '../../components/Title';
+import Layout from '../../components/Layout';
 import CandidateSet from '../../components/CandidateSet';
 import SubmitBallot from '../../components/SubmitBallot';
 import { ballot as className } from './style.css';
@@ -26,11 +27,14 @@ class Ballot extends Component {
     } = this.props;
     const { title, members } = currentDocket;
     const { order } = currentBallot;
-
-    return div({className},
+    const [ballotID, docketID] = [
+      currentBallot.id, currentDocket.id
+    ];
+    
+    return el('div', {className},
       el(Title, {text: title}),
       el(CandidateSet, { members, order, moveCard }),
-      el(SubmitBallot, { ballotID: currentBallot.id, docketID: currentDocket.id, createBallot, order })
+      el(SubmitBallot, { ballotID, docketID, createBallot, order })
     );
   }
     
