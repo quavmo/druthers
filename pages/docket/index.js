@@ -1,16 +1,16 @@
 import { curry } from 'ramda';
 import { connect } from 'react-redux'
-import React, { Component, createElement, DOM } from 'react';
+import React, { Component, createElement as el, DOM } from 'react';
+const { div } = DOM;
 import Title from '../../components/Title';
-import AbstractScreen from '../../components/AbstractScreen';
+import Layout from '../../components/Layout';
 import Finalize from './Finalize';
 import CandidateSet from '../../components/CandidateSet';
 import DataService from '../../core/services/DataService';
 import NewMemberForm from './NewMemberForm';
 import * as mapDispatchToProps from '../../core/actions';
 import { docket as className } from '../styles.css';
-const el = createElement;
-const { div } = DOM;
+
 
 class Docket extends Component {
 	render() {
@@ -27,7 +27,7 @@ class Docket extends Component {
       id
     } = currentDocket;
     
-    return div({className},
+    return el(Layout, {className},
 			el(Title, { text: title, updateTitle }),
 			el(CandidateSet, { members }),
       id ? null : el(NewMemberForm, { addMember }),
