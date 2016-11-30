@@ -7,6 +7,7 @@ const Title = props => el(TextField, {
   floatingLabelText: 'Ask a Question',
   hintText: 'e.g. Where shall we go for lunch?',
 	value: props.text,
+  fullWidth: true,
 	onChange: ({target}) => props.updateTitle(target.value)
 });
 
