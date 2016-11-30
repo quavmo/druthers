@@ -1,5 +1,8 @@
 import { Election, condorcet } from 'caritat';
-import { map, reduce, prop, values, addIndex } from 'ramda';
+import { 
+  insert, map, reduce, prop, values, addIndex, remove
+} from 'ramda';
+const { random } = Math;
 
 export const byOrder = (order=[]) => (a, b) => 
   order.indexOf(a.name) - order.indexOf(b.name);
@@ -15,3 +18,11 @@ export const elect = (nestedBallots, nestedCandidates) => {
 }
 
 export const indexedMap = addIndex(map);
+
+export const coinToss = (a, b) => random() < 0.5 ? -1 : 1;
+
+export const swap = (srcIndex, destIndex, list) => insert(
+  destIndex,
+  list[srcIndex],
+  remove(srcIndex, 1, list)
+)

@@ -20,7 +20,7 @@ export default class NewMemberForm extends Component {
   newMemberField = name => el(TextField, {
 		onChange: this.stageCandidate,
 		value: name,
-    name: 'newMemberField',
+    name: 'newCandidate',
     floatingLabelText: "Add a Candidate",
     hintText: "e.g. Chocolate, Vanilla, Strawberry...",
     fullWidth: true

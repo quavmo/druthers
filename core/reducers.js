@@ -1,15 +1,9 @@
 import { sort, prop, remove, insert } from 'ramda';
 import { default as act } from './actionTypes';
-
-const random = (a, b) => Math.random() < 0.5 ? -1 : 1;
-const swap = (srcIndex, destIndex, list) => insert(
-  destIndex,
-  list[srcIndex],
-  remove(srcIndex, 1, list)
-)
+import { coinToss, swap } from './services/helpers'
 
 const defaultDocket = {
-  members: [], title: 'Where shall we go, this afternoon?'
+  members: [], title: ''
 }
 
 export const currentDocket = (state=defaultDocket, {type, payload}) => {
@@ -45,7 +39,7 @@ export const currentBallot = (state=defaultBallot, {type, payload}) => {
     case act.DOCKET_FETCH_SUCCEEDED:
       return { 
         ...state,
-        order: sort(random, payload.val().members.map(prop('name')))
+        order: sort(coinToss, payload.val().members.map(prop('name')))
       };
     case act.MOVE_CARD:
       return {
