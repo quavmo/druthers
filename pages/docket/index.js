@@ -32,7 +32,7 @@ class DocketPage extends Component {
     
     return el(Layout, {},
 			el(Title, { value: title, updateTitle, autoFocus: true }),
-			el(CandidateSet, { members }),
+			el(CandidateSet, { members, deleteCard: this.props.deleteCard }),
       id ? null : el(NewMemberForm, { addMember }),
 			el(Finalize, { finalizeDocket, docket: currentDocket })
 		);

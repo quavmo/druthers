@@ -1,6 +1,7 @@
 import React, { Component, createElement as el, DOM } from 'react';
 const { div } = DOM;
 import { identity, sort } from 'ramda';
+import { indexedMap } from '../../core/services/helpers';
 import update from 'react/lib/update';
 import Card from '../Card';
 import { DragDropContext } from 'react-dnd';
@@ -19,7 +20,7 @@ export default class CandidateSet extends Component {
     const sortedMembers = sort(byOrder(this.props.order), this.props.members);
     return div(
       {className},
-      sortedMembers.map(this.hydrateCard)
+      indexedMap(this.hydrateCard, sortedMembers)
     );
   }
   
@@ -29,6 +30,7 @@ export default class CandidateSet extends Component {
     index,
     id: name,
     text: name,
-    moveCard: this.props.moveCard || identity
+    moveCard: this.props.moveCard || identity,
+    deleteCard: this.props.deleteCard
   });
 }

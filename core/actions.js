@@ -35,3 +35,8 @@ export const docketFetchSucceeded = payload => ({
   payload
 })
 
+export const deleteCard = payload => ({
+  type: act.DELETE_CARD,
+  payload
+})
+

@@ -1,4 +1,4 @@
-import { sort, prop, remove, insert } from 'ramda';
+import { sort, prop, remove, insert, reject, equals } from 'ramda';
 import { default as act } from './actionTypes';
 import { coinToss, swap } from './services/helpers'
 
@@ -7,9 +7,12 @@ const defaultDocket = {
 }
 
 export const currentDocket = (state=defaultDocket, {type, payload}) => {
+  
   switch (type) {
     case act.FETCH_DOCKET:
       return { ...state, id: payload };
+    case act.DELETE_CARD:
+      return { ...state, members: [...reject(equals({name: payload}), state.members)] };
     case act.DOCKET_FETCH_SUCCEEDED:
       return { ...state, ...payload.val(), finalizing: false }
     case act.DOCKET_CREATION_SUCCEEDED:

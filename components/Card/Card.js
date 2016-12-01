@@ -1,4 +1,9 @@
-import React, { Component, PropTypes, DOM } from 'react';
+import React, {
+  Component,
+  PropTypes,
+  DOM,
+  createElement as el
+} from 'react';
 const { div } = DOM;
 import { findDOMNode } from 'react-dom';
 import ItemTypes from './ItemTypes';
@@ -46,10 +51,20 @@ export default class Card extends Component {
   };
 
   render() {
-    const { text, isDragging, connectDragSource, connectDropTarget } = this.props;
-
+    const {
+      text,
+      isDragging,
+      connectDragSource,
+      connectDropTarget,
+      deleteCard
+    } = this.props;
+    
+    console.log(deleteCard)
     return connectDragSource(connectDropTarget(
-      div({className}, text)
+      div({className},
+        text,
+        !deleteCard ? null : el('a', {onClick: () => deleteCard(text)}, "X")
+      )
     ));
   }
 }
