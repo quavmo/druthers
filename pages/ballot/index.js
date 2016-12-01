@@ -5,7 +5,7 @@ import React, {
   createElement as el,
   DOM
 } from 'react';
-const { a, button, div } = DOM;
+const { h2 } = DOM;
 import Title from '../../components/Title';
 import Layout from '../../components/Layout';
 import CandidateSet from '../../components/CandidateSet';
@@ -32,7 +32,7 @@ class Ballot extends Component {
     ];
     
     return el(Layout, {className},
-      el(Title, {text: title}),
+      h2({}, title),
       el(CandidateSet, { members, order, moveCard }),
       el(SubmitBallot, { ballotID, docketID, createBallot, order })
     );

@@ -32,7 +32,7 @@ class Docket extends Component {
     } = currentDocket;
     
     return el(Layout, {className},
-			el(Title, { text: title, updateTitle }),
+			el(Title, { value: title, updateTitle, autoFocus: true }),
 			el(CandidateSet, { members }),
       id ? null : el(NewMemberForm, { addMember }),
 			el(Finalize, { finalizeDocket, docket: currentDocket })

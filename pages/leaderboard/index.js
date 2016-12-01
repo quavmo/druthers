@@ -1,7 +1,7 @@
 import { pick } from 'ramda';
 import { connect } from 'react-redux';
 import { Component, DOM, createElement as el } from 'react';
-const { div } = DOM;
+const { h2 } = DOM;
 import * as mapDispatchToProps from '../../core/actions';
 import ResultSet from '../../components/ResultSet';
 import Layout from '../../components/Layout'
@@ -19,7 +19,7 @@ class LeaderBoard extends Component {
   render() {
     const { ballots, members, title } = this.props.currentDocket;
     return el(Layout, {},
-      el(Title, { text: title }),
+      h2({}, title),
       el(ResultSet, { members, ballots })
     );
   }
