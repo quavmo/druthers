@@ -3,7 +3,7 @@ const {
   h2, h3, style, div, img, h1, p
 } = DOM;
 import { caseBase } from '../../core/services/DataService';
-import s from '../styles.css';
+import { useCase, caseIcon } from './style.css';
 
 export default class UseCaseList extends React.Component {
 	constructor() {
@@ -35,8 +35,8 @@ export default class UseCaseList extends React.Component {
 	}
 
 	hydrateCase({key, title, body}) {
-		return div({className: s.useCase, key},
-      img({className: s.caseIcon, src: `icons/${key}.svg`}),
+		return div({className: useCase, key},
+      img({className: caseIcon, src: `icons/${key}.svg`}),
       h3({}, title),
       p({}, body)
     );

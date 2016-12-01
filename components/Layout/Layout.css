@@ -5,7 +5,7 @@
 }
 
 
-body {
+body, h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
@@ -17,3 +17,9 @@ body {
     -ms-user-select: none;
     user-select: none;
 }
+
+.layout {
+  padding: 20px; 
+  text-align: center;
+};
+

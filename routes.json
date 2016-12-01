@@ -20,13 +20,5 @@
   {
     "path": "/dockets/:docketID/results",
     "page": "./pages/results"
-  },
-  {
-    "path": "/about",
-    "page": "./pages/about"
-  },
-  {
-    "path": "/marketing",
-    "page": "./pages/marketing"
   }
 ]

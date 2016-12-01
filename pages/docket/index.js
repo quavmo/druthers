@@ -13,7 +13,6 @@ import CandidateSet from '../../components/CandidateSet';
 import DataService from '../../core/services/DataService';
 import NewMemberForm from './NewMemberForm';
 import { curry } from 'ramda';
-import { docket as className } from '../styles.css';
 
 
 class DocketPage extends Component {
@@ -31,7 +30,7 @@ class DocketPage extends Component {
       id
     } = currentDocket;
     
-    return el(Layout, {className},
+    return el(Layout, {},
 			el(Title, { value: title, updateTitle, autoFocus: true }),
 			el(CandidateSet, { members }),
       id ? null : el(NewMemberForm, { addMember }),

@@ -2,9 +2,6 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 import { RaisedButton } from 'material-ui';
 import React, { DOM, Component, createElement as el } from 'react';
 const { span, a, button, input, div } = DOM;
-import {
-  callToAction as className
-} from '../styles.css';
 
 const newBallotPath = docketID => `${window.location.host}/dockets/${docketID}/ballots/new`;
 

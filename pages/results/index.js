@@ -8,18 +8,14 @@ import Layout from '../../components/Layout'
 import Title from '../../components/Title';
 import { docketBase } from '../../core/services/DataService';
 
-
 class ResultsPage extends Component {
   constructor(props) {
     super(props);
-    docketBase.child(props.route.params.docketID).on('value', props.docketFetchSucceeded)
-    console.log("============================")
+    docketBase.child(props.route.params.docketID).on('value', props.docketFetchSucceeded);
   }
   
   render() {
     const { ballots, members, title } = this.props.currentDocket;
-    console.log("============================")
-    console.log(ballots, members)
     return el(Layout, {},
       h2({}, title),
       el(LeaderBoard, { members, ballots })

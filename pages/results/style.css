@@ -1,6 +1,5 @@
-.leaderBoard {
-  background: rgb(60, 150, 130);
+.results {
   height: 100%;
   font-family: 'sans-serif';
   padding: 20px;
-}
+};
