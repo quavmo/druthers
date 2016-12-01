@@ -3,7 +3,7 @@ import { default as act } from './actionTypes';
 import { coinToss, swap } from './services/helpers'
 
 const defaultDocket = {
-  members: [], title: ''
+  members: [], title: '', ballots: []
 }
 
 export const currentDocket = (state=defaultDocket, {type, payload}) => {
