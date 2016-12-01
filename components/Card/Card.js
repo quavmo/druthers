@@ -5,6 +5,9 @@ import React, {
   createElement as el
 } from 'react';
 const { div } = DOM;
+import { ListItem } from 'material-ui';
+import DragHandleIcon from 'material-ui/svg-icons/editor/drag-handle'
+import DeleteIcon from 'material-ui/svg-icons/action/delete'
 import { findDOMNode } from 'react-dom';
 import ItemTypes from './ItemTypes';
 import { DragSource, DropTarget } from 'react-dnd';
@@ -59,12 +62,10 @@ export default class Card extends Component {
       deleteCard
     } = this.props;
     
-    console.log(deleteCard)
+    const rightIcon = !deleteCard ? null : el(DeleteIcon, {onClick: () => deleteCard(text)});
+    const leftIcon = deleteCard ? null : el(DragHandleIcon, {});
     return connectDragSource(connectDropTarget(
-      div({className},
-        text,
-        !deleteCard ? null : el('a', {onClick: () => deleteCard(text)}, "X")
-      )
+      div({}, el(ListItem, { primaryText: text, rightIcon, leftIcon }))
     ));
   }
 }
