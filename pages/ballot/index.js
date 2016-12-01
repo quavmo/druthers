@@ -12,7 +12,7 @@ import CandidateSet from '../../components/CandidateSet';
 import SubmitBallot from '../../components/SubmitBallot';
 import { ballot as className } from './style.css';
 
-class Ballot extends Component {
+class BallotPage extends Component {
   constructor(props) {
     super(props);
     props.fetchDocket(props.route.params.docketID)
@@ -44,4 +44,4 @@ class Ballot extends Component {
   
 }
 
-export default connect(s => s, mapDispatchToProps)(Ballot);
+export default connect(s => s, mapDispatchToProps)(BallotPage);

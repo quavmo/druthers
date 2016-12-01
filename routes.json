@@ -19,7 +19,7 @@
   },
   {
     "path": "/dockets/:docketID/results",
-    "page": "./pages/leaderboard"
+    "page": "./pages/results"
   },
   {
     "path": "/about",

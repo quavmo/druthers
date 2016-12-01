@@ -16,7 +16,7 @@ import { curry } from 'ramda';
 import { docket as className } from '../styles.css';
 
 
-class Docket extends Component {
+class DocketPage extends Component {
 	render() {
     const { 
       updateTitle,
@@ -40,4 +40,4 @@ class Docket extends Component {
   }
 }
 
-export default connect(s => s, mapDispatchToProps)(Docket)
+export default connect(s => s, mapDispatchToProps)(DocketPage)
