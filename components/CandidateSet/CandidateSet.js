@@ -16,13 +16,12 @@ const mobile = 'ontouchstart' in document.documentElement;
 
 @DragDropContext(mobile ? TouchBackend : HTML5Backend)
 export default class CandidateSet extends Component {
-  render = () => { 
-    const sortedMembers = sort(byOrder(this.props.order), this.props.members);
-    return div(
-      {className},
-      indexedMap(this.hydrateCard, sortedMembers)
-    );
-  }
+  render = () => div({},
+    indexedMap(
+      this.hydrateCard,
+      sort(byOrder(this.props.order), this.props.members)
+    )
+  );
   
   
   hydrateCard = ({name}, index) => el(Card, {
