@@ -9,7 +9,7 @@ const { h2 } = DOM;
 import Title from '../../components/Title';
 import Layout from '../../components/Layout';
 import CandidateSet from '../../components/CandidateSet';
-import SubmitBallot from '../../components/SubmitBallot';
+import BallotControls from '../../components/BallotControls';
 import { ballot as className } from './style.css';
 
 class BallotPage extends Component {
@@ -34,7 +34,7 @@ class BallotPage extends Component {
     return el(Layout, {className},
       h2({}, title),
       el(CandidateSet, { members, order, moveCard }),
-      el(SubmitBallot, { ballotID, docketID, createBallot, order })
+      el(BallotControls, { ballotID, docketID, createBallot, order })
     );
   }
     

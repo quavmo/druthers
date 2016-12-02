@@ -3,7 +3,7 @@ import {
 } from 'react';
 const { a, button } = DOM;
 
-export default function SubmitBallot({docketID, createBallot, order, ballotID}) {
+const BallotControls = ({docketID, createBallot, order, ballotID}) => {
   const docketResultsPath = `/dockets/${docketID}/results`;
   const submitButton = button(
     {
@@ -18,3 +18,5 @@ export default function SubmitBallot({docketID, createBallot, order, ballotID}) 
   
   return ballotID ? linkToResults : submitButton;
 };
+
+export default BallotControls;
