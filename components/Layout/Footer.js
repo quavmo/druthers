@@ -8,23 +8,23 @@ import {
 } from 'material-ui';
 
 import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
+import DocketIcon from 'material-ui/svg-icons/image/palette';
+import BallotIcon from 'material-ui/svg-icons/editor/format-line-spacing';
+import ResultsIcon from 'material-ui/svg-icons/action/gavel';
 
-const recentsIcon = <IconLocationOn />;
-const favoritesIcon = <IconLocationOn />;
-const nearbyIcon = <IconLocationOn />;
 
 const navigationItems = [
-  {label: "Edit Docket"},
-  {label: "Your Docket"},
-  {label: "View Results"}
+  {label: "Docket", icon: el(DocketIcon)},
+  {label: "Ballot", icon: el(BallotIcon)},
+  {label: "Results", icon: el(ResultsIcon)}
 ];
 
 class Footer extends Component {
   state = { selectedIndex: 0, };
   select = (index) => this.setState({selectedIndex: index});
   
-  hydrateNavItem = ({label}, key) => el(BottomNavigationItem, {
-    key, label, icon: recentsIcon,
+  hydrateNavItem = ({label, icon}, key) => el(BottomNavigationItem, {
+    key, label, icon,
     onTouchTap: () => this.select(key)
   });
 
