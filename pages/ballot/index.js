@@ -26,7 +26,7 @@ class BallotPage extends Component {
       createBallot
     } = this.props;
     const { title, members } = currentDocket;
-    const { order } = currentBallot;
+    const { order, submitting } = currentBallot;
     const [ballotID, docketID] = [
       currentBallot.id, currentDocket.id
     ];
@@ -34,7 +34,7 @@ class BallotPage extends Component {
     return el(Layout, {className},
       h2({}, title),
       el(CandidateSet, { members, order, moveCard }),
-      el(BallotControls, { ballotID, docketID, createBallot, order })
+      el(BallotControls, { ballotID, docketID, createBallot, order, submitting })
     );
   }
     

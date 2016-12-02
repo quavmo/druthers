@@ -34,10 +34,13 @@ const defaultBallot = {
 
 export const currentBallot = (state=defaultBallot, {type, payload}) => {
   switch (type) {
+    case act.CREATE_BALLOT:
+      return { ...state, submitting: true }
     case act.BALLOT_CREATION_SUCCEEDED:
       return {
         ...state,
-        id: payload.key
+        id: payload.key,
+        submitting: false
       };
     case act.DOCKET_FETCH_SUCCEEDED:
       return { 

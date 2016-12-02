@@ -1,22 +1,22 @@
-import { 
-  DOM
-} from 'react';
-const { a, button } = DOM;
+import { createElement as el } from 'react';
+import { RaisedButton } from 'material-ui';
 
-const BallotControls = ({docketID, createBallot, order, ballotID}) => {
+const BallotControls = ({docketID, createBallot, order, ballotID, submitting}) => {
   const docketResultsPath = `/dockets/${docketID}/results`;
-  const submitButton = button(
+  const submitButton = el(RaisedButton, 
     {
-      onClick: () => createBallot({order, docketID})
-    },
-    "Submit Ballot"
+      onClick: () => createBallot({order, docketID}),
+      label: "Submit Ballot",
+      primary: true,
+      disabled: submitting
+    }
   );
   
-  const linkToResults = a({
+  const linkToResults = el('a', {
     href: docketResultsPath, style: {fontSize: "24"}
   }, "View Results");
   
-  return ballotID ? linkToResults : submitButton;
+  return ballotID ? null : submitButton;
 };
 
 export default BallotControls;
