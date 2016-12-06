@@ -11,9 +11,4 @@ export default class CallToAction extends React.Component {
       this.props.alpha ? 'Create a ballot!' : "Get notified when it's released."
     );
 	}
-  // createAndShowNewDocket () {
-  //   let docket = this.props.docketsBase.push(this.defaultDocket);
-  //   let docketId = docket.toString().match(/([^\/]*)\/*$/)[1]
-  //   window.location.href = `/#/dockets/${docketId}`
-  // }
 }

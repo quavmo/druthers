@@ -1,8 +1,9 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-
-import * as reducers from './reducers';
+import reducers from './reducers';
 import { fireSaga } from './sagas';
+
+console.log("reducers", reducers);
 
 const sagaMiddleware = createSagaMiddleware()
 
