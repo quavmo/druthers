@@ -1,4 +1,6 @@
 import act from '../actionTypes';
+import { sort, prop } from 'ramda';
+import { coinToss, swap } from '../services/helpers';
 
 const defaultBallot = {
   order: []

@@ -3,8 +3,6 @@ import createSagaMiddleware from 'redux-saga';
 import reducers from './reducers';
 import { fireSaga } from './sagas';
 
-console.log("reducers", reducers);
-
 const sagaMiddleware = createSagaMiddleware()
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

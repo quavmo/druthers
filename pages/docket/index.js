@@ -8,7 +8,7 @@ import React, {
 const { div } = DOM;
 import Title from '../../components/Title';
 import Layout from '../../components/Layout';
-import Finalize from './Finalize';
+import DocketControls from './DocketControls';
 import CandidateSet from '../../components/CandidateSet';
 import DataService from '../../core/services/DataService';
 import NewMemberForm from './NewMemberForm';
@@ -34,7 +34,7 @@ class DocketPage extends Component {
 			el(Title, { value: title, updateTitle, autoFocus: true }),
 			el(CandidateSet, { members, deleteCard: this.props.deleteCard }),
       id ? null : el(NewMemberForm, { addMember }),
-			el(Finalize, { finalizeDocket, docket: currentDocket })
+			el(DocketControls, { finalizeDocket, docket: currentDocket })
 		);
   }
 }

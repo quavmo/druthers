@@ -5,7 +5,7 @@ const { span, a, button, input, div } = DOM;
 
 const newBallotPath = docketID => `${window.location.host}/dockets/${docketID}/ballots/new`;
 
-export default class Finalize extends Component {
+export default class DocketControls extends Component {
   render() {
     const submitButton = el(RaisedButton,
       {

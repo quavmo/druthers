@@ -1,4 +1,5 @@
 import act from '../actionTypes';
+import { reject, equals } from 'ramda';
 
 const defaultDocket = {
   members: [], title: '', ballots: []
