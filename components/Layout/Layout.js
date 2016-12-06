@@ -11,8 +11,12 @@ const { main, div } = DOM;
 import { layout as className } from './Layout.css';
 import Footer from './Footer';
 
+const sunset = 16.75;
+const currentTime = (new Date()).getHours();
+const muiTheme = currentTime > sunset ? getMuiTheme(darkBaseTheme) : null;
+
 const Layout = props => 
-el(MuiThemeProvider, {muiTheme: getMuiTheme(darkBaseTheme)},
+el(MuiThemeProvider, { muiTheme },
   el(Paper, {},
     el(AppBar, { title: 'Druthers' }),
     main({ ...props, className }),

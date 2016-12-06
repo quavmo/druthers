@@ -66,7 +66,16 @@ export default class Card extends Component {
     const rightIcon = !deleteCard ? null : el(DeleteIcon, {onClick: () => deleteCard(text)});
     const leftIcon = deleteCard ? null : el(DragHandleIcon, {});
     return connectDragSource(connectDropTarget(
-      div({}, el(Paper, {zDepth: isDragging ? 3 : 1, style: {margin: 4}}, el(ListItem, { disableTouchRipple: true, primaryText: text, rightIcon, leftIcon })))
+      div({}, 
+        el(Paper, {zDepth: isDragging ? 3 : 1, style: {margin: 4}},
+          el(ListItem, { 
+            onClick: event => alert(event),
+            disableTouchRipple: true,
+            primaryText: text,
+            rightIcon, leftIcon 
+          })
+        )
+      )
     ));
   }
 }
