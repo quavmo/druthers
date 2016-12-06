@@ -5,7 +5,7 @@ import React, {
   createElement as el
 } from 'react';
 const { div } = DOM;
-import { ListItem } from 'material-ui';
+import { ListItem, Paper } from 'material-ui';
 import DragHandleIcon from 'material-ui/svg-icons/editor/drag-handle'
 import DeleteIcon from 'material-ui/svg-icons/action/delete'
 import { findDOMNode } from 'react-dom';
@@ -65,7 +65,7 @@ export default class Card extends Component {
     const rightIcon = !deleteCard ? null : el(DeleteIcon, {onClick: () => deleteCard(text)});
     const leftIcon = deleteCard ? null : el(DragHandleIcon, {});
     return connectDragSource(connectDropTarget(
-      div({}, el(ListItem, { primaryText: text, rightIcon, leftIcon }))
+      div({}, el(Paper, {zDepth: 1, style: {margin: 4}}, el(ListItem, { disableTouchRipple:true, primaryText: text, rightIcon, leftIcon })))
     ));
   }
 }
