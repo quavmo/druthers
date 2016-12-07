@@ -17,9 +17,9 @@ export default class DocketControls extends Component {
     );
     
     const path = newBallotPath(this.props.docket.id)
-    // const urlContainer = el(TextField, {value: path, readOnly: true});
+    const label = "Copy Link to Share";
     const urlCopyButton = el(CopyToClipboard, {text: path},
-        el(RaisedButton, { label: "Copy Link to Share", secondary: true, icon: el(CopyIcon) } )
+        el(RaisedButton, { label, secondary: true, icon: el(CopyIcon) } )
     )
     const urlWidget = div({}, urlCopyButton)
     return span({}, (this.props.docket.id ? urlWidget : submitButton));
