@@ -10,7 +10,7 @@
     "chunk": "main"
   },
   {
-    "path": "/dockets/:id",
+    "path": "/dockets/:docketID",
     "page": "./pages/docket"
   },
   {

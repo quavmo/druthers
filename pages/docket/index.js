@@ -16,6 +16,11 @@ import { curry } from 'ramda';
 
 const pageLabel = 'Docket';
 class DocketPage extends Component {
+  constructor(props) {
+    super(props);
+    if(props.route.params.docketID != 'new') props.fetchDocket(props.route.params.docketID)
+  }
+  
 	render() {
     const { 
       updateTitle,
@@ -31,9 +36,10 @@ class DocketPage extends Component {
       id:docketID
     } = currentDocket;
     
+    const deleteCandidate = !!docketID ? null : this.props.deleteCandidate;
     return el(Layout, { pageLabel, navigateToPage, docketID },
-			el(Title, { value: title, updateTitle, autoFocus: true }),
-			el(CandidateSet, { members, deleteCandidate: this.props.deleteCandidate }),
+			el(Title, { value: title, updateTitle, autoFocus: true, isFinal: !!docketID }),
+			el(CandidateSet, { members, deleteCandidate }),
       docketID ? null : el(NewMemberForm, { addCandidate }),
 			el(DocketControls, { finalizeDocket, docket: currentDocket })
 		);
