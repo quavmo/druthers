@@ -12,7 +12,7 @@ const currentDocket = (state=defaultDocket, {type, payload}) => {
     case act.DELETE_CANDIDATE:
       return { ...state, members: [...reject(equals({name: payload}), state.members)] };
     case act.DOCKET_FETCH_SUCCEEDED:
-      return { ...state, ...payload.val(), finalizing: false }
+      return { ...state, id: payload.key, ...payload.val(), finalizing: false }
     case act.DOCKET_CREATION_SUCCEEDED:
       return { ...state, id: payload.key };
     case act.UPDATE_TITLE:

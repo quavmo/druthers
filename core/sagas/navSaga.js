@@ -2,7 +2,7 @@ import { takeLatest } from 'redux-saga'
 import act from '../actionTypes.js';
 
 const path = {
-  Ballot: docketID => `/dockets/${docketID}/ballots/mine`,
+  Ballot: docketID => `/dockets/${docketID}/ballots/new`,
   Results: docketID => `/dockets/${docketID}/results`,
   Docket: docketID => `/dockets/${docketID}`,
 };
