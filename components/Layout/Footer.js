@@ -1,4 +1,4 @@
-import { indexedMap } from '../../core/services/helpers';
+import { map, propEq, findIndex } from 'ramda';
 import React, { Component, createElement as el } from 'react';
 import { 
   Paper,
@@ -7,7 +7,6 @@ import {
   BottomNavigationItem 
 } from 'material-ui';
 
-import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
 import DocketIcon from 'material-ui/svg-icons/image/palette';
 import BallotIcon from 'material-ui/svg-icons/editor/format-line-spacing';
 import ResultsIcon from 'material-ui/svg-icons/action/gavel';
@@ -23,15 +22,16 @@ class Footer extends Component {
   state = { selectedIndex: 0, };
   select = (index) => this.setState({selectedIndex: index});
   
-  hydrateNavItem = ({label, icon}, key) => el(BottomNavigationItem, {
-    key, label, icon,
-    onTouchTap: () => this.select(key)
+  hydrateNavItem = ({label, icon}) => el(BottomNavigationItem, {
+    key: label, label, icon
   });
 
   render() {
     return (
-      el(BottomNavigation, {selectedIndex: this.state.selectedIndex},
-        indexedMap(this.hydrateNavItem, navigationItems)
+      el(BottomNavigation, {
+        selectedIndex: findIndex(propEq('label', this.props.selectedPage))(navigationItems)
+      },
+        map(this.hydrateNavItem, navigationItems)
       )
     );
   }

@@ -5,7 +5,6 @@ import {
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 
-import { connect } from 'react-redux';
 import React, { PropTypes, DOM, createElement as el } from 'react';
 const { main, div } = DOM;
 import { layout as className } from './Layout.css';
@@ -15,12 +14,12 @@ const sunset = 16.75;
 const currentTime = (new Date()).getHours();
 const muiTheme = currentTime > sunset ? getMuiTheme(darkBaseTheme) : null;
 
-const Layout = props => 
+const Layout = ({children}) =>
 el(MuiThemeProvider, { muiTheme },
   el(Paper, {},
     el(AppBar, { title: 'Druthers' }),
-    main({ ...props, className }),
-    el(Footer)
+    main({ className }, ...children),
+    el(Footer, {selectedPage: 'Results'})
   )
 )
 
