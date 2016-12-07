@@ -12,13 +12,13 @@ import {
 } from 'react';
 
 
-const Candidate = ({isDragging, deleteCard, text}) =>
+const Candidate = ({isDragging, deleteCandidate, text}) =>
 el(Paper, {zDepth: isDragging ? 3 : 1, style: {margin: 4}},
   el(ListItem, { 
-    disableTouchRipple: !deleteCard,
+    disableTouchRipple: !deleteCandidate,
     primaryText: text,
-    rightIcon: deleteCard ? el(DeleteIcon, {onClick: () => deleteCard(text)}) : null,
-    leftIcon: !deleteCard ? el(DragHandleIcon, {}) : null
+    rightIcon: deleteCandidate ? el(DeleteIcon, {onClick: () => deleteCandidate(text)}) : null,
+    leftIcon: !deleteCandidate ? el(DragHandleIcon, {}) : null
   })
 );
 

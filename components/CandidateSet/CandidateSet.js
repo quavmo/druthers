@@ -29,7 +29,7 @@ export default class CandidateSet extends Component {
     index,
     id: name,
     text: name,
-    moveCard: this.props.moveCard || identity,
-    deleteCard: this.props.deleteCard
+    moveCandidate: this.props.moveCandidate || identity,
+    deleteCandidate: this.props.deleteCandidate
   });
 }

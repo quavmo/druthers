@@ -19,7 +19,7 @@ class DocketPage extends Component {
 	render() {
     const { 
       updateTitle,
-      addMember,
+      addCandidate,
       finalizeDocket,
       currentDocket
     } = this.props;
@@ -32,8 +32,8 @@ class DocketPage extends Component {
     
     return el(Layout, {},
 			el(Title, { value: title, updateTitle, autoFocus: true }),
-			el(CandidateSet, { members, deleteCard: this.props.deleteCard }),
-      id ? null : el(NewMemberForm, { addMember }),
+			el(CandidateSet, { members, deleteCandidate: this.props.deleteCandidate }),
+      id ? null : el(NewMemberForm, { addCandidate }),
 			el(DocketControls, { finalizeDocket, docket: currentDocket })
 		);
   }

@@ -20,7 +20,7 @@ class BallotPage extends Component {
   
   render() { 
     const { 
-      moveCard,
+      moveCandidate,
       currentBallot,
       currentDocket,
       createBallot
@@ -33,7 +33,7 @@ class BallotPage extends Component {
     
     return el(Layout, {className},
       h2({}, title),
-      el(CandidateSet, { members, order, moveCard }),
+      el(CandidateSet, { members, order, moveCandidate }),
       el(BallotControls, { ballotID, docketID, createBallot, order, submitting })
     );
   }

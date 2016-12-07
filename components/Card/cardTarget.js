@@ -12,7 +12,7 @@ const cardTarget = {
     const hoverClientY = clientOffset.y - hoverBoundingRect.top;
     if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) { return; }
     if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) { return; }
-    props.moveCard(dragIndex, hoverIndex);
+    props.moveCandidate(dragIndex, hoverIndex);
     monitor.getItem().index = hoverIndex;
   }
 };

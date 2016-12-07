@@ -21,7 +21,7 @@ const currentBallot = (state=defaultBallot, {type, payload}) => {
         ...state,
         order: sort(coinToss, payload.val().members.map(prop('name')))
       };
-    case act.MOVE_CARD:
+    case act.MOVE_CANDIDATE:
       return {
         ...state,
         order: swap(payload.dragIndex, payload.hoverIndex, state.order)

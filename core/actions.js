@@ -5,8 +5,8 @@ export const updateTitle = payload => ({
   payload
 });
 
-export const addMember = payload => ({
-  type: act.ADD_MEMBER,
+export const addCandidate = payload => ({
+  type: act.ADD_CANDIDATE,
   payload
 });
 
@@ -20,8 +20,8 @@ export const fetchDocket = payload => ({
   payload
 })
 
-export const moveCard = (dragIndex, hoverIndex) => ({
-  type: act.MOVE_CARD,
+export const moveCandidate = (dragIndex, hoverIndex) => ({
+  type: act.MOVE_CANDIDATE,
   payload: { dragIndex, hoverIndex }
 })
 
@@ -35,8 +35,8 @@ export const docketFetchSucceeded = payload => ({
   payload
 })
 
-export const deleteCard = payload => ({
-  type: act.DELETE_CARD,
+export const deleteCandidate = payload => ({
+  type: act.DELETE_CANDIDATE,
   payload
 })
 

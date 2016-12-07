@@ -33,7 +33,7 @@ export default class NewMemberForm extends Component {
 		event.preventDefault();
 		event.stopPropagation();
 
-		this.props.addMember(this.state);
+		this.props.addCandidate(this.state);
 		this.setState({name: ''});
 	}
 }

@@ -25,11 +25,11 @@ export default class Card extends Component {
       isDragging,
       connectDragSource,
       connectDropTarget,
-      deleteCard
+      deleteCandidate
     } = this.props;
     
     return connectDragSource(connectDropTarget(
-      div({}, el(Candidate, {isDragging, deleteCard, text}))
+      div({}, el(Candidate, {isDragging, deleteCandidate, text}))
     ));
   }
 }
