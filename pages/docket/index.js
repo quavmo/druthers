@@ -28,13 +28,13 @@ class DocketPage extends Component {
     const {
       members,
       title,
-      id
+      id:docketID
     } = currentDocket;
     
-    return el(Layout, {pageLabel, navigateToPage},
+    return el(Layout, { pageLabel, navigateToPage, docketID },
 			el(Title, { value: title, updateTitle, autoFocus: true }),
 			el(CandidateSet, { members, deleteCandidate: this.props.deleteCandidate }),
-      id ? null : el(NewMemberForm, { addCandidate }),
+      docketID ? null : el(NewMemberForm, { addCandidate }),
 			el(DocketControls, { finalizeDocket, docket: currentDocket })
 		);
   }

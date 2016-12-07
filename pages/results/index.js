@@ -19,8 +19,8 @@ class ResultsPage extends Component {
   
   render() {
     const { navigateToPage, currentDocket } = this.props;
-    const { ballots, members, title } = currentDocket;
-
+    const { id:docketID, ballots, members, title } = currentDocket;
+    
     const countString = ballots => {
       const count = Object.keys(ballots).length;
       const humanCount = num(count).format('0,0');
@@ -28,7 +28,7 @@ class ResultsPage extends Component {
       return `( ${humanCount} ${noun} )`;
     }
      
-    return el(Layout, {pageLabel, navigateToPage},
+    return el(Layout, {pageLabel, navigateToPage, docketID},
       h2({}, title),
       div({className: ballotCount}, countString(ballots)),
       el(LeaderBoard, { members, ballots })

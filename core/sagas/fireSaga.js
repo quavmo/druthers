@@ -2,7 +2,7 @@ import { takeEvery, takeLatest } from 'redux-saga'
 import { call, put, fork } from 'redux-saga/effects'
 import { docketBase } from '../services/DataService';
 import { sync, VALUE } from 'firebase-saga';
-import { default as act } from '../actionTypes.js';
+import act from '../actionTypes.js';
 
 const pushDocket = docket => docketBase.push(docket);
 const pushBallotToDocketID = docketID => ballot =>

@@ -1,5 +1,5 @@
 import { p } from '../../core/services/helpers';
-import { map, propEq, findIndex } from 'ramda';
+import { map, propEq, findIndex, reject, isNil } from 'ramda';
 import React, { Component, createElement as el } from 'react';
 import { 
   Paper,
@@ -20,17 +20,21 @@ const navigationItems = [
 ];
 
 
-const hydrateNavItem = navigateToPage => ({label, icon}) =>
+const hydrateNavItem = (navigateToPage, docketID) => ({label, icon}) =>
 el(BottomNavigationItem, { 
-  onTouchTap: () => navigateToPage(label),
+  onTouchTap: () => navigateToPage({pageLabel: label, docketID}),
   key: label, label, icon 
 });
   
-const Footer = ({selectedPage, navigateToPage}) =>
+const Footer = ({selectedPage, navigateToPage, docketID}) =>
 el(BottomNavigation, {
   selectedIndex: findIndex(propEq('label', selectedPage))(navigationItems)
 },
-  map(hydrateNavItem(navigateToPage), navigationItems)
+  ...reject(isNil, [
+    hydrateNavItem(navigateToPage, docketID)(navigationItems[0]),
+    docketID && hydrateNavItem(navigateToPage, docketID)(navigationItems[1]),
+    docketID && hydrateNavItem(navigateToPage, docketID)(navigationItems[2]),
+  ])
 );
 
 export default Footer;
