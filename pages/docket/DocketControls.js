@@ -1,6 +1,7 @@
 import CopyToClipboard from 'react-copy-to-clipboard';
-import { RaisedButton } from 'material-ui';
+import { RaisedButton, TextField } from 'material-ui';
 import React, { DOM, Component, createElement as el } from 'react';
+import CopyIcon from 'material-ui/svg-icons/content/content-copy'
 const { span, a, button, input, div } = DOM;
 
 const newBallotPath = docketID => `${window.location.host}/dockets/${docketID}/ballots/new`;
@@ -15,14 +16,12 @@ export default class DocketControls extends Component {
       }
     );
     
-    
-    // const urlLink = a({newBallotPath}, "Share This Link");
     const path = newBallotPath(this.props.docket.id)
-    const urlContainer = input({value: path, readOnly: true});
+    // const urlContainer = el(TextField, {value: path, readOnly: true});
     const urlCopyButton = el(CopyToClipboard, {text: path},
-        button({}, "Copy Link to Share")
+        el(RaisedButton, { label: "Copy Link to Share", secondary: true, icon: el(CopyIcon) } )
     )
-    const urlWidget = div({}, urlContainer, urlCopyButton)
+    const urlWidget = div({}, urlCopyButton)
     return span({}, (this.props.docket.id ? urlWidget : submitButton));
   }
   
