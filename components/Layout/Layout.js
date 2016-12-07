@@ -1,3 +1,4 @@
+import { p } from '../../core/services/helpers';
 import {
   MuiThemeProvider, AppBar, Paper
 } from 'material-ui';
@@ -14,12 +15,12 @@ const sunset = 16.75;
 const currentTime = (new Date()).getHours();
 const muiTheme = currentTime > sunset ? getMuiTheme(darkBaseTheme) : null;
 
-const Layout = ({children, pageLabel}) =>
+const Layout = ({children, pageLabel, navigateToPage}) =>
 el(MuiThemeProvider, { muiTheme },
   el(Paper, {},
     el(AppBar, { title: 'Druthers' }),
     main({ className }, ...children),
-    el(Footer, {selectedPage: pageLabel})
+    el(Footer, { selectedPage: pageLabel, navigateToPage })
   )
 )
 

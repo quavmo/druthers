@@ -26,3 +26,5 @@ export const swap = (srcIndex, destIndex, list) => insert(
   list[srcIndex],
   remove(srcIndex, 1, list)
 )
+
+export const p = arg => console.log(arg) && arg;

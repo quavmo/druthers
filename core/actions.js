@@ -40,3 +40,8 @@ export const deleteCandidate = payload => ({
   payload
 })
 
+export const navigateToPage = payload => ({
+  type: act.VISIT_PAGE,
+  payload
+})
+

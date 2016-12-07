@@ -24,15 +24,17 @@ class BallotPage extends Component {
       moveCandidate,
       currentBallot,
       currentDocket,
-      createBallot
+      createBallot,
+      navigateToPage
     } = this.props;
+    
     const { title, members } = currentDocket;
     const { order, submitting } = currentBallot;
     const [ ballotID, docketID ] = [
       currentBallot.id, currentDocket.id
     ];
     
-    return el(Layout, {className, pageLabel},
+    return el(Layout, {className, pageLabel, navigateToPage},
       h2({}, title),
       el(CandidateSet, { members, order, moveCandidate }),
       el(BallotControls, { ballotID, docketID, createBallot, order, submitting })

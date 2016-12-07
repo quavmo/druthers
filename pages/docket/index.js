@@ -21,7 +21,8 @@ class DocketPage extends Component {
       updateTitle,
       addCandidate,
       finalizeDocket,
-      currentDocket
+      currentDocket,
+      navigateToPage
     } = this.props;
     
     const {
@@ -30,7 +31,7 @@ class DocketPage extends Component {
       id
     } = currentDocket;
     
-    return el(Layout, {pageLabel},
+    return el(Layout, {pageLabel, navigateToPage},
 			el(Title, { value: title, updateTitle, autoFocus: true }),
 			el(CandidateSet, { members, deleteCandidate: this.props.deleteCandidate }),
       id ? null : el(NewMemberForm, { addCandidate }),
