@@ -1,14 +1,11 @@
-import React from 'react';
+import { DOM } from 'react';
+const { a } = DOM;
 import { callToAction as className } from './style.css';
 
-export default class CallToAction extends React.Component {
-	render() {
-    return React.DOM.a(
-      {
-        href: this.props.alpha ? '/dockets/new' : '#signUp',
-        className
-      },
-      this.props.alpha ? 'Create a ballot!' : "Get notified when it's released."
-    );
-	}
-}
+const CallToAction = ({alpha}) => 
+a(
+  { href: alpha ? '/dockets/new' : '#signUp', className },
+  alpha ? 'Create a ballot!' : "Get notified when it's released."
+);
+
+export default CallToAction;

@@ -7,6 +7,6 @@ export default {
     background: 'black',
     color: 'white',
     border: 'none',
-    fontSize: 15
-  }
-}
+    fontSize: 15,
+  },
+};

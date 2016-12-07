@@ -4,7 +4,7 @@ import reducers from './reducers';
 import fireSaga from './sagas/fireSaga';
 import navSaga from './sagas/navSaga';
 
-const sagaMiddleware = createSagaMiddleware()
+const sagaMiddleware = createSagaMiddleware();
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -13,5 +13,5 @@ export default createStore(
   composeEnhancers(applyMiddleware(sagaMiddleware))
 );
 
-sagaMiddleware.run(fireSaga)
-sagaMiddleware.run(navSaga)
+sagaMiddleware.run(fireSaga);
+sagaMiddleware.run(navSaga);

@@ -1,35 +1,38 @@
-import React, { Component, createElement as el, DOM } from 'react';
+import {
+  PropTypes, Component, createElement as el, DOM,
+} from 'react';
 const { div } = DOM;
+const { func, array } = PropTypes;
 import { identity, sort } from 'ramda';
-import { indexedMap } from '../../core/services/helpers';
-import update from 'react/lib/update';
+import { indexedMap, byOrder } from '../../core/services/helpers';
 import Card from '../Card';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { default as TouchBackend } from 'react-dnd-touch-backend';
-import { candidateSet as className } from './style.css';
-import { 
-  byOrder
-} from '../../core/services/helpers';
 
 const mobile = 'ontouchstart' in document.documentElement;
-
 @DragDropContext(mobile ? TouchBackend : HTML5Backend)
 export default class CandidateSet extends Component {
+  static propTypes = {
+    moveCandidate: func,
+    deleteCandidate: func,
+    order: array,
+    members: array,
+  };
+
+  hydrateCard = ({ name }, index) => el(Card, {
+    key: name + index,
+    index,
+    id: name,
+    text: name,
+    moveCandidate: this.props.moveCandidate || identity,
+    deleteCandidate: this.props.deleteCandidate,
+  });
+
   render = () => div({},
     indexedMap(
       this.hydrateCard,
       sort(byOrder(this.props.order), this.props.members)
     )
   );
-  
-  
-  hydrateCard = ({name}, index) => el(Card, {
-    key: name + index,
-    index,
-    id: name,
-    text: name,
-    moveCandidate: this.props.moveCandidate || identity,
-    deleteCandidate: this.props.deleteCandidate
-  });
 }

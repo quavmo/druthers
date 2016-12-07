@@ -1,15 +1,14 @@
-import React, { createElement as el } from 'react';
-import { titleField as className } from './style.css';
+import { createElement as el } from 'react';
 import { TextField } from 'material-ui';
 
-const Title = ({value, updateTitle, isFinal}) => el(TextField, {
+const Title = ({ value, updateTitle, isFinal }) => el(TextField, {
   name: 'docketTitle',
   floatingLabelText: 'Ask a Question',
   hintText: 'e.g. Where shall we go for lunch?',
-	value,
+  value,
   fullWidth: true,
-	onChange: ({target}) => updateTitle(target.value),
-  disabled: isFinal
+  onChange: ({ target }) => updateTitle(target.value),
+  disabled: isFinal,
 });
 
 

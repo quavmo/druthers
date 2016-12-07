@@ -14,7 +14,7 @@ const cardTarget = {
     if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) { return; }
     props.moveCandidate(dragIndex, hoverIndex);
     monitor.getItem().index = hoverIndex;
-  }
+  },
 };
 
 export default cardTarget;

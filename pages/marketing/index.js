@@ -1,20 +1,17 @@
-import React, { 
-  Component, DOM,
-  createElement as el
+import {
+  DOM,
+  createElement as el,
 } from 'react';
+const { div } = DOM;
 import Hero 				from './Hero';
 import UseCaseList	from './UseCaseList';
 import SignUp 			from './SignUp';
 
-export default class Marketing extends Component {
-	render() {
-		let hero 				= el(Hero);
-		let useCaseList = el(UseCaseList);
-		let signUp 			= el(SignUp);
+const Marketing = () => 
+div(
+  { style: { fontFamily: 'sans-serif' } },
+  el(Hero), el(UseCaseList), el(SignUp)
+);
 
-		return DOM.div(
-			{style: {fontFamily: 'sans-serif'}},
-			hero, useCaseList, signUp
-		);
-	}
-}
+
+export default Marketing;
