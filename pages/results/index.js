@@ -10,6 +10,7 @@ import { docketBase } from '../../core/services/DataService';
 import num from 'numeral';
 import { ballotCount } from './style.css';
 
+const pageLabel = 'Results';
 class ResultsPage extends Component {
   constructor(props) {
     super(props);
@@ -26,7 +27,7 @@ class ResultsPage extends Component {
       return `( ${humanCount} ${noun} )`;
     }
      
-    return el(Layout, {},
+    return el(Layout, {pageLabel},
       h2({}, title),
       div({className: ballotCount}, countString(ballots)),
       el(LeaderBoard, { members, ballots })

@@ -14,12 +14,12 @@ const sunset = 16.75;
 const currentTime = (new Date()).getHours();
 const muiTheme = currentTime > sunset ? getMuiTheme(darkBaseTheme) : null;
 
-const Layout = ({children}) =>
+const Layout = ({children, pageLabel}) =>
 el(MuiThemeProvider, { muiTheme },
   el(Paper, {},
     el(AppBar, { title: 'Druthers' }),
     main({ className }, ...children),
-    el(Footer, {selectedPage: 'Results'})
+    el(Footer, {selectedPage: pageLabel})
   )
 )
 

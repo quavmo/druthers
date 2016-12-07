@@ -18,23 +18,15 @@ const navigationItems = [
   {label: "Results", icon: el(ResultsIcon)}
 ];
 
-class Footer extends Component {
-  state = { selectedIndex: 0, };
-  select = (index) => this.setState({selectedIndex: index});
-  
-  hydrateNavItem = ({label, icon}) => el(BottomNavigationItem, {
-    key: label, label, icon
-  });
 
-  render() {
-    return (
-      el(BottomNavigation, {
-        selectedIndex: findIndex(propEq('label', this.props.selectedPage))(navigationItems)
-      },
-        map(this.hydrateNavItem, navigationItems)
-      )
-    );
-  }
-}
+const hydrateNavItem = ({label, icon}) =>
+  el(BottomNavigationItem, { key: label, label, icon });
+  
+const Footer = ({selectedPage}) => 
+el(BottomNavigation, {
+  selectedIndex: findIndex(propEq('label', selectedPage))(navigationItems)
+},
+  map(hydrateNavItem, navigationItems)
+);
 
 export default Footer;

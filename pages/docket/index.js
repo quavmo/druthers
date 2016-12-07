@@ -14,7 +14,7 @@ import DataService from '../../core/services/DataService';
 import NewMemberForm from './NewMemberForm';
 import { curry } from 'ramda';
 
-
+const pageLabel = 'Docket';
 class DocketPage extends Component {
 	render() {
     const { 
@@ -30,7 +30,7 @@ class DocketPage extends Component {
       id
     } = currentDocket;
     
-    return el(Layout, {},
+    return el(Layout, {pageLabel},
 			el(Title, { value: title, updateTitle, autoFocus: true }),
 			el(CandidateSet, { members, deleteCandidate: this.props.deleteCandidate }),
       id ? null : el(NewMemberForm, { addCandidate }),

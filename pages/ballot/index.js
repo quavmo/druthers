@@ -12,6 +12,7 @@ import CandidateSet from '../../components/CandidateSet';
 import BallotControls from '../../components/BallotControls';
 import { ballot as className } from './style.css';
 
+const pageLabel = 'Ballot';
 class BallotPage extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +32,7 @@ class BallotPage extends Component {
       currentBallot.id, currentDocket.id
     ];
     
-    return el(Layout, {className},
+    return el(Layout, {className, pageLabel},
       h2({}, title),
       el(CandidateSet, { members, order, moveCandidate }),
       el(BallotControls, { ballotID, docketID, createBallot, order, submitting })
