@@ -12,7 +12,6 @@ const hydrateRunnerUp = ({name}, rank) => el(ListItem, {
 });
 
 const LeaderBoard = ({ballots, members}) => { 
-  console.trace()
   const sortedMembers = sort(byOrder(elect(ballots, members)), members);
   return el(List, {}, indexedMap(hydrateRunnerUp, sortedMembers));
 }

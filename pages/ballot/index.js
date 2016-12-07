@@ -28,7 +28,7 @@ class BallotPage extends Component {
     } = this.props;
     const { title, members } = currentDocket;
     const { order, submitting } = currentBallot;
-    const [ballotID, docketID] = [
+    const [ ballotID, docketID ] = [
       currentBallot.id, currentDocket.id
     ];
     
