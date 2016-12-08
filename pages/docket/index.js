@@ -19,7 +19,7 @@ class DocketPage extends Component {
     navigateToPage: func.isRequired,
     addCandidate: func.isRequired,
     fetchDocket: func.isRequired,
-    currentDocket: func.isRequired,
+    currentDocket: object.isRequired,
     finalizeDocket: func.isRequired,
     updateTitle: func.isRequired,
     route: object.isRequired,
