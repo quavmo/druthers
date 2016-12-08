@@ -17,6 +17,7 @@ const pageLabel = 'Ballot';
 class BallotPage extends Component {
   static propTypes = {
     fetchDocket: func.isRequired,
+    fetchBallot: func.isRequired,
     navigateToPage: func.isRequired,
     moveCandidate: func.isRequired,
     createBallot: func.isRequired,
@@ -26,7 +27,10 @@ class BallotPage extends Component {
   }
   constructor(props) {
     super(props);
-    props.fetchDocket(props.route.params.docketID);
+    const { docketID, ballotID } = props.route.params;
+
+    props.fetchDocket(docketID);
+    if (ballotID !== 'new') props.fetchBallot({docketID, ballotID});
   }
 
   updateTitle(snapshot) { this.setState({ title: snapshot.val() }); }

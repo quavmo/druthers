@@ -1,7 +1,12 @@
-import React from 'react';
+import { Component, PropTypes } from 'react';
+const { object, string } = PropTypes;
 import FormStyle from './FormStyle';
 
-export default class Gratitude extends React.Component {
+export default class Gratitude extends Component {
+  static propTypes = {
+    feelingsBase: object.isRequired,
+    name: string.isRequired
+  }
   constructor(props) {
     super(props);
     this.state = { feeling: 'I hope...' };

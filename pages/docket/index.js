@@ -27,7 +27,9 @@ class DocketPage extends Component {
 
   constructor(props) {
     super(props);
-    if (props.route.params.docketID !== 'new') props.fetchDocket(props.route.params.docketID);
+    const { docketID } = props.route.params;
+  
+    if (docketID !== 'new') props.fetchDocket(docketID);
   }
 
   render() {

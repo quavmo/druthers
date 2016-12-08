@@ -2,7 +2,7 @@ import { createElement as el } from 'react';
 import { RaisedButton } from 'material-ui';
 
 const BallotControls = ({ docketID, createBallot, order, ballotID, submitting }) => {
-  if (ballotID) return;
+  if (ballotID) return null;
 
   return el(RaisedButton,
     {

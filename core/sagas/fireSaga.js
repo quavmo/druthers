@@ -38,13 +38,13 @@ function* createBallot({ payload }) {
 }
 
 
-const get = key => docketBase.child(key).once('value');
+const getDocket = key => docketBase.child(key).once('value');
 
 function* fetchDocket({ payload }) {
   try {
     yield put({
       type: act.DOCKET_FETCH_SUCCEEDED,
-      payload: yield call(get, payload),
+      payload: yield call(getDocket, payload),
     });
   } catch (error) {
     yield put({
@@ -54,8 +54,31 @@ function* fetchDocket({ payload }) {
   }
 }
 
+const getBallot = (docketKey, ballotKey) => {
+  // docketBase.child(docketKey).child('ballots').child(ballotKey).once('value').then(
+  //   payload => console.log("hey", payload.val())
+  // )
+  return docketBase.child(docketKey).child('ballots').child(ballotKey).once('value');
+}
+
+function* fetchBallot({ payload }) {
+  const { docketID, ballotID } = payload;
+  try {
+    yield put({
+      type: act.BALLOT_FETCH_SUCCEEDED,
+      payload: yield call(getBallot, docketID, ballotID),
+    });
+  } catch (error) {
+    yield put({
+      type: act.BALLOT_FETCH_FAILED,
+      payload: { error, docket: payload },
+    });
+  }
+}
+
 export default function* fireSaga() {
   yield takeLatest(act.FETCH_DOCKET, fetchDocket);
   yield takeLatest(act.FINALIZE_DOCKET, createDocket);
   yield takeLatest(act.CREATE_BALLOT, createBallot);
+  yield takeLatest(act.FETCH_BALLOT, fetchBallot);
 }

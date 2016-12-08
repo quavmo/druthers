@@ -20,6 +20,11 @@ export const fetchDocket = payload => ({
   payload,
 });
 
+export const fetchBallot = payload => ({
+  type: act.FETCH_BALLOT,
+  payload,
+});
+
 export const moveCandidate = (dragIndex, hoverIndex) => ({
   type: act.MOVE_CANDIDATE,
   payload: { dragIndex, hoverIndex },

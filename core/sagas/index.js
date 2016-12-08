@@ -1,4 +1,2 @@
-import { fireSaga } from './fireSaga';
-import navSaga from './navSaga';
-
-export default { fireSaga, navSaga };
+export { default as fireSaga } from './fireSaga';;
+export { default as navSaga } from './navSaga';

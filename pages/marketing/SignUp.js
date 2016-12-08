@@ -1,4 +1,4 @@
-import { DOM, Component, createElement } from 'react';
+import { DOM, Component, createElement as el } from 'react';
 import { interestedBase } from '../../core/services/DataService';
 import Gratitude from './Gratitude';
 import FormStyle from './FormStyle';
@@ -27,6 +27,7 @@ export default class SignUp extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const user = interestedBase.push({ name: this.state.name, email: this.state.email });
+    console.log(user.child('feelings'))
     this.setState({ submitted: true, feelingsBase: user.child('feelings') });
   }
 
@@ -36,7 +37,7 @@ export default class SignUp extends Component {
       { style: { textTransform: 'capitalize', fontSize: 42 } },
       "Get notified when it's released"
     );
-    const gratitude = createElement(Gratitude,
+    const gratitude = el(Gratitude,
       { name: this.state.name, feelingsBase: this.state.feelingsBase }
     );
     const subheader = p({ style: { marginTop: 20 } }, subheaderTagline);

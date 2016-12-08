@@ -14,7 +14,7 @@
     "page": "./pages/docket"
   },
   {
-    "path": "/dockets/:docketID/ballots/new",
+    "path": "/dockets/:docketID/ballots/:ballotID",
     "page": "./pages/ballot"
   },
   {
