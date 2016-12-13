@@ -13,11 +13,11 @@ const currentTime = (new Date()).getHours();
 const muiTheme = currentTime > sunset ? getMuiTheme(darkBaseTheme) : null;
 
 const Layout = ({ children, pageLabel, navigateToPage, docketID }) =>
-el(MuiThemeProvider, { muiTheme },
+el(MuiThemeProvider, { muiTheme, className },
   el(Paper, {},
     el(AppBar, { title: 'Druthers' }),
-    main({ className }, ...children),
-    el(Footer, { selectedPage: pageLabel, navigateToPage, docketID })
+    main({}, ...children),
+    docketID ? el(Footer, { selectedPage: pageLabel, navigateToPage, docketID }) : null
   )
 );
 
