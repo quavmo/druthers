@@ -9,7 +9,7 @@ const defaultBallot = {
 const scrambledNames = payload => {
   const { members } = payload.val();
   const names = members.map(prop('name'));
-  sort(coinToss, names)
+  return sort(coinToss, names)
 }
 
 const currentBallot = (state = defaultBallot, { type, payload }) => {

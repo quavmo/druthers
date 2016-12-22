@@ -54,12 +54,9 @@ function* fetchDocket({ payload }) {
   }
 }
 
-const getBallot = (docketKey, ballotKey) => {
-  // docketBase.child(docketKey).child('ballots').child(ballotKey).once('value').then(
-  //   payload => console.log("hey", payload.val())
-  // )
-  return docketBase.child(docketKey).child('ballots').child(ballotKey).once('value');
-}
+const getBallot = (docketKey, ballotKey) =>
+  docketBase.child(docketKey).child('ballots').child(ballotKey).once('value');
+
 
 function* fetchBallot({ payload }) {
   const { docketID, ballotID } = payload;
