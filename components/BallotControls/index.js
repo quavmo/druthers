@@ -1,16 +1,18 @@
 import { createElement as el } from 'react';
-import { RaisedButton } from 'material-ui';
+import { FloatingActionButton } from 'material-ui';
+import SaveIcon from 'material-ui/svg-icons/content/send';
+import { fab } from './style.css'
 
 const BallotControls = ({ docketID, createBallot, order, ballotID, submitting }) => {
   if (ballotID) return null;
 
-  return el(RaisedButton,
+  return el(FloatingActionButton,
     {
-      onClick: () => createBallot({ order, docketID }),
+      onTouchTap: () => createBallot({ order, docketID }),
       label: 'Submit Ballot',
-      primary: true,
       disabled: submitting,
-    }
+      className: fab,
+    }, el(SaveIcon)
   );
 };
 

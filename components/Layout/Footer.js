@@ -25,6 +25,7 @@ el(BottomNavigationItem, {
 
 const Footer = ({ selectedPage, navigateToPage, docketID }) =>
 el(BottomNavigation, {
+  style: { position: 'fixed', bottom: 0 },
   selectedIndex: findIndex(propEq('label', selectedPage))(navigationItems),
 },
   ...reject(isNil, [

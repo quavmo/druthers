@@ -9,7 +9,8 @@ import { fab } from './style.css'
 
 const newBallotPath = docketID => `${window.location.host}/dockets/${docketID}/ballots/new`;
 
-const SubmitButton = ({finalizeDocket, docket}) => el(FloatingActionButton,
+const SubmitButton = ({finalizeDocket, docket}) =>
+el(FloatingActionButton,
   {
     className: fab,
     onTouchTap: () => finalizeDocket(docket),
