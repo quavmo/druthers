@@ -1,5 +1,5 @@
 import CopyToClipboard from 'react-copy-to-clipboard';
-import { FloatingActionButton } from 'material-ui';
+import { FloatingActionButton, Snackbar } from 'material-ui';
 import { DOM, createElement as el } from 'react';
 import { isEmpty } from 'ramda';
 import CopyIcon from 'material-ui/svg-icons/content/content-copy';
@@ -19,18 +19,27 @@ el(FloatingActionButton,
   }, el(SaveIcon)
 );
 
-const CopyButton = ({text}) => 
+const CopyButton = ({text, onTouchTap}) => 
 el(CopyToClipboard, { text },
   el(FloatingActionButton, { 
     className: fab,
-    secondary: true
+    secondary: true,
+    onTouchTap
   }, el(CopyIcon))
 );
 
-const DocketControls = ({ docket, finalizeDocket }) => {
-  return docket.id ?
-    el(CopyButton, {text: newBallotPath(docket.id)}) :
-    el(SubmitButton, { finalizeDocket, docket });
+
+const DocketControls = ({ docket, finalizeDocket, flagUrlCopied, urlCopied }) => {
+  const copy = el(CopyButton, { text: newBallotPath(docket.id), onTouchTap: flagUrlCopied });
+  const submit = el(SubmitButton, { finalizeDocket, docket });
+  const message = urlCopied ?
+    "URL copied: paste it into chat, email, etc!" : 
+    "Docket Created!"
+  
+  return el('div', {}, 
+    docket.id ? copy : submit,
+    el(Snackbar, { open: !!docket.id, message, autoHideDuration: 3000 })
+  );
 };
 
 export default DocketControls;

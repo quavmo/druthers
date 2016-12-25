@@ -22,6 +22,8 @@ class DocketPage extends Component {
     currentDocket: object.isRequired,
     finalizeDocket: func.isRequired,
     updateTitle: func.isRequired,
+    flagUrlCopied: func.isRequired,
+    gui: object.isRequired,
     route: object.isRequired,
   };
 
@@ -36,23 +38,28 @@ class DocketPage extends Component {
     const {
       updateTitle,
       addCandidate,
+      flagUrlCopied,
       finalizeDocket,
-      currentDocket,
+      currentDocket:docket,
       navigateToPage,
     } = this.props;
 
     const {
       members,
       title,
-      id: docketID,
-    } = currentDocket;
+      id:docketID,
+    } = this.props.currentDocket;
 
+    const {
+      urlCopied
+    } = this.props.gui;
+    
     const deleteCandidate = !!docketID ? null : this.props.deleteCandidate;
     return el(Layout, { pageLabel, navigateToPage, docketID },
-			el(Title, { value: title, updateTitle, autoFocus: true, isFinal: !!docketID }),
+			el(Title, { value: title, updateTitle, isFinal: !!docketID }),
 			el(CandidateSet, { members, deleteCandidate }),
       docketID ? null : el(NewMemberForm, { addCandidate }),
-			el(DocketControls, { finalizeDocket, docket: currentDocket })
+			el(DocketControls, { flagUrlCopied, finalizeDocket, docket, urlCopied })
 		);
   }
 }

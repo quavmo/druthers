@@ -50,3 +50,7 @@ export const navigateToPage = payload => ({
   payload,
 });
 
+export const flagUrlCopied = () => ({
+  type: act.FLAG_URL_COPIED
+});
+
