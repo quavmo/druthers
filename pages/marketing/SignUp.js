@@ -26,8 +26,10 @@ export default class SignUp extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const user = interestedBase.push({ name: this.state.name, email: this.state.email });
-    console.log(user.child('feelings'))
+    const user = interestedBase.push({ 
+      name: this.state.name,
+      email: this.state.email 
+    });
     this.setState({ submitted: true, feelingsBase: user.child('feelings') });
   }
 

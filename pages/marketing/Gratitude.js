@@ -1,4 +1,11 @@
-import { Component, PropTypes } from 'react';
+import { Component, PropTypes, DOM } from 'react';
+const {
+  input,
+  button,
+  form,
+  div,
+  p
+} = DOM;
 const { object, string } = PropTypes;
 import FormStyle from './FormStyle';
 
@@ -39,9 +46,12 @@ export default class Gratitude extends Component {
       ref: 'input',
       value: this.state.latestFeeling
     };
-    const feelingsBox = React.DOM.input(Object.assign({ style: FormStyle.input }, feelingsWiring));
-    const submit = React.DOM.button({ style: this.buttonStyle, ref: 'submit' }, 'Tell us!');
-    const form = React.DOM.form({ onSubmit: this.handleSubmit }, feelingsBox, submit);
-    return React.DOM.div({ style: { marginTop: 20 } }, React.DOM.p({}, message), form);
+    const feelingsBox = input(Object.assign({ style: FormStyle.input }, feelingsWiring));
+    const submit = button({ style: this.buttonStyle, ref: 'submit' }, 'Tell us!');
+
+    return div({ style: { marginTop: 20 } },
+      p({}, message),
+      form({ onSubmit: this.handleSubmit }, feelingsBox, submit)
+    );
   }
 }
