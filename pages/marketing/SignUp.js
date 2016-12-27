@@ -1,4 +1,5 @@
 import { DOM, Component, createElement as el } from 'react';
+import { pick } from 'ramda';
 import { interestedBase } from '../../core/services/DataService';
 import Gratitude from './Gratitude';
 import FormStyle from './FormStyle';
@@ -39,9 +40,7 @@ export default class SignUp extends Component {
       { style: { textTransform: 'capitalize', fontSize: 42 } },
       "Get notified when it's released"
     );
-    const gratitude = el(Gratitude,
-      { name: this.state.name, feelingsBase: this.state.feelingsBase }
-    );
+    
     const subheader = p({ style: { marginTop: 20 } }, subheaderTagline);
 
     const name = input({
@@ -79,16 +78,18 @@ export default class SignUp extends Component {
       `
     );
     const signupForm = form(
-     { onSubmit: this.handleSubmit },
-     name, email, submit
-   );
+      { onSubmit: this.handleSubmit },
+      name, email, submit
+    );
     return div(
       outerProps,
       responsiveStyleBox,
       header,
       subheader,
       style({}, '::-webkit-input-placeholder { color: white }'),
-      this.state.submitted ? gratitude : signupForm
+      this.state.submitted ? 
+        el(Gratitude, pick(['name', 'feelingsBase'])(this.state)) :
+        signupForm
     );
   }
 }
