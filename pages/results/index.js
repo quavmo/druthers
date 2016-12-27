@@ -35,6 +35,7 @@ class ResultsPage extends Component {
       return `( ${humanCount} ${noun} )`;
     };
 
+    document.title = title ? `Druthers: "${longestWord(title)}"` : "Druthers!";
     return el(Layout, { pageLabel, navigateToPage, docketID },
       h2({}, title),
       div({ className: ballotCount }, countString(ballots)),

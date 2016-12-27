@@ -1,6 +1,9 @@
 import { Election, condorcet } from 'caritat';
 import {
   insert, map, reduce, prop, values, addIndex, remove,
+  split,
+  sortBy,
+  last,
 } from 'ramda';
 const { random } = Math;
 
@@ -25,3 +28,6 @@ export const swap = (srcIndex, destIndex, list) => insert(
   list[srcIndex],
   remove(srcIndex, 1, list)
 );
+
+export const longestWord = sentence =>
+  last(sortBy(prop('length'))(split(' ')(sentence)))

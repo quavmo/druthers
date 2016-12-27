@@ -11,6 +11,7 @@ import Layout from '../../components/Layout';
 import DocketControls from './DocketControls';
 import CandidateSet from '../../components/CandidateSet';
 import NewMemberForm from './NewMemberForm';
+import { longestWord } from '../../core/services/helpers';
 
 const pageLabel = 'Docket';
 class DocketPage extends Component {
@@ -54,6 +55,7 @@ class DocketPage extends Component {
       urlCopied
     } = this.props.gui;
     
+    document.title = title ? `Druthers: "${longestWord(title)}"` : "Druthers!";
     const deleteCandidate = !!docketID ? null : this.props.deleteCandidate;
     return el(Layout, { pageLabel, navigateToPage, docketID },
 			el(Title, { value: title, updateTitle, isFinal: !!docketID }),
