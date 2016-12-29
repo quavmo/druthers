@@ -9,6 +9,7 @@ import Layout from '../../components/Layout';
 import { docketBase } from '../../core/services/DataService';
 import num from 'numeral';
 import { ballotCount } from './style.css';
+import { longestWord } from '../../core/services/helpers';
 
 const pageLabel = 'Results';
 class ResultsPage extends Component {
