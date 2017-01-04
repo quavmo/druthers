@@ -15,7 +15,7 @@ const muiTheme = currentTime > sunset ? getMuiTheme(darkBaseTheme) : null;
 
 const Layout = ({ children, pageLabel, navigateToPage, docketID }) =>
 el(MuiThemeProvider, { muiTheme, className },
-  el(Paper, {},
+  el('div', {},
     el(AppBar, { title: 'Druthers', iconElementRight: el(Avatar, {src: image.avatar()}) }),
     main({}, ...children),
     docketID ? el(Footer, { selectedPage: pageLabel, navigateToPage, docketID }) : null
