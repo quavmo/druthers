@@ -1,5 +1,5 @@
 import {
-  MuiThemeProvider, 
+  MuiThemeProvider, Paper
 } from 'material-ui';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
@@ -15,7 +15,7 @@ const muiTheme = currentTime > sunset ? getMuiTheme(darkBaseTheme) : null;
 
 const Layout = ({ children, pageLabel, navigateToPage, docketID }) =>
 el(MuiThemeProvider, { muiTheme, className },
-  el('div', {},
+  el(Paper, {},
     el(Header),
     main({}, ...children),
     docketID ? el(Footer, { selectedPage: pageLabel, navigateToPage, docketID }) : null

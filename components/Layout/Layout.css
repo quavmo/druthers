@@ -1,5 +1,11 @@
-
-html, body, [data-reactroot], body>div { min-height: 100% !important; }
+/* 
+  min-height: 100% !important;
+  works when it's tall
+  but only
+  height: 100% !important;
+  works when it's short
+*/
+html, body, [data-reactroot], body>div { height: 100% !important; }
 
 .content {
   margin: 0 auto;
