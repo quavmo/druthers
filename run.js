@@ -18,9 +18,9 @@ const webpack = require('webpack');
 // TODO: Update configuration settings
 const config = {
   title: 'Druthers',        // Your website title
-  url: 'https://druthers.io',          // Your website URL
+  url: 'https://druthe.rs',          // Your website URL
   project: 'druthers-base',      // Firebase project. See README.md -> How to Deploy
-  trackingID: 'UA-XXXXX-Y',                 // Google Analytics Site's ID
+  trackingID: 'UA-70916612-2',                 // Google Analytics Site's ID
 };
 
 const tasks = new Map(); // The collection of automation tasks ('clean', 'build', 'publish', etc.)
