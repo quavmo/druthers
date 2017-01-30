@@ -11,7 +11,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import { default as TouchBackend } from 'react-dnd-touch-backend';
 
 const mobile = 'ontouchstart' in document.documentElement;
-@DragDropContext(!mobile ? TouchBackend : HTML5Backend)
+@DragDropContext(mobile ? TouchBackend : HTML5Backend)
 export default class CandidateSet extends Component {
   static propTypes = {
     moveCandidate: func,
