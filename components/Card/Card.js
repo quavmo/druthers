@@ -17,6 +17,7 @@ import Candidate from '../Candidate';
 }))
 @DragSource(ItemTypes.CARD, cardSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
+  connectDragPreview: connect.dragPreview(),
   isDragging: monitor.isDragging(),
 }))
 export default class Card extends Component {
@@ -36,8 +37,13 @@ export default class Card extends Component {
       deleteCandidate,
     } = this.props;
 
-    return connectDragSource(connectDropTarget(
-      div({}, el(Candidate, { isDragging, deleteCandidate, text }))
-    ));
+    return connectDropTarget(
+      div({}, el(Candidate, {
+        connectDragSource,
+        isDragging,
+        deleteCandidate,
+        text
+      }))
+    );
   }
 }
