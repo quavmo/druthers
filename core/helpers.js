@@ -1,16 +1,14 @@
 import { Election, condorcet } from 'caritat';
 import {
   insert, map, reduce, prop, values, addIndex, remove,
-  split,
-  sortBy,
-  last,
 } from 'ramda';
 const { random } = Math;
 
 export const byOrder = (order = []) => (a, b) =>
   order.indexOf(a.name) - order.indexOf(b.name);
 
-export const countBallot = (election, ballot) => election.addBallot(ballot, 1) && election;
+export const countBallot = (election, ballot) =>
+  election.addBallot(ballot, 1) && election;
 
 export const elect = (nestedBallots, nestedCandidates) => {
   const ballots = map(prop('order'), values(nestedBallots));
@@ -28,6 +26,3 @@ export const swap = (srcIndex, destIndex, list) => insert(
   list[srcIndex],
   remove(srcIndex, 1, list)
 );
-
-export const longestWord = sentence =>
-  last(sortBy(prop('length'))(split(' ')(sentence)))

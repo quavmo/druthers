@@ -12,7 +12,7 @@ import Layout from '../../components/Layout';
 import CandidateSet from '../../components/CandidateSet';
 import BallotControls from '../../components/BallotControls';
 import { ballot as className } from './style.css';
-import { longestWord } from '../../core/services/helpers';
+import { longestWord } from '../../core//helpers';
 
 const pageLabel = 'Ballot';
 class BallotPage extends Component {
@@ -50,7 +50,7 @@ class BallotPage extends Component {
     const { id: docketID, title, members } = currentDocket;
     const { id: ballotID, order, submitting } = currentBallot;
 
-    document.title = title ? `Druthers: "${longestWord(title)}"` : "Druthers!";
+    document.title = `${title} • http://druthe.rs` || "http://druthe.rs";
     return el(Layout, { className, pageLabel, navigateToPage, docketID },
       h2({}, title),
       el(CandidateSet, { members, order, moveCandidate }),

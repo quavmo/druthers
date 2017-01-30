@@ -3,7 +3,7 @@ import {
 } from 'react';
 import { List, ListItem, Avatar } from 'material-ui';
 import { sort } from 'ramda';
-import { byOrder, elect, indexedMap } from '../../core/services/helpers';
+import { byOrder, elect, indexedMap } from '../../core//helpers';
 import num from 'numeral';
 
 const hydrateRunnerUp = ({ name }, rank) => el(ListItem, {

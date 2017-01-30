@@ -4,7 +4,7 @@ import {
 const { div } = DOM;
 const { func, array } = PropTypes;
 import { identity, sort } from 'ramda';
-import { indexedMap, byOrder } from '../../core/services/helpers';
+import { indexedMap, byOrder } from '../../core//helpers';
 import Card from '../Card';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';

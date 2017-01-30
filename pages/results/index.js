@@ -9,7 +9,7 @@ import Layout from '../../components/Layout';
 import { docketBase } from '../../core/services/DataService';
 import num from 'numeral';
 import { ballotCount } from './style.css';
-import { longestWord } from '../../core/services/helpers';
+import { longestWord } from '../../core//helpers';
 
 const pageLabel = 'Results';
 class ResultsPage extends Component {
@@ -36,7 +36,7 @@ class ResultsPage extends Component {
       return `( ${humanCount} ${noun} )`;
     };
 
-    document.title = title ? `Druthers: "${longestWord(title)}"` : "Druthers!";
+    document.title = `${title} • http://druthe.rs` || "http://druthe.rs";
     return el(Layout, { pageLabel, navigateToPage, docketID },
       h2({}, title),
       div({ className: ballotCount }, countString(ballots)),
