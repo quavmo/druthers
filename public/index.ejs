@@ -7,10 +7,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  </head>
-  <body>
-    <div id="container"></div>
-    <script src="<%= bundle %>"></script>
     <%_ if (!debug && config.trackingID) { _%>
     <script>
       window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
@@ -18,5 +14,9 @@
     </script>
     <script src="https://www.google-analytics.com/analytics.js" async defer></script>
     <%_ } _%>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script src="<%= bundle %>"></script>
   </body>
 </html>
